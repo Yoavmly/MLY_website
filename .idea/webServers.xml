@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="f378f5ef-594c-4fe6-95cd-e6b62620d023" name="mly_stage" url="http://localhost:4532/">
+        <fileTransfer mountedRoot="$USER_HOME$/Downloads/mly_stage" accessType="MOUNT" port="0" />
+      </webServer>
+    </option>
+  </component>
+</project>
