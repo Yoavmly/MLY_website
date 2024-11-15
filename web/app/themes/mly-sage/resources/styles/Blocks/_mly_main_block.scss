@@ -1,36 +1,67 @@
+$font-primary: 'Space Grotesk', sans-serif;
+$font-secondary: 'Poppins', sans-serif;
+$title-font-size: 92px;
+$title-line-height: 99.88px;
+$subtitle-font-size: 20px;
+$subtitle-line-height: 28px;
+$button-width: 213px;
+$button-height: 54px;
+$primary-color: #4bb4e6;
+$background-gradient: linear-gradient(135deg, #000000 40%, #003366 100%);
+
 .mly-main-block {
   display: flex;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, #000 50%, #0e192a 100%);
-  color: #fff;
-  text-align: center;
+  justify-content: flex-start;
+  min-height: 40vh;
+  background: $background-gradient;
+  color: #ffffff;
   padding: 2rem;
+  text-align: left;
 
   &__content {
-    max-width: 600px;
+    max-width: 1190px;
     margin: 0 auto;
+    width: 100%; // Ensure it takes full available width
   }
 
   h1 {
-    font-size: 3rem;
-    line-height: 1.2;
+    width: 100%;
+    max-width: 100%; // Restrict to the container width
+    font-size: $title-font-size;
+    font-weight: 400;
+    line-height: $title-line-height;
+    font-family: $font-primary;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+    word-break: break-word; // Allows long words to break onto a new line
+    overflow-wrap: break-word; // Prevents overflow in small screens
 
     .highlight {
-      color: #4bb4e6;
+      font-weight: 500;
+      color: $primary-color;
     }
   }
 
   .subtitle {
-    margin-top: 1rem;
-    font-size: 1.125rem;
+    width: 100%;
+    max-width: 992px;
+    font-size: $subtitle-font-size;
+    font-weight: 400;
+    line-height: $subtitle-line-height;
+    font-family: $font-secondary;
     color: #d0d0d0;
+    margin-top: 1rem;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
   }
 
   .btn {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    width: $button-width;
+    height: $button-height;
     margin-top: 1.5rem;
     padding: 0.75rem 1.5rem;
     font-size: 1rem;
@@ -40,6 +71,8 @@
     border-radius: 0.25rem;
     text-decoration: none;
     transition: background-color 0.3s ease;
+    font-family: $font-primary;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
 
     .arrow {
       margin-left: 0.5rem;
@@ -53,15 +86,17 @@
   // Responsive styling for smaller screens
   @media (max-width: 768px) {
     h1 {
-      font-size: 2rem;
+      font-size: 2.5rem;
+      line-height: 1.2;
     }
 
     .subtitle {
       font-size: 1rem;
-      margin-top: 0.75rem;
+      line-height: 1.4;
     }
 
     .btn {
+      width: auto;  // Allow the button to adjust width on smaller screens
       padding: 0.6rem 1.2rem;
       font-size: 0.875rem;
     }
@@ -69,12 +104,13 @@
 
   @media (max-width: 480px) {
     h1 {
-      font-size: 1.75rem;
+      font-size: 2rem;
+      line-height: 1.1;
     }
 
     .subtitle {
       font-size: 0.9rem;
-      margin-top: 0.5rem;
+      line-height: 1.3;
     }
 
     .btn {

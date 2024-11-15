@@ -1,18 +1,36 @@
+$navbar-bg-gradient: linear-gradient(25deg, #000000, #00008B);
+$font-primary: 'Space Grotesk', sans-serif;
+$navbar-link-color: #99FAF4;
+$navbar-link-hover-color: #aaa;
+$primary-button-bg: linear-gradient(25deg, #0d99ff, #aefdf3);
+$primary-button-border: 0.5px solid darkcyan;
+$primary-button-color: black;
+$navbar-padding-left: 2rem;
+
 .banner {
   .navbar {
-    background: linear-gradient(25deg,#000000,#00008B);
+    background: $navbar-bg-gradient;
     display: flex;
-    flex-wrap: nowrap;
-    font-family: 'Space Grotesk', sans-serif;
+    align-items: center;
+    font-family: $font-primary;
+    padding-left: $navbar-padding-left;
 
-    .container {
+    .container-fluid {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
-      width:100%;
+      justify-content: space-between;
+      max-width: 1190px;
+      margin: 0 auto;
     }
-    .navbar-brand img {
-      max-width: 100%;
+
+    .navbar-brand {
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+
+      img {
+        max-width: 100%;
+      }
     }
 
     .hamburger-icon {
@@ -25,14 +43,7 @@
 
       @media screen and (max-width: 767px) {
         display: inline-block;
-      }
-
-      background-image: url('../../images/hamburger_menu.png');
-      background-size: contain;
-      background-repeat: no-repeat;
-
-      &.show-menu {
-        background-image: url('../../images/close_button.png');
+        margin-right: 1rem;
       }
     }
 
@@ -45,23 +56,17 @@
       color: #0dcaf0;
 
       @media screen and (max-width: 767px) {
-        display: flex;
-        align-items: center;
+        display: inline-flex;
+        margin-right: 1rem;
       }
     }
 
-    .socials{
-      display:none;
-      gap:10px;
-      margin-top:10px;
-      width: 100%;
-      img{
-        width:26px;
-        height:26px;
-      }
-      &.show-socials{
-        display:flex;
-        flex-direction: row;
+    .socials {
+      display: none;
+
+      img {
+        width: 26px;
+        height: 26px;
       }
     }
   }
@@ -75,44 +80,40 @@
   margin: 0;
   color: #0dcaf0;
   white-space: nowrap;
-  order:1;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
 
   .nav-item {
     font-weight: 400;
 
-    &.custom_navbar {
-      padding-left: 2px;
-      display: flex;
-      align-items: flex-end;
-    }
-
     a {
-      color: #99FAF4;
+      color: $navbar-link-color;
       text-decoration: none;
+      font-family: $font-primary;
 
       &:hover {
-        color: #aaa;
+        color: $navbar-link-hover-color;
       }
-
-
     }
 
     .last-nav-item a {
       min-width: 210px;
       min-height: 52px;
-      color: black !important;
+      color: $primary-button-color !important;
+      background: $primary-button-bg;
       border-radius: 3px;
-      background: linear-gradient(25deg, #0d99ff, #aefdf3);
       padding: 15px 45px;
-      border: 0.5px solid darkcyan;
+      border: $primary-button-border;
+      text-align: center;
+      display: inline-block;
     }
 
     &:last-child {
       border-radius: 0.8em;
       display: inline-block;
       padding: 0.5em 1em;
-      color: #99FAF4;
+      color: $navbar-link-color;
       transition: all 0.3s ease;
       text-decoration: none;
 
@@ -130,10 +131,14 @@
 }
 
 @media screen and (max-width: 767px) {
+  .navbar {
+    padding-left: 1rem;
+  }
+
   .nav-menu {
     display: none;
     flex-direction: column;
-    background: linear-gradient(85deg,#000000,#00008B);
+    background: $navbar-bg-gradient;
     backdrop-filter: blur(5px);
     position: absolute;
     top: 100%;
@@ -141,36 +146,32 @@
     width: 100%;
     padding: 1rem;
     gap: 0.5rem;
+
+    &.show-menu {
+      display: flex;
+
+      .socials {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 1rem;
+        order: 3; // Ensures it appears below Get in Touch
+      }
+    }
   }
 
-  .nav-item.show-menu {
-    display: flex;
+  .navbar-brand {
+    margin: 0 auto;
   }
 
-  .nav-menu.show-menu {
-    display: flex;
+  .hamburger-icon {
+    margin-right: 1rem;
   }
 
   .message-box.show-menu {
     display: flex;
+    margin-right: 1rem;
   }
-
-  .socials{
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    gap:10px;
-  }
-}
-
-.nav-menu .last-nav-item a {
-  min-width: 210px;
-  min-height: 52px;
-  color: black !important;
-  border-radius: 5px;
-  background: linear-gradient(25deg, #0d99ff, #aefdf3);
-  padding: 15px 45px;
-  border: 0.5px solid darkcyan;
 }
 
 .nav-menu.show-menu {
@@ -182,19 +183,36 @@
   height: 100vh;
   margin: 0;
   padding: 10px;
-  font-family: 'Space Grotesk';
+  font-family: $font-primary;
   font-size: 2.5rem;
   color: #A6FFFA;
-  gap:10px;
+  gap: 10px;
+
+  // Positioning the socials below the Get in Touch button when menu is open
+  .socials.show-socials {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 1rem;
+  }
 }
 
+.nav-menu .last-nav-item a {
+  min-width: 210px;
+  min-height: 52px;
+  color: $primary-button-color !important;
+  border-radius: 5px;
+  background: $primary-button-bg;
+  padding: 15px 45px;
+  border: $primary-button-border;
+}
 
 .nav-menu.show-menu .nav-item:last-child a {
-  background:none;
+  background: none;
   border: none;
   padding: 10px 10px;
   font-size: inherit;
-  color: #99FAF4 !important;
+  color: $navbar-link-color !important;
   cursor: pointer;
   text-decoration: none;
   text-align: left;
