@@ -1,3 +1,4 @@
+
 $font-primary: 'Space Grotesk', sans-serif;
 $font-secondary: 'Poppins', sans-serif;
 $title-font-size: 92px;
@@ -8,6 +9,7 @@ $button-width: 213px;
 $button-height: 54px;
 $primary-color: #4bb4e6;
 $background-gradient: linear-gradient(135deg, #000000 40%, #003366 100%);
+
 
 .mly-main-block {
   display: flex;
@@ -22,26 +24,28 @@ $background-gradient: linear-gradient(135deg, #000000 40%, #003366 100%);
   &__content {
     max-width: 1190px;
     margin: 0 auto;
-    width: 100%; // Ensure it takes full available width
+    width: 100%;
   }
+
 
   h1 {
     width: 100%;
-    max-width: 100%; // Restrict to the container width
+    max-width: 100%;
     font-size: $title-font-size;
     font-weight: 400;
     line-height: $title-line-height;
     font-family: $font-primary;
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
-    word-break: break-word; // Allows long words to break onto a new line
-    overflow-wrap: break-word; // Prevents overflow in small screens
+    word-break: break-word;
+    overflow-wrap: break-word;
 
     .highlight {
       font-weight: 500;
       color: $primary-color;
     }
   }
+
 
   .subtitle {
     width: 100%;
@@ -55,6 +59,7 @@ $background-gradient: linear-gradient(135deg, #000000 40%, #003366 100%);
     text-underline-position: from-font;
     text-decoration-skip-ink: none;
   }
+
 
   .btn {
     display: inline-flex;
@@ -83,7 +88,6 @@ $background-gradient: linear-gradient(135deg, #000000 40%, #003366 100%);
     }
   }
 
-  // Responsive styling for smaller screens
   @media (max-width: 768px) {
     h1 {
       font-size: 2.5rem;
@@ -96,7 +100,7 @@ $background-gradient: linear-gradient(135deg, #000000 40%, #003366 100%);
     }
 
     .btn {
-      width: auto;  // Allow the button to adjust width on smaller screens
+      width: auto;
       padding: 0.6rem 1.2rem;
       font-size: 0.875rem;
     }

@@ -155,7 +155,7 @@ $navbar-padding-left: 2rem;
         justify-content: center;
         gap: 10px;
         margin-top: 1rem;
-        order: 3; // Ensures it appears below Get in Touch
+        order: 3;
       }
     }
   }
@@ -188,7 +188,7 @@ $navbar-padding-left: 2rem;
   color: #A6FFFA;
   gap: 10px;
 
-  // Positioning the socials below the Get in Touch button when menu is open
+
   .socials.show-socials {
     display: flex;
     width: 100%;

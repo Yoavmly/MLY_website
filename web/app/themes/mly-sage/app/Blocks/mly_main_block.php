@@ -55,14 +55,14 @@ class mly_main_block extends Block
     public function with(): array
     {
         return [
-            'title' => get_field('title'),
-            'highlighted_text' => get_field('highlighted_text'),
-            'subtitle' => get_field('subtitle'),
-            'button_text' => get_field('button_text'),
-            'button_link' => get_field('button_link'),
-
+            'title' => get_field('title') ?: '',
+            'highlighted_text' => get_field('highlighted_text') ?: '',
+            'subtitle' => get_field('subtitle') ?: '',
+            'button_text' => get_field('talk')['title'] ?? '',
+            'button_link' => get_field('talk')['url'] ?? '',
         ];
     }
+
 
     /**
      * The block field group.
@@ -75,10 +75,7 @@ class mly_main_block extends Block
             ->addText('title', ['label' => 'Title'])
             ->addText('highlighted_text', ['label' => 'Highlighted Text'])
             ->addText('subtitle', ['label' => 'Subtitle'])
-            ->addText('button_text', ['label' => 'Button Text'])
-            ->addUrl('button_link', ['label' => 'Button Link'])
-            ->addLink('talk', ['label' => 'Talk'])
-            ->addText('test', ['label' => 'Test']);
+            ->addLink('talk', ['label' => 'Talk']);
 
             return $mly_main_block->build();
     }
