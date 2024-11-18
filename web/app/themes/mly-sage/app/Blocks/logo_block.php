@@ -4,7 +4,6 @@ namespace App\Blocks;
 
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
-use StoutLogic\AcfBuilder\FieldsBuilder;
 
 class logo_block extends Block
 {
@@ -20,169 +19,65 @@ class logo_block extends Block
      *
      * @var string
      */
-    public $description = 'it comprises of logos';
+    public $description = 'A block to showcase logos with optional links.';
 
     /**
      * The block category.
      *
      * @var string
      */
-    public $category = 'text';
+    public $category = 'media';
 
     /**
      * The block icon.
      *
      * @var string|array
      */
-    public $icon = 'editor-ul';
+    public $icon = 'format-image';
 
     /**
      * The block keywords.
      *
      * @var array
      */
-    public $keywords = [];
-
-    /**
-     * The block post type allow list.
-     *
-     * @var array
-     */
-    public $post_types = [];
-
-    /**
-     * The parent block type allow list.
-     *
-     * @var array
-     */
-    public $parent = [];
-
-    /**
-     * The ancestor block type allow list.
-     *
-     * @var array
-     */
-    public $ancestor = [];
-
-    /**
-     * The default block mode.
-     *
-     * @var string
-     */
-    public $mode = 'preview';
-
-    /**
-     * The default block alignment.
-     *
-     * @var string
-     */
-    public $align = '';
-
-    /**
-     * The default block text alignment.
-     *
-     * @var string
-     */
-    public $align_text = '';
-
-    /**
-     * The default block content alignment.
-     *
-     * @var string
-     */
-    public $align_content = '';
-
-    /**
-     * The supported block features.
-     *
-     * @var array
-     */
-    public $supports = [
-        'align' => true,
-        'align_text' => false,
-        'align_content' => false,
-        'full_height' => false,
-        'anchor' => false,
-        'mode' => true,
-        'multiple' => true,
-        'jsx' => true,
-        'color' => [
-            'background' => false,
-            'text' => false,
-            'gradient' => false,
-        ],
-    ];
-
-    /**
-     * The block styles.
-     *
-     * @var array
-     */
-    public $styles = ['light', 'dark'];
-
-    /**
-     * The block preview example data.
-     *
-     * @var array
-     */
-    public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
-        ],
-    ];
-
-    /**
-     * The block template.
-     *
-     * @var array
-     */
-    public $template = [
-        'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Logo Block block.'],
-    ];
+    public $keywords = ['logos', 'carousel', 'images'];
 
     /**
      * Data to be passed to the block before rendering.
      */
     public function with(): array
-{
-    return [
-        'logos' => get_field('logos'),
-    ];
-}
+    {
+        return [
+            'logos' => get_field('logos') ?: [],
+        ];
+    }
 
     /**
      * The block field group.
      */
     public function fields(): array
-{
-    $logo_block = new FieldsBuilder('Logo Block');
-
-    $logo_block
-        ->addRepeater()
-
-        ->endRepeater();
-
-    return $logo_block->build();
-}
-
-    /**
-     * Retrieve the items.
-     *
-     * @return array
-     */
-    public function items()
     {
-        return get_field('items') ?: $this->example['items'];
-    }
+        $fields = Builder::make('LogoBlock');
 
-    /**
-     * Assets enqueued when rendering the block.
-     */
-    public function assets(array $block): void
-    {
-        //
+        $fields
+            ->addRepeater('logos', [
+                'label' => 'Logos',
+                'button_label' => 'Add Logo',
+                'min' => 1,
+                'layout' => 'table',
+            ])
+            ->addImage('image', [
+                'label' => 'Logo Image',
+                'instructions' => 'Select an image for the logo. Recommended size: 90px x 60px.',
+                'return_format' => 'url',
+                'preview_size' => 'thumbnail',
+            ])
+            ->addUrl('link', [
+                'label' => 'Logo Link',
+                'instructions' => 'Optional: Add a URL to link the logo.',
+            ])
+            ->endRepeater();
+
+        return $fields->build();
     }
 }

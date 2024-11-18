@@ -17,19 +17,34 @@
     }
   ],
   "keywords": [
-    "bedrock", "composer", "roots", "wordpress", "wp", "wp-config"
+    "bedrock",
+    "composer",
+    "roots",
+    "wordpress",
+    "wp",
+    "wp-config"
   ],
   "support": {
     "issues": "https://github.com/roots/bedrock/issues",
     "forum": "https://discourse.roots.io/category/bedrock"
   },
-  "repositories": [
-    {
+  "repositories": {
+    "acf": {
+      "type": "composer",
+      "url": "https://connect.advancedcustomfields.com",
+      "only": [
+        "wpengine/advanced-custom-fields-pro"
+      ]
+    },
+    "0": {
       "type": "composer",
       "url": "https://wpackagist.org",
-      "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+      "only": [
+        "wpackagist-plugin/*",
+        "wpackagist-theme/*"
+      ]
     }
-  ],
+  },
   "require": {
     "php": ">=8.0",
     "composer/installers": "^2.2",
@@ -41,7 +56,10 @@
     "roots/wp-config": "1.0.0",
     "roots/wp-password-bcrypt": "1.1.0",
     "wpackagist-theme/twentytwentyfour": "^1.0",
-    "roots/acorn": "^4.3"
+    "roots/acorn": "^4.3",
+    "wpengine/advanced-custom-fields-pro": "^6.3",
+    "wpackagist-plugin/acf-extended": "^0.9.0",
+    "log1x/acf-composer": "^3.2"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "^3.7.1",
@@ -59,15 +77,24 @@
   "prefer-stable": true,
   "extra": {
     "installer-paths": {
-      "web/app/mu-plugins/{$name}/": ["type:wordpress-muplugin"],
-      "web/app/plugins/{$name}/": ["type:wordpress-plugin"],
-      "web/app/themes/{$name}/": ["type:wordpress-theme"]
+      "web/app/mu-plugins/{$name}/": [
+        "type:wordpress-muplugin"
+      ],
+      "web/app/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "web/app/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
     },
     "wordpress-install-dir": "web/wp"
   },
   "scripts": {
     "test": [
       "phpcs"
+    ],
+    "post-autoload-dump": [
+      "Roots\\Acorn\\ComposerScripts::postAutoloadDump"
     ]
   }
 }
