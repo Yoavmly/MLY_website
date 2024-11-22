@@ -74,3 +74,7 @@ add_action('after_setup_theme', 'register_mly_navigation');
 
 
 
+/*for trouble shooting uploads*/
+@ini_set( 'upload_max_size' , '64M' );
+@ini_set( 'post_max_size', '64M');
+@ini_set( 'max_execution_time', '300' );

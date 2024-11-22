@@ -1,0 +1,171 @@
+$font-primary: 'Space Grotesk', sans-serif;
+$font-secondary: 'Poppins', sans-serif;
+$title-font-size: 92px;
+$title-line-height: 99.88px;
+$subtitle-font-size: 20px;
+$subtitle-line-height: 28px;
+$button-width: 213px;
+$button-height: 54px;
+$primary-color: #4bb4e6;
+$background-color: black;
+
+.project-main-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background: $background-color;
+  color: #ffffff;
+  padding: 2rem;
+
+  .block-title {
+    font-size: $title-font-size;
+    font-weight: 300;
+    line-height: $title-line-height;
+    font-family: $font-primary;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ffffff;
+
+    .highlight {
+      color: $primary-color;
+      font-weight: 500;
+    }
+  }
+
+  .project-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 42.41px;
+    width: 100%;
+    max-width: 1441px;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .project-item {
+      background: #111111;
+      border-radius: 8px;
+      overflow: hidden;
+      flex: 0 0 calc(50% - 21.2px);
+      max-width: calc(50% - 21.2px);
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+
+      @media (max-width: 768px) {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      .project-image {
+        img {
+          width: 100%;
+          height: auto;
+          display: block;
+        }
+      }
+
+      .project-info {
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .project-title {
+          font-family: $font-primary;
+          font-size: 1.2rem;
+          font-weight: 700;
+          color: #ffffff;
+          margin-bottom: 0.5rem;
+        }
+
+        .project-description {
+          font-family: $font-secondary;
+          font-size: 0.9rem;
+          line-height: 1.4;
+          color: #d0d0d0;
+          margin-bottom: 1rem;
+        }
+
+        .project-link {
+          font-size: 1rem;
+          font-weight: bold;
+          color: $primary-color;
+          text-decoration: none;
+          display: inline-flex;
+          align-items: center;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+
+  .view-all-projects {
+    margin-top: 2rem;
+
+    .view-all-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: $button-width;
+      height: $button-height;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #000;
+      background-color: #fff;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+      font-family: $font-primary;
+      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+
+      .arrow {
+        margin-left: 0.5rem;
+      }
+
+      &:hover {
+        background-color: #e0e0e0;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .block-title {
+      font-size: 2.5rem;
+      line-height: 1.2;
+    }
+
+    .project-container {
+      flex-direction: column;
+    }
+
+    .view-all-projects .view-all-link {
+      width: auto;
+      padding: 0.6rem 1.2rem;
+      font-size: 0.875rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .block-title {
+      font-size: 2rem;
+      line-height: 1.1;
+    }
+
+    .view-all-projects .view-all-link {
+      padding: 0.5rem 1rem;
+      font-size: 0.8rem;
+    }
+  }
+}
