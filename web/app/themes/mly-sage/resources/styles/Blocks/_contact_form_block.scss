@@ -6,6 +6,34 @@ $border-color: #ffffff;
 $form-background: rgba(0, 0, 0, 0.8);
 $form-border-radius: 10px;
 $box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
+$desktop-breakpoint: 1024px;
+$mobile-breakpoint: 767px;
+
+@mixin inner-block-style {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  max-width: 1200px;
+  width: 100%;
+  z-index: 2;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+
+  @media (max-width: $desktop-breakpoint) {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  @media (max-width: $mobile-breakpoint) {
+    flex-direction: column;
+    padding: 15px;
+  }
+}
+
 
 @mixin outer-block-style {
   width: 100%;
@@ -19,6 +47,7 @@ $box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
 
 .form-block {
   @include outer-block-style;
+  //@include inner-block-style;
   position: relative;
 
   .content {
@@ -60,7 +89,6 @@ $box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
 
         .form-group {
           display: flex;
-          grid-template-columns: 150px 1fr;
           align-items: center;
           gap: 1rem;
 
@@ -68,9 +96,9 @@ $box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
             font-family: $font-primary;
             font-size: 16px;
             color: $text-color;
-            margin-bottom: 0.5rem;
             white-space: nowrap;
             text-align: right;
+            width: 150px; // Fixed width for label
           }
 
           input,
@@ -111,5 +139,81 @@ $box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
     font-family: $font-primary;
     font-size: 14px;
     color: $text-color;
+  }
+
+  // Responsiveness for smaller screens
+  @media (max-width: 768px) {
+    .content {
+      flex-direction: column;
+      align-items: center;
+
+      .text-section {
+        text-align: center;
+
+        h1 {
+          font-size: 48px;
+          line-height: 55px;
+        }
+      }
+
+      .form-section {
+        width: 100%;
+        padding: 1.5rem;
+
+        form {
+          .form-group {
+            flex-direction: column;
+            align-items: flex-start;
+
+            label {
+              text-align: left; // Align labels to the left
+              width: 100%; // Allow label to flow naturally in smaller screens
+            }
+
+            input,
+            textarea,
+            select {
+              width: 100%; // Ensure inputs span full width
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .content {
+      padding: 1rem;
+
+      .text-section {
+        h1 {
+          font-size: 36px;
+          line-height: 42px;
+        }
+      }
+
+      .form-section {
+        padding: 1rem;
+
+        form {
+          gap: 1rem;
+
+          .form-group {
+            gap: 0.5rem;
+
+            label {
+              font-size: 14px; // Reduce label font size
+            }
+
+            input,
+            textarea,
+            select {
+              font-size: 14px; // Reduce input font size
+              padding: 0.5rem 0.75rem; // Adjust padding for smaller screens
+            }
+          }
+        }
+      }
+    }
   }
 }

@@ -3,8 +3,7 @@ $text-color: #ffffff;
 $primary-color: #4bb4e6;
 $border-color: #ffffff;
 $block-gap: 38px;
-$background-color:black;
-
+$background-color: black;
 
 .outer-block {
   width: 100%;
@@ -37,8 +36,9 @@ $background-color:black;
 
   .title-button-wrapper {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
     width: 100%;
     margin-bottom: 3rem;
 
@@ -81,17 +81,17 @@ $background-color:black;
   }
 
   .inner-block {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
     gap: $block-gap;
+    width: 100%;
     max-width: 1438px;
     margin: 0 auto;
-    grid-template-columns: repeat(2,1fr);
-    grid-template-rows: repeat(3,auto);
 
     .small-block {
-      width: 454px;
+      width: 100%;
+      max-width: 454px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -104,6 +104,7 @@ $background-color:black;
         display: flex;
         align-items: center;
         justify-content: center;
+
         img {
           width: 100%;
           height: 100%;
@@ -119,6 +120,70 @@ $background-color:black;
         font-weight: 400;
         line-height: 20px;
         color: $text-color;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 1.5rem 2rem;
+
+    .title-button-wrapper {
+      .title {
+        font-size: 48px;
+        line-height: 55px;
+      }
+
+      .button-wrapper .btn {
+        font-size: 14px;
+        padding: 0.5rem 1rem;
+        height: auto;
+      }
+    }
+
+    .inner-block {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+
+      .small-block {
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 1rem 1.5rem;
+
+    .title-button-wrapper {
+      .title {
+        font-size: 36px;
+        line-height: 42px;
+      }
+
+      .button-wrapper .btn {
+        font-size: 14px;
+        padding: 0.5rem 0.75rem;
+        height: auto;
+        text-align: center;
+      }
+    }
+
+    .inner-block {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+
+      .small-block {
+        width: 100%;
+        gap: 1rem;
+
+        .shape {
+          width: 80px;
+          height: 80px;
+        }
+
+        .description {
+          font-size: 14px;
+          line-height: 18px;
+        }
       }
     }
   }
