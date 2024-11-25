@@ -19,7 +19,7 @@ class mly_main_block extends Block
      *
      * @var string
      */
-    public $title = 'MLY Main Block';
+    public $title = 'mly Main Block';
 
     /**
      * The block description.

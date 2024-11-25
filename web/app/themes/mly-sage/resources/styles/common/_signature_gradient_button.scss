@@ -1,0 +1,29 @@
+$font-primary: 'Space Grotesk', sans-serif;
+$primary-button-bg: linear-gradient(25deg, #0d99ff, #aefdf3);
+$primary-button-color: black;
+$primary-button-border: 0.5px solid darkcyan;
+$custom-white-button-min-width: 210px;
+$custom-white-button-min-height: 52px;
+$custom-white-button-color: $primary-button-color !important;
+$custom-white-button-bg: $primary-button-bg;
+$custom-white-button-border-radius: 5px;
+$custom-white-button-padding: 15px 45px;
+$custom-white-button-border: $primary-button-border;
+$custom-white-button-font-family: $font-primary;
+
+
+@mixin signature-gradient-button {
+  min-width: $custom-white-button-min-width;
+  min-height: $custom-white-button-min-height;
+  color: $custom-white-button-color;
+  background: $custom-white-button-bg;
+  border-radius: $custom-white-button-border-radius;
+  padding: $custom-white-button-padding;
+  border: $custom-white-button-border;
+  text-align: center;
+  display: inline-block;
+  font-family: $custom-white-button-font-family;
+}
+.signature-gradient-button {
+  @include signature-gradient-button;
+}

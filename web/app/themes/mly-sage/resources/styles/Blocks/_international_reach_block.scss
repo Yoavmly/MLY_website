@@ -1,0 +1,112 @@
+$background-gradient: linear-gradient(135deg, #000000 40%, #1a1a1a 100%);
+$primary-color: #4bb4e6;
+$text-color: #ffffff;
+$subtitle-color: #d0d0d0;
+$font-primary: 'Space Grotesk', sans-serif;
+$font-secondary: 'Poppins', sans-serif;
+
+.global-impact-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  background: $background-gradient;
+  position: relative;
+  color: $text-color;
+  text-align: center;
+  padding: 2rem;
+
+  .content-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    max-width: 1200px;
+    width: 100%;
+    position: relative;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .image-content {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 70%;
+      height: auto;
+
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+      }
+    }
+
+    .text-content {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+
+      .title {
+        font-size: 3rem;
+        font-weight: 600;
+        font-family: $font-primary;
+        margin-bottom: 1rem;
+
+        span {
+          color: $primary-color;
+        }
+      }
+
+      .subtitle {
+        font-size: 1.25rem;
+        font-weight: 400;
+        font-family: $font-secondary;
+        color: $subtitle-color;
+        margin-bottom: 2rem;
+      }
+
+      .button-placement {
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .text-content {
+      align-items: center;
+      text-align: center;
+
+      .title {
+        font-size: 2.5rem;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-content {
+      .title {
+        font-size: 2rem;
+      }
+
+      .subtitle {
+        font-size: 0.9rem;
+        text-align: left;
+      }
+    }
+
+    .image-content {
+      max-width: 100%;
+    }
+  }
+}

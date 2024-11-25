@@ -1,0 +1,48 @@
+$button-width: 213px;
+$button-height: 54px;
+$font-primary: 'Space Grotesk', sans-serif;
+$font-secondary: 'Poppins', sans-serif;
+$custom-button-width: $button-width;
+$custom-button-height: $button-height;
+$custom-button-color: #000;
+$custom-button-bg: #fff;
+$custom-button-border-radius: 0.25rem;
+$custom-button-padding: 0.75rem 1.5rem;
+$custom-button-font-size: 1rem;
+$custom-button-font-family: $font-primary;
+$custom-button-font-weight: bold;
+$custom-button-box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+$custom-button-hover-bg: #e0e0e0;
+$custom-button-margin-top: 1.5rem;
+$custom-button-arrow-spacing: 0.5rem;
+
+@mixin custom-white-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: $custom-button-width;
+  height: $custom-button-height;
+  color: $custom-button-color;
+  background-color: $custom-button-bg;
+  border-radius: $custom-button-border-radius;
+  padding: $custom-button-padding;
+  font-size: $custom-button-font-size;
+  font-weight: $custom-button-font-weight;
+  font-family: $custom-button-font-family;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  box-shadow: $custom-button-box-shadow;
+  margin-top: $custom-button-margin-top;
+
+  .arrow {
+    margin-left: $custom-button-arrow-spacing;
+  }
+
+  &:hover {
+    background-color: $custom-button-hover-bg;
+  }
+}
+
+.custom-btn-secondary {
+  @include custom-white-button;
+}

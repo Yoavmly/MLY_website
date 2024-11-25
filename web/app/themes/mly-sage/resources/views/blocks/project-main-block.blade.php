@@ -25,7 +25,7 @@
     </div>
     <div class="view-all-project">
       @if($view_all_projects_link)
-        <a href="{{ $view_all_projects_link }}" class="view-all-link" target="_blank" rel="noopener noreferrer">View All Projects → </a>
+        <a href="{{ $view_all_projects_link }}" class="view-all-link custom-btn-secondary" target="_blank" rel="noopener noreferrer">View All Projects → </a>
         @endif
     </div>
   </div>
