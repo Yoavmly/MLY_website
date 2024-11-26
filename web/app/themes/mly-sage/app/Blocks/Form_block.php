@@ -5,21 +5,21 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
 
-class services_block extends Block
+class Form_block extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Services Block';
+    public $name = 'Form_Block';
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'A block consist of subblocks detailing various services provided.';
+    public $description = 'This is Contact Form block which would ease the customers to reach us efficiently.';
 
     /**
      * The block category.
@@ -40,7 +40,7 @@ class services_block extends Block
      *
      * @var array
      */
-    public $keywords = ['services','block','details'];
+    public $keywords = [];
 
     /**
      * The block post type allow list.
@@ -68,14 +68,14 @@ class services_block extends Block
      *
      * @var string
      */
-    public $mode = 'edit';
+    public $mode = 'preview';
 
     /**
      * The default block alignment.
      *
      * @var string
      */
-    public $align = 'wide';
+    public $align = '';
 
     /**
      * The default block text alignment.
@@ -139,7 +139,7 @@ class services_block extends Block
      */
     public $template = [
         'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Services Block block.'],
+        'core/paragraph' => ['placeholder' => 'Welcome to the Form_Block block.'],
     ];
 
     /**
@@ -148,7 +148,7 @@ class services_block extends Block
     public function with(): array
     {
         return [
-            'services' => $this->getServices(),
+            'items' => $this->items(),
         ];
     }
 
@@ -157,37 +157,11 @@ class services_block extends Block
      */
     public function fields(): array
     {
-        $fields = Builder::make('services_block');
+        $fields = Builder::make('form__block');
 
         $fields
-            ->addRepeater('services',[
-                'label'=>'Services',
-                'instructions' => 'Add the details for each service.',
-                'min'=>1,
-                'layout' => 'block',
-            ])
-                ->addImage('image',[
-                    'label' => 'Image',
-                    'instructions' => 'Add an image URL.',
-                    'required' => false,
-                    'return_format' => 'url',
-                    'preview_size' => 'medium',
-                ])
-                ->addText('title',[
-                    'label' => 'Title',
-                    'instructions' => 'Add the title for each service.',
-                    'required' => true,
-                ])
-                ->addTextarea('description',[
-                    'label' => 'Description',
-                    'instructions' => 'Add the description for each service.',
-                    'required' => true,
-                ])
-                ->addUrl('url', [
-                    'label' => 'Link',
-                    'instructions' => 'Provide the URL for this service.',
-                    'required' => false,
-                ])
+            ->addRepeater('items')
+                ->addText('item')
             ->endRepeater();
 
         return $fields->build();
@@ -209,28 +183,5 @@ class services_block extends Block
     public function assets(array $block): void
     {
         //
-    }
-
-    public function getServices()
-    {
-        $acfServices = get_field('services') ?: [];
-        $defaultImages = [
-            \Roots\asset("images/services/1.png")->uri(),
-            \Roots\asset("images/services/2.png")->uri(),
-            \Roots\asset("images/services/3.png")->uri(),
-            \Roots\asset("images/services/4.png")->uri(),
-        ];
-
-        return array_map(function ($service, $index) use ($defaultImages) {
-            $icon = $service['icon'] ?? $defaultImages[$index % count($defaultImages)];
-            $url = $service['url'] ?? '#';
-
-            return [
-                'icon' => $icon,
-                'title' => $service['title'],
-                'description' => $service['description'],
-                'url' => $url,
-            ];
-        }, $acfServices, array_keys($acfServices));
     }
 }

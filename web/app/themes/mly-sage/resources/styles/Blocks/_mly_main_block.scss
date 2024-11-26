@@ -1,23 +1,16 @@
-
 $font-primary: 'Space Grotesk', sans-serif;
-$font-secondary: 'Poppins', sans-serif;
+$text-color: #ffffff;
+$primary-color: #4bb4e6;
 $title-font-size: 92px;
 $title-line-height: 99.88px;
-$subtitle-font-size: 20px;
-$subtitle-line-height: 28px;
-$button-width: 213px;
-$button-height: 54px;
-$primary-color: #4bb4e6;
-$background-gradient: linear-gradient(135deg, #000000 40%, #003366 100%);
-
 
 .mly-main-block {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   min-height: 40vh;
-  background: $background-gradient;
-  color: #ffffff;
+  background: linear-gradient(135deg, #000000 40%, #003366 100%);
+  color: $text-color;
   padding: 2rem;
   text-align: left;
 
@@ -27,18 +20,23 @@ $background-gradient: linear-gradient(135deg, #000000 40%, #003366 100%);
     width: 100%;
   }
 
-
   h1 {
-    width: 100%;
-    max-width: 100%;
+    display: inline-block;
+    max-width: 500px;
     font-size: $title-font-size;
     font-weight: 400;
     line-height: $title-line-height;
     font-family: $font-primary;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
-    word-break: break-word;
+    white-space: nowrap;
     overflow-wrap: break-word;
+    overflow: visible;
+
+    &.title-text {
+      width: 100%;
+      max-width: unset;
+      white-space: normal;
+      //word-break: break-word;
+    }
 
     .highlight {
       font-weight: 500;
@@ -46,45 +44,38 @@ $background-gradient: linear-gradient(135deg, #000000 40%, #003366 100%);
     }
   }
 
-
   .subtitle {
-    width: 100%;
-    max-width: 992px;
-    font-size: $subtitle-font-size;
+    font-size: 20px;
     font-weight: 400;
-    line-height: $subtitle-line-height;
-    font-family: $font-secondary;
+    line-height: 28px;
+    font-family: 'Poppins', sans-serif;
     color: #d0d0d0;
     margin-top: 1rem;
-    text-underline-position: from-font;
-    text-decoration-skip-ink: none;
+    max-width: 992px;
   }
-
 
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: $button-width;
-    height: $button-height;
+    width: 213px;
+    height: 54px;
     margin-top: 1.5rem;
-    padding: 0.75rem 1.5rem;
     font-size: 1rem;
     font-weight: bold;
     color: #000;
     background-color: #fff;
-    border-radius: 0.25rem;
+    border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    font-family: $font-primary;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+      background-color: lighten(#fff, 10%);
+    }
 
     .arrow {
       margin-left: 0.5rem;
-    }
-
-    &:hover {
-      background-color: #e0e0e0;
     }
   }
 
@@ -92,6 +83,7 @@ $background-gradient: linear-gradient(135deg, #000000 40%, #003366 100%);
     h1 {
       font-size: 2.5rem;
       line-height: 1.2;
+      max-width: 100%;
     }
 
     .subtitle {
