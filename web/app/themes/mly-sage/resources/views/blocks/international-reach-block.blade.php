@@ -13,7 +13,7 @@
         </div>
         <div class="button-placement">
           <a href="{{ get_field('button_link') }}" class="btn signature-gradient-button">
-            {{ $button_title }}
+            {{ $button_title }}&nbsp;→
           </a>
         </div>
       </div>

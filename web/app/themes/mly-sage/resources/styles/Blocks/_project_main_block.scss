@@ -1,6 +1,6 @@
 $font-primary: 'Space Grotesk', sans-serif;
 $font-secondary: 'Poppins', sans-serif;
-$title-font-size: 92px;
+$title-font-size: 80px;
 $title-line-height: 99.88px;
 $subtitle-font-size: 20px;
 $subtitle-line-height: 28px;
@@ -35,75 +35,65 @@ $background-color: black;
 
   .project-container {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: center;
     gap: 42.41px;
     width: 100%;
     max-width: 1441px;
-    overflow-x: auto;
     padding-bottom: 1rem;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
 
-    &::-webkit-scrollbar {
-      display: none;
-    }
-
-    .project-item {
-      background: #111111;
-      border-radius: 8px;
-      overflow: hidden;
+    .project-link {
+      text-decoration: none;
       flex: 0 0 calc(50% - 21.2px);
       max-width: calc(50% - 21.2px);
       display: flex;
       flex-direction: column;
+      background: #111111;
+      border-radius: 8px;
+      overflow: hidden;
       box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.05);
+      }
 
       @media (max-width: 768px) {
         flex: 0 0 100%;
         max-width: 100%;
       }
 
-      .project-image {
-        img {
-          width: 100%;
-          height: auto;
-          display: block;
-        }
-      }
-
-      .project-info {
-        padding: 1rem;
+      .project-item {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
 
-        .project-title {
-          font-family: $font-primary;
-          font-size: 1.2rem;
-          font-weight: 700;
-          color: #ffffff;
-          margin-bottom: 0.5rem;
+        .project-image {
+          img {
+            width: 100%;
+            height: auto;
+            display: block;
+          }
         }
 
-        .project-description {
-          font-family: $font-secondary;
-          font-size: 0.9rem;
-          line-height: 1.4;
-          color: #d0d0d0;
-          margin-bottom: 1rem;
-        }
+        .project-info {
+          padding: 1rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
 
-        .project-link {
-          font-size: 1rem;
-          font-weight: bold;
-          color: $primary-color;
-          text-decoration: none;
-          display: inline-flex;
-          align-items: center;
+          .project-title {
+            font-family: $font-primary;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 0.5rem;
+          }
 
-          &:hover {
-            text-decoration: underline;
+          .project-description {
+            font-family: $font-secondary;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #d0d0d0;
+            margin-bottom: 1rem;
           }
         }
       }
@@ -129,10 +119,6 @@ $background-color: black;
       transition: background-color 0.3s ease;
       font-family: $font-primary;
       box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-
-      .arrow {
-        margin-left: 0.5rem;
-      }
 
       &:hover {
         background-color: #e0e0e0;

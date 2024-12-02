@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="060baac4-ab5f-48c5-b1e0-61549baf43e5" name="mly_stage" url="http://81.218.83.105">
+        <fileTransfer accessType="SFTP" sshConfigId="4374b3eb-87a4-480c-baba-d9778650b6c3" sshConfig="mly_stage">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

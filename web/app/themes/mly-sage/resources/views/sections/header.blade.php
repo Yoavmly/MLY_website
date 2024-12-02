@@ -20,7 +20,7 @@
         <img src="@asset('images/hamburger_menu.png')" alt="Hamburger_logo">
       </div>
 
-      <a class="navbar-brand" href="<?php //echo esc_url(home_url('/')); ?>">
+      <a class="navbar-brand" href="{{ esc_url(home_url('/')) }}">
         <img src="@asset('images/MLY_logo.png')" alt="MLY_Logo">
       </a>
 

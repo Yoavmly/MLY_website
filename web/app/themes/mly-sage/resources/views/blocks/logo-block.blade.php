@@ -1,6 +1,6 @@
 <div class="{{ $block->classes }} logo-block" style="{{ $block->inlineStyle }}">
   @if (!empty($logos))
-    <div class="logo-block__container">
+    <div class="logo-block__container align-self-center">
       @foreach ($logos as $logo)
         <div class="logo-block__item">
           @if (!empty($logo['link']))

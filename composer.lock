@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4017031fc5b73f41bf4958f2b7a39cf8",
+    "content-hash": "8caec80113c9549030cb40354a6ff2e1",
     "packages": [
         {
             "name": "brick/math",
@@ -6475,6 +6475,24 @@
             },
             "type": "wordpress-plugin",
             "homepage": "https://wordpress.org/plugins/acf-extended/"
+        },
+        {
+            "name": "wpackagist-plugin/formidable",
+            "version": "6.16.2",
+            "source": {
+                "type": "svn",
+                "url": "https://plugins.svn.wordpress.org/formidable/",
+                "reference": "tags/6.16.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/plugin/formidable.6.16.2.zip"
+            },
+            "require": {
+                "composer/installers": "^1.0 || ^2.0"
+            },
+            "type": "wordpress-plugin",
+            "homepage": "https://wordpress.org/plugins/formidable/"
         },
         {
             "name": "wpackagist-theme/twentytwentyfour",

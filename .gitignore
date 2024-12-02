@@ -1,27 +1,50 @@
 # Application
 web/app/plugins/*
+/web/app/plugins/*
+
 !web/app/plugins/.gitkeep
+/!web/app/plugins/.gitkeep
+
 web/app/mu-plugins/*/
+/web/app/mu-plugins/*/
+
 web/app/themes/twentytwentyfour/
+/web/app/themes/twentytwentyfour/
+
 web/app/upgrade
+/web/app/upgrade
+
 web/app/uploads/*
+/web/app/uploads/*
+
 !web/app/uploads/.gitkeep
+/!web/app/uploads/.gtikeep
+
 web/app/cache/*
+/web/app/cache/*
 
 # WordPress
 web/wp
+/web/wp
 web/.htaccess
+/web/.htaccess
 
 # Logs
 *.log
+/*.log
+
 
 # Dotenv
 .env
 .env.*
 !.env
+/.env
 
 # Composer
 /vendor
+
+#auth.json
+#/auth.json
 
 # WP-CLI
 wp-cli.local.yml

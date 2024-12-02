@@ -5,21 +5,21 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
 
-class contact_form_block extends Block
+class contact_us_media_block extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Contact_Form_Block';
+    public $name = 'Contact_Us_Media_Block';
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'A beautiful block consisting of a form for the customers to quickly connect with us in an effective manner.';
+    public $description = 'this this';
 
     /**
      * The block category.
@@ -139,28 +139,8 @@ class contact_form_block extends Block
      */
     public $template = [
         'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Contact_Form_Block block.'],
+        'core/paragraph' => ['placeholder' => 'Welcome to the Contact_Us_Media_Block block.'],
     ];
-
-    private function getPositions():array
-    {
-        $positions = get_field('positions') ?? [];
-
-        $positions =  array_map(function ($item) {
-            return $item['position'] ?? '';
-        }, $positions);
-        return $positions;
-    }
-
-    private function getPurposes():array
-    {
-         $purposes = get_field('purposes') ?? [];
-
-        $purposes=array_map(function ($item) {
-            return $item['purpose'] ?? '';
-        }, $purposes);
-        return $purposes;
-    }
 
     /**
      * Data to be passed to the block before rendering.
@@ -168,9 +148,7 @@ class contact_form_block extends Block
     public function with(): array
     {
         return [
-            'form_action' => get_field('form_action') ?? '#',
-            'positions' => $this->getPositions(),
-            'purposes' => $this->getPurposes(),
+            'items' => $this->items(),
         ];
     }
 
@@ -179,34 +157,11 @@ class contact_form_block extends Block
      */
     public function fields(): array
     {
-        $fields = Builder::make('make_it_happen_form');
+        $fields = Builder::make('contact__us__media__block');
 
         $fields
-            ->addUrl('form_action', [
-                'label' => 'Form Action URL',
-                'instructions' => 'The URL where the form should be submitted.',
-            ])
-            ->addRepeater('positions', [
-                'label' => 'Positions',
-                'instructions' => 'Add positions for the dropdown.',
-                'min' => 1,
-                'layout' => 'block',
-            ])
-            ->addText('position', [
-                'label' => 'Position',
-                'instructions' => 'Enter a position.',
-            ])
-            ->endRepeater()
-            ->addRepeater('purposes', [
-                'label' => 'Purposes',
-                'instructions' => 'Add purposes for the dropdown.',
-                'min' => 1,
-                'layout' => 'block',
-            ])
-            ->addText('purpose', [
-                'label' => 'Purpose',
-                'instructions' => 'Enter a purpose.',
-            ])
+            ->addRepeater('items')
+                ->addText('item')
             ->endRepeater();
 
         return $fields->build();

@@ -148,24 +148,80 @@ class Form_block extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'form_action' => get_field('form_action') ?? '#',
+            'form_fields' => $this->getFormFields(),
         ];
     }
+
+
+
+
 
     /**
      * The block field group.
      */
     public function fields(): array
     {
-        $fields = Builder::make('form__block');
+        $fields = Builder::make('contact_form_block');
 
         $fields
-            ->addRepeater('items')
-                ->addText('item')
+            ->addUrl('form_action', [
+                'label' => 'Form Action URL',
+                'instructions' => 'The URL where the form should be submitted.',
+            ])
+            ->addRepeater('form_fields', [
+                'label' => 'Form Fields',
+                'instructions' => 'Add form fields dynamically.',
+                'min' => 1,
+                'layout' => 'block',
+            ])
+            ->addSelect('type', [
+                'label' => 'Field Type',
+                'choices' => [
+                    'text' => 'Text Input',
+                    'textarea' => 'Textarea',
+                    'select' => 'Select Dropdown',
+                ],
+            ])
+            ->addText('label', [
+                'label' => 'Field Label',
+                'instructions' => 'Enter the label for this field.',
+            ])
+            ->addText('placeholder', [
+                'label' => 'Field Placeholder',
+                'instructions' => 'Enter the placeholder for this field.',
+            ])
+            ->addText('name', [
+                'label' => 'Field Name',
+                'instructions' => 'Enter the name for this field (used in form submission).',
+            ])
+            ->addRepeater('options', [
+                'label' => 'Options (for Select Dropdown)',
+                'instructions' => 'Add options for the select dropdown.',
+                'min' => 1,
+                'conditional_logic' => [
+                    [
+                        'field' => 'type',
+                        'operator' => '==',
+                        'value' => 'select',
+                    ],
+                ],
+            ])
+            ->addText('option', [
+                'label' => 'Option',
+                'instructions' => 'Enter an option value.',
+            ])
+            ->endRepeater()
+            ->addTrueFalse('required', [
+                'label' => 'Required Field',
+                'instructions' => 'Mark this field as required.',
+                'default_value' => 0,
+            ])
             ->endRepeater();
 
         return $fields->build();
     }
+
 
     /**
      * Retrieve the items.
@@ -183,5 +239,21 @@ class Form_block extends Block
     public function assets(array $block): void
     {
         //
+    }
+
+    private function getFormFields(): array
+    {
+        $fields = get_field('form_fields') ?? [];
+
+        return array_map(function ($field) {
+            return [
+                'type' => $field['type'] ?? 'text',
+                'label' => $field['label'] ?? '',
+                'name' => $field['name'] ?? '',
+                'placeholder' => $field['placeholder'] ?? '',
+                'options' => $field['options'] ?? [],
+                'required' => $field['required'] ?? false,
+            ];
+        }, $fields);
     }
 }
