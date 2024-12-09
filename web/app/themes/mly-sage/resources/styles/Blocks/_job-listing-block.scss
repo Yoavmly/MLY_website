@@ -1,0 +1,38 @@
+.job-listing-block {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: transparent;
+  color: #ffffff;
+  border-radius: 8px;
+  cursor: pointer;
+
+  .job-listing-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .job-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 500;
+    width:50%;
+  }
+
+  .job-work-type {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    font-weight: 400;
+    margin-left: auto;
+    margin-right: 1rem;
+    opacity: 0.8;
+  }
+
+  .job-arrow {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+}

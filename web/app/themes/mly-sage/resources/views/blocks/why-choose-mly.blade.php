@@ -10,7 +10,7 @@
           </div>
           <div class="button-wrapper">
             <a href="{{ get_field('button_link') }}" class="custom-btn-secondary">
-              {{ get_field('button_text') ?? 'Let’s Talk' }}&nbsp;→
+              {{ get_field('button_text') ?? 'Let’s Talk' }}&nbsp;<span class="arrow">→</span>
             </a>
           </div>
         </div>

@@ -1,10 +1,15 @@
-<div class="{{ $block->classes }} zoho-partner-block" style="{{ $block->inlineStyle }}">
+<div class="zoho-partner-block">
   <div class="content-wrapper">
-    <h2 class="partner-title">
-        {{ $title }}
-    </h2>
-    <div class="partner-image">
-      <img src="{{ $image }}" alt="partner image">
+    <img src="{{ $image }}" alt="Zoho Partner" class="background-image">
+    <div class="overlay-content">
+      <h2 class="partner-title">
+       {{ $title }}
+      </h2>
+      <br>
+      <br>
+      <p class="partner-description">
+        {{ $description }}
+      </p>
     </div>
   </div>
 </div>

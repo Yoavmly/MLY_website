@@ -5,21 +5,21 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
 
-class zoho_page_main_block extends Block
+class job_listing_block extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Zoho_Page_Main_Block';
+    public $name = 'Job Listing Block';
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'Zoho page main block';
+    public $description = 'Job List Block';
 
     /**
      * The block category.
@@ -33,14 +33,14 @@ class zoho_page_main_block extends Block
      *
      * @var string|array
      */
-    public $icon = 'editor-ul';
+    public $icon = 'list-view';
 
     /**
      * The block keywords.
      *
      * @var array
      */
-    public $keywords = [];
+    public $keywords = ['job','listing','link'];
 
     /**
      * The block post type allow list.
@@ -97,19 +97,8 @@ class zoho_page_main_block extends Block
      * @var array
      */
     public $supports = [
-        'align' => true,
-        'align_text' => false,
-        'align_content' => false,
-        'full_height' => false,
-        'anchor' => false,
-        'mode' => true,
-        'multiple' => true,
+        'align' => ['wide','full'],
         'jsx' => true,
-        'color' => [
-            'background' => false,
-            'text' => false,
-            'gradient' => false,
-        ],
     ];
 
     /**
@@ -139,7 +128,7 @@ class zoho_page_main_block extends Block
      */
     public $template = [
         'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Zoho_Page_Main_Block block.'],
+        'core/paragraph' => ['placeholder' => 'Welcome to the Job Listing Block block.'],
     ];
 
     /**
@@ -147,28 +136,10 @@ class zoho_page_main_block extends Block
      */
     public function with(): array
     {
-        $image = get_field('image');
-        $title = get_field('title');
-        $description = get_field('description');
-
-
-        $image_url = '';
-        if (is_array($image)) {
-            $image_url = isset($image['url']) ? $image['url'] : '';
-        } elseif (is_string($image)) {
-            $image_url = $image;
-        } else {
-            $image_url = asset('images/partner/5.png')->uri();
-        }
-
-        $description_text = is_string($description) ? $description : '';
-
-        $title_text = is_string($title) ? $title : 'Default Title';
-
         return [
-            'title' => $title_text,
-            'image' => $image_url,
-            'description' => $description_text,
+            'title' => get_field('title'),
+            'work_type' => get_field('work_type'),
+            'link' => get_field('link'),
         ];
     }
 
@@ -177,25 +148,25 @@ class zoho_page_main_block extends Block
      */
     public function fields(): array
     {
-        $fields = Builder::make('zoho__page__main__block');
+        $fields = Builder::make('job_listing_block');
 
         $fields
-            ->addText('title', [
+            ->addText('title',[
                 'label' => 'Title',
-                'instructions' => 'Enter the title for the partnership.',
+                'instructions' => 'add the job title',
                 'required' => true,
             ])
-            ->addImage('image', [
-                'label' => 'Image',
-                'instructions' => 'Upload the image for the partnership.',
-                'required' => false,
-                'return_format' => 'url',
+            ->addText('work_type',[
+                'label' => 'Work Type',
+                'instructions' => 'add the job type(eg., Remote)',
+                'required' => true,
             ])
-        ->addTextarea('description', [
-            'label' => 'Description',
-            'instructions' => 'Enter the description for the partnership.',
-            'required' => false,
-        ]);
+            ->addLink('link',[
+                'label' => 'Link',
+                'instructions' => 'add the job link',
+                'return_format' => 'url',
+                'required' => true,
+            ]);
 
         return $fields->build();
     }

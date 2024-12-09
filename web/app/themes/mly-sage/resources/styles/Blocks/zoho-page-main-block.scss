@@ -2,33 +2,51 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000;
-  color: #fff;
-  padding: 2rem;
-  min-height: 60vh;
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: transparent;
+  overflow: hidden;
 
   .content-wrapper {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 90%;
+    max-width: 1180px;
 
-    .partner-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 3rem;
-      font-weight: 400;
-      line-height: 1.2;
-      margin-bottom: 2rem;
-      color: #ffffff;
-    }
+    .overlay-content {
+      z-index: 2;
+      text-align: center;
+      font-family: $font-primary;
+      color: $navbar-link-color;
 
-    .partner-image {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      max-width: 400px;
+      .partner-title {
+        font-size: $title-font-size;
+        line-height: $title-line-height;
+        font-weight: 400;
+        margin: 0;
+      }
 
-      img {
-        max-width: 100%;
-        height: auto;
+      .partner-description {
+        font-size: $subtitle-font-size;
+        line-height: $subtitle-line-height;
+        font-weight: 300;
+        margin: 1rem 0 0 0;
       }
     }
+  }
+
+  .background-image {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 520px;
+    height: 520px;
+    max-width: 100%;
+    z-index: 1;
   }
 }

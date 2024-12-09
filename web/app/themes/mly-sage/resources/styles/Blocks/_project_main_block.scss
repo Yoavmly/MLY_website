@@ -14,7 +14,7 @@ $background-color: black;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  background: $background-color;
+  background: transparent;
   color: #ffffff;
   padding: 2rem 8rem 0 8rem;
 
@@ -48,14 +48,7 @@ $background-color: black;
       max-width: calc(50% - 21.2px);
       display: flex;
       flex-direction: column;
-      background: #111111;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-
-      &:hover {
-        background: rgba(255, 255, 255, 0.05);
-      }
+      background: transparent;
 
       @media (max-width: 768px) {
         flex: 0 0 100%;
@@ -64,14 +57,21 @@ $background-color: black;
 
       .project-item {
         display: flex;
+        border: white 1px solid;
+        border-radius: 0;
         flex-direction: column;
+        box-shadow: 0 0 2px white;
+        overflow: hidden;
 
-        .project-image {
-          img {
-            width: 100%;
-            height: auto;
-            display: block;
-          }
+        &:hover{
+          @include glowing-border();
+        }
+
+        .project-image img {
+          @include zoom-effect(1.1, 0.4s); /* Add zoom effect */
+          width: 100%;
+          height: auto;
+          display: block;
         }
 
         .project-info {

@@ -1,4 +1,4 @@
-$form-background: rgba(255, 255, 255, 0.05);
+$form-background: inherit;
 $form-border: rgba(255, 255, 255, 0.2);
 $form-border-radius: 12px;
 $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
@@ -11,7 +11,8 @@ $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   max-width: 1920px;
   padding: 40px;
   margin: 0 auto;
-  background-color: $background-color;
+  //background-color: $background-color;
+  background: transparent;
   position: relative;
   overflow: hidden;
 
@@ -27,7 +28,7 @@ $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   }
 
   .inner-block {
-    background: $form-background;
+    //background: $form-background;
     border: 1px solid $form-border;
     border-radius: $form-border-radius;
     display: flex;
@@ -38,7 +39,7 @@ $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     max-width: 1200px;
     width: 100%;
     z-index: 2;
-    box-shadow: $form-shadow;
+    //box-shadow: $form-shadow;
 
     .content-section {
       display: flex;

@@ -1,4 +1,6 @@
 @import "bootstrap";
+@import "global";
+
 @import 'Navigation_bar/customised_navbar';
 @import 'Blocks/mly_main_block';
 @import "Blocks/logo-block";
@@ -15,3 +17,7 @@
 @import "Blocks/form_block";
 @import "common/formiddable_form_button";
 @import "Blocks/zoho-page-main-block";
+@import "Blocks/zoho-page-services-block";
+@import "Blocks/zoho-crm-logo-block";
+
+@import "Blocks/job-listing-block";

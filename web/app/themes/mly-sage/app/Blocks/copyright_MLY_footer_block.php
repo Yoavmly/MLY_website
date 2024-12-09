@@ -5,21 +5,21 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
 
-class zoho_page_main_block extends Block
+class copyright_MLY_footer_block extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Zoho_Page_Main_Block';
+    public $name = 'Copyright_ M L Y_Footer_Block';
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'Zoho page main block';
+    public $description = 'MLY copyright footer block';
 
     /**
      * The block category.
@@ -139,7 +139,7 @@ class zoho_page_main_block extends Block
      */
     public $template = [
         'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Zoho_Page_Main_Block block.'],
+        'core/paragraph' => ['placeholder' => 'Welcome to the Copyright_ M L Y_Footer_Block block.'],
     ];
 
     /**
@@ -147,28 +147,8 @@ class zoho_page_main_block extends Block
      */
     public function with(): array
     {
-        $image = get_field('image');
-        $title = get_field('title');
-        $description = get_field('description');
-
-
-        $image_url = '';
-        if (is_array($image)) {
-            $image_url = isset($image['url']) ? $image['url'] : '';
-        } elseif (is_string($image)) {
-            $image_url = $image;
-        } else {
-            $image_url = asset('images/partner/5.png')->uri();
-        }
-
-        $description_text = is_string($description) ? $description : '';
-
-        $title_text = is_string($title) ? $title : 'Default Title';
-
         return [
-            'title' => $title_text,
-            'image' => $image_url,
-            'description' => $description_text,
+            'items' => $this->items(),
         ];
     }
 
@@ -177,25 +157,12 @@ class zoho_page_main_block extends Block
      */
     public function fields(): array
     {
-        $fields = Builder::make('zoho__page__main__block');
+        $fields = Builder::make('copyright__m_l_y__footer__block');
 
         $fields
-            ->addText('title', [
-                'label' => 'Title',
-                'instructions' => 'Enter the title for the partnership.',
-                'required' => true,
-            ])
-            ->addImage('image', [
-                'label' => 'Image',
-                'instructions' => 'Upload the image for the partnership.',
-                'required' => false,
-                'return_format' => 'url',
-            ])
-        ->addTextarea('description', [
-            'label' => 'Description',
-            'instructions' => 'Enter the description for the partnership.',
-            'required' => false,
-        ]);
+            ->addRepeater('items')
+                ->addText('item')
+            ->endRepeater();
 
         return $fields->build();
     }

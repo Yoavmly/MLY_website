@@ -1,7 +1,8 @@
-$navbar-bg-gradient: linear-gradient(25deg, #000000, #00008B);
+//$navbar-bg-gradient: linear-gradient(25deg, #000000, #00008B);
+$navbar-bg-gradient:transparent;
 $font-primary: 'Space Grotesk', sans-serif;
 $navbar-link-color: #99FAF4;
-$navbar-link-hover-color: #aaa;
+$navbar-link-hover-color: #bff0f7;
 $primary-button-bg: linear-gradient(25deg, #0d99ff, #aefdf3);
 $primary-button-border: 0.5px solid darkcyan;
 $primary-button-color: black;
@@ -95,6 +96,7 @@ $navbar-padding-left: 2rem;
 
       &:hover {
         color: $navbar-link-hover-color;
+        font-weight: 500;
       }
     }
 
@@ -116,7 +118,8 @@ $navbar-padding-left: 2rem;
       padding: 0.5em 1em;
       color: $navbar-link-color;
       transition: all 0.3s ease;
-      text-decoration: none;
+      //text-decoration: none;
+
 
       @media screen and (max-width: 768px) {
         padding: 0.4em 0.8em;

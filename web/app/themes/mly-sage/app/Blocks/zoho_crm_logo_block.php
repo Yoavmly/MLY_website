@@ -5,42 +5,42 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
 
-class zoho_page_main_block extends Block
+class zoho_crm_logo_block extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Zoho_Page_Main_Block';
+    public $name = 'Zoho_Crm_Logo_Block';
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'Zoho page main block';
+    public $description = 'Zoho crm logo block';
 
     /**
      * The block category.
      *
      * @var string
      */
-    public $category = 'text';
+    public $category = 'common';
 
     /**
      * The block icon.
      *
      * @var string|array
      */
-    public $icon = 'editor-ul';
+    public $icon = 'grid-view';
 
     /**
      * The block keywords.
      *
      * @var array
      */
-    public $keywords = [];
+    public $keywords = ['logo','branding','zoho'];
 
     /**
      * The block post type allow list.
@@ -139,7 +139,7 @@ class zoho_page_main_block extends Block
      */
     public $template = [
         'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Zoho_Page_Main_Block block.'],
+        'core/paragraph' => ['placeholder' => 'Welcome to the Zoho_Crm_Logo_Block block.'],
     ];
 
     /**
@@ -147,28 +147,12 @@ class zoho_page_main_block extends Block
      */
     public function with(): array
     {
-        $image = get_field('image');
-        $title = get_field('title');
-        $description = get_field('description');
-
-
-        $image_url = '';
-        if (is_array($image)) {
-            $image_url = isset($image['url']) ? $image['url'] : '';
-        } elseif (is_string($image)) {
-            $image_url = $image;
-        } else {
-            $image_url = asset('images/partner/5.png')->uri();
-        }
-
-        $description_text = is_string($description) ? $description : '';
-
-        $title_text = is_string($title) ? $title : 'Default Title';
-
+        $logoField=get_field('logo');
         return [
-            'title' => $title_text,
-            'image' => $image_url,
-            'description' => $description_text,
+            'logo'=>[
+              'image'=>$logoField['url'] ?? asset('images/partner/zoho.png'),
+                'title'=>$logoField['title'] ?? 'Default logo',
+            ],
         ];
     }
 
@@ -177,25 +161,16 @@ class zoho_page_main_block extends Block
      */
     public function fields(): array
     {
-        $fields = Builder::make('zoho__page__main__block');
+        $fields = Builder::make('zoho__crm__logo__block');
 
         $fields
-            ->addText('title', [
-                'label' => 'Title',
-                'instructions' => 'Enter the title for the partnership.',
+            ->addImage('logo',[
+                'label' => 'Logo',
+                'type' => 'image',
+                'return_format' => 'array',
+                'instructions' => 'Enter the image logo',
                 'required' => true,
-            ])
-            ->addImage('image', [
-                'label' => 'Image',
-                'instructions' => 'Upload the image for the partnership.',
-                'required' => false,
-                'return_format' => 'url',
-            ])
-        ->addTextarea('description', [
-            'label' => 'Description',
-            'instructions' => 'Enter the description for the partnership.',
-            'required' => false,
-        ]);
+            ]);
 
         return $fields->build();
     }

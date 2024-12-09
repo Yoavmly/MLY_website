@@ -1,9 +1,9 @@
-$background-color: black;
+$background-color: transparent;
 $font-primary: 'Space Grotesk', sans-serif;
 $text-color: #ffffff;
 $primary-color: #4bb4e6;
 $border-color: #ffffff;
-$form-background: rgba(0, 0, 0, 0.8);
+$form-background: inherit;
 $form-border-radius: 10px;
 $box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.5);
 $desktop-breakpoint: 1024px;
@@ -24,6 +24,7 @@ $mobile-breakpoint: 767px;
   position: relative;
 
   .content {
+    position: relative;//
     display: flex;
     flex-direction: row;
     justify-content: space-between;
