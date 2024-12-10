@@ -1,5 +1,5 @@
 <div class="outer-block {{ $block->classes }}" style="{{ $block->inlineStyle }}">
-  <div class="align-self-center">
+  <div class="align-self-center parent-wrapper">
         <div class="mission-text">
           mission:&nbsp;<span>flex;</span>
         </div><br>

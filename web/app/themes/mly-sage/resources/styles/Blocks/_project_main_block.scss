@@ -67,6 +67,10 @@ $background-color: black;
           @include glowing-border();
         }
 
+        .project-image{
+          overflow: hidden;
+        }
+
         .project-image img {
           @include zoom-effect(1.1, 0.4s); /* Add zoom effect */
           width: 100%;
@@ -75,6 +79,7 @@ $background-color: black;
         }
 
         .project-info {
+          //overflow: hidden;
           padding: 1rem;
           display: flex;
           flex-direction: column;
@@ -95,6 +100,19 @@ $background-color: black;
             color: #d0d0d0;
             margin-bottom: 1rem;
           }
+        }
+
+        //&:hover {
+        //  .project-image{
+        //    @include zoom-effect();
+        //    width: 100%;
+        //    height: auto;
+        //    display: block;
+        //  }
+        //}
+
+        .arrow-image{
+          padding: 1rem;
         }
       }
     }

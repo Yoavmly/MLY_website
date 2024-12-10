@@ -21,7 +21,7 @@
               </div>
 {{--            <span>&nbsp;→</span>--}}
               <div class="arrow-image">
-                &nbsp;<img src="{{ \Roots\asset("images/partner/Rightarrow.png") }}" alt="arrow">
+                <img src="{{ \Roots\asset("images/partner/Rightarrow.png") }}" alt="arrow">
               </div>
             </div>
           </a>

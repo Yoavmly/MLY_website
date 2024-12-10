@@ -42,6 +42,7 @@ $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     //box-shadow: $form-shadow;
 
     .content-section {
+      position: relative;//
       display: flex;
       flex-direction: row;
       justify-content: space-between;
@@ -49,6 +50,7 @@ $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       width: 100%;
 
       .text-section {
+        z-index: 1;//
         flex: 1;
         color: $text-color;
         font-family: $font-primary;
@@ -66,6 +68,7 @@ $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       }
 
       .form-section {
+        z-index: 1;//
         flex: 1;
         display: flex;
         flex-direction: column;

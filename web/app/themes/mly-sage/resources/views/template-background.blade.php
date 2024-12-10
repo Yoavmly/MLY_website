@@ -1,11 +1,11 @@
 {{--
-  Template Name:Background Template
+  Template Name:Front-page Template
 --}}
 
 @extends('layouts.app')
 
 @section('background')
-  <div class="background-page" style="background-image: url('{{ asset('images/background_page.png') }}');"></div>
+  <div class="background-page" style="background-image: url('{{ asset('images/flame1.png') }}');"></div>
 @endsection
 
 @section('content')

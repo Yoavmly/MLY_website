@@ -5,6 +5,10 @@ $border-color: #ffffff;
 $block-gap: 38px;
 $background-color: black;
 
+.parent-wrapper{
+  margin: 59.7px 104px 72px;
+  //padding: 0 137px 135px 135px;
+}
 
 .outer-block {
   width: 100%;
@@ -92,19 +96,25 @@ $background-color: black;
 
     .small-block {
       width: 100%;
+      height: 10%;
       max-width: 454px;
       display: flex;
+      flex-grow: 0;
       flex-direction: column;
-      align-items: center;
+      justify-content: flex-start;
+      align-items: flex-start;//
       gap: 19px;
+      padding: 0;
 
       .shape {
         width: 100px;
         height: 100px;
         padding: 10px 4px;
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-grow: 0;
+        object-fit: contain;
+        //align-items: center;
+        //justify-content: center;
 
         img {
           width: 100%;
@@ -115,12 +125,17 @@ $background-color: black;
 
       .description {
         width: 100%;
-        text-align: center;
+        //text-align: center;
+        align-self: stretch;
+        height: 60px;
+        flex-grow: 0;
+        text-align: left;
         font-family: $font-primary;
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 20px;
-        color: $text-color;
+        font-size: 23px;
+        font-weight: 500;
+        line-height: 1.09;
+        //color: $text-color;
+        color: var(--neutral-colors-100);
       }
     }
   }

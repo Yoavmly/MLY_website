@@ -1,6 +1,8 @@
 <div class="{{ $block->classes }}" style="{{ $block->inlineStyle }}">
  <div class="form-block">
+   <img class="flame-last-image" src="{{ url(asset('images/flame-last.png')) }}" alt="flame 2">
    <div class="inner-block">
+     <div class="blurred-background"></div>
      <div class="content">
        <div class="text-section">
          <h1>

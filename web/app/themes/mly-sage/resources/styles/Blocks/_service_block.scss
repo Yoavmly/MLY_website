@@ -1,18 +1,7 @@
 $desktop-breakpoint: 1024px;
 $mobile-breakpoint: 767px;
 
-
-$service-gradients: (
-  "service-1": linear-gradient(180deg, rgba(87, 193, 250, 0) 0%, #57C1FA 95%),
-  "service-2": linear-gradient(180deg, rgba(77, 251, 241, 0) 0%, #4DFBF1 95%),
-  "service-3": linear-gradient(180deg, rgba(143, 251, 77, 0) 0%, #8FFB4D 95%),
-  "service-4": linear-gradient(180deg, rgba(77, 251, 178, 0) 0%, #4DFBB2 95%)
-);
-
-$black-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 50%);
-
 .services-block {
-  background: black;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -64,16 +53,20 @@ $black-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0)
       text-align: center;
 
       &:nth-child(4n+1) {
-        background: $black-gradient, map-get($service-gradients, "service-1");
+        //background: $black-gradient, map-get($service-gradients, "service-1");
+        background-image: linear-gradient(to bottom, rgba(87, 193, 250, 0) 33%, #57c1fa 65%);
       }
       &:nth-child(4n+2) {
-        background: $black-gradient, map-get($service-gradients, "service-2");
+        //background: $black-gradient, map-get($service-gradients, "service-2");
+        background-image: linear-gradient(to bottom, rgba(77, 251, 241, 0) 33%, #4dfbf1 65%);
       }
       &:nth-child(4n+3) {
-        background: $black-gradient, map-get($service-gradients, "service-3");
+        //background: $black-gradient, map-get($service-gradients, "service-3");
+        background-image: linear-gradient(to bottom, rgba(143, 251, 77, 0) 33%, #8ffb4d 65%);
       }
       &:nth-child(4n+4) {
-        background: $black-gradient, map-get($service-gradients, "service-4");
+        //background: $black-gradient, map-get($service-gradients, "service-4");
+        background-image: linear-gradient(to bottom, rgba(77, 251, 178, 0) 33%, #4dfbb2 65%);
       }
 
       @media (max-width: $mobile-breakpoint) {
@@ -90,7 +83,6 @@ $black-gradient: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0)
         left: 0;
         width: 100%;
         height: 50%;
-        background: $black-gradient;
         z-index: 1;
         pointer-events: none;
       }
