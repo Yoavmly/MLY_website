@@ -10,8 +10,8 @@
             <div class="service-content">
               <h3 class="service-title">{{ $service['title'] }}</h3>
               <p class="service-description">{{ $service['description'] }}</p>
+              <span class="arrow">→</span>
             </div>
-            <span class="arrow">→</span>
           </div>
 {{--      </a>--}}
     @endforeach

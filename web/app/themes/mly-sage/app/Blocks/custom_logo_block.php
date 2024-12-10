@@ -16,55 +16,30 @@ class custom_logo_block extends Block
     public function with(): array
     {
         return [
-            'logos' => $this->getLogos(),
+            'logos' => get_field('logos') ?: [],
         ];
     }
 
     public function fields(): array
     {
-        $fields = Builder::make('LogoBlockFields');
-
-        $fields
-            ->addRepeater('companies', [
-                'label' => 'Companies',
-                'button_label' => 'Add Company',
-                'layout' => 'block',
+        return Builder::make('CustomLogoBlock')
+            ->addRepeater('logos', [
+                'label' => 'Logos',
+                'button_label' => 'Add Logo',
+                'min' => 1,
+                'layout' => 'table',
             ])
-            ->addText('company_name', [
-                'label' => 'Company Name',
-                'instructions' => 'Enter the name of the company. Ensure it matches the file name of the logo in the assets folder.',
-                'required' => true,
+            ->addImage('image', [
+                'label' => 'Logo Image',
+                'instructions' => 'Select an image for the logo. Recommended size: 90px x 60px.',
+                'return_format' => 'url',
+                'preview_size' => 'thumbnail',
             ])
-            ->addUrl('company_link', [
-                'label' => 'Company Link',
-                'instructions' => 'Enter the website URL of the company.',
-                'required' => false,
+            ->addUrl('link', [
+                'label' => 'Logo Link',
+                'instructions' => 'Optional: Add a URL to link the logo.',
             ])
-            ->endRepeater();
-
-        return $fields->build();
-    }
-
-    public function getLogos()
-    {
-        $acfCompanies = get_field('companies');
-
-        if (!is_array($acfCompanies)) {
-            return [];
-        }
-
-        $logos = array_map(function ($company) {
-            $companyName = $company['company_name'] ?? '';
-            $companyLink = $company['company_link'] ?? '#';
-            $fileName = strtolower(str_replace(' ', '_', $companyName));
-
-            return [
-                'src' => \Roots\asset("images/Logos/{$fileName}.png")->uri(),
-                'alt' => $companyName . ' Logo',
-                'link' => $companyLink,
-            ];
-        }, $acfCompanies);
-
-        return $logos;
+            ->endRepeater()
+            ->build();
     }
 }
