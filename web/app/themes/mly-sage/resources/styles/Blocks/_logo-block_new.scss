@@ -1,0 +1,93 @@
+$block-width: 100%;
+$block-height: 129px;
+$block-bg-gradient: linear-gradient(360deg, rgba(255, 255, 255, 0) 0%, #ffffff 5.13%, #ffffff 96.46%, rgba(255, 255, 255, 0) 100%);
+$container-height: 70px;
+$logo-width: 89px;
+$logo-height: 58px;
+
+@mixin flex-center($justify: center, $align: center) {
+  display: flex;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+.logo-block {
+  @include flex-center;
+  width: $block-width;
+  height: $block-height;
+  background: $block-bg-gradient;
+  position: relative;
+
+  &__container {
+    width: 85%;
+    height: inherit;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo-block__item {
+      flex: 0 0 auto;
+      width: $logo-width;
+      height: $logo-height;
+      margin: 0 10px;
+      @include flex-center();
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      &:hover {
+        transform: scale(1.1);
+        transition: transform 0.3s ease-in-out;
+      }
+    }
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    margin: 20px 0;
+  }
+
+  @media (max-width: 768px) {
+    &__container {
+      justify-content: flex-start;
+      padding: 0 15px;
+    }
+  }
+}
+
+
+
+//transition of logos
+.logo-block__image {
+  opacity: 1;
+  transition: opacity 1.25s ease-in-out;
+
+  &.hidden {
+    opacity: 0;
+  }
+}
+
+.logo-block__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  overflow: hidden;
+}
+
+.logo-block__item {
+  flex: 0 0 auto;
+  margin: 0 10px;
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+}

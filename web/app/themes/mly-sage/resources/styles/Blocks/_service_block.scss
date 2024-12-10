@@ -8,7 +8,7 @@ $mobile-breakpoint: 767px;
   flex-wrap: nowrap;
   width: 100%;
   max-width: 1920px;
-  height: auto;
+  height: 600px;
   margin: 0;
   padding: 0;
   overflow-x: auto;
@@ -19,6 +19,7 @@ $mobile-breakpoint: 767px;
     align-items: center;
     overflow-x: hidden;
     padding: 0 15px;
+    height: auto;
   }
 
   .services-container {
@@ -26,7 +27,7 @@ $mobile-breakpoint: 767px;
     flex-wrap: nowrap;
     gap: 0;
     width: 100%;
-    max-width: 1920px;
+    max-width: inherit;
     margin: 0;
     padding: 0;
     height: auto;
@@ -40,7 +41,8 @@ $mobile-breakpoint: 767px;
 
     .service-item {
       width: 25%;
-      min-width: 250px;
+      //min-width: 250px;
+      max-width: 480px;
       height: 600px;
       display: flex;
       flex-direction: column;
@@ -110,6 +112,7 @@ $mobile-breakpoint: 767px;
         align-items: flex-start;
         justify-content: flex-start;
         z-index: 2;
+        text-align: left;//
         padding: 20px;
         margin-top: 2rem;
         width: 100%;
@@ -122,10 +125,16 @@ $mobile-breakpoint: 767px;
         }
 
         .service-title {
-          font-size: 1.3rem;
-          font-weight: bold;
+          font-size: 30px;
+          font-weight: 200;
           margin-bottom: 1rem;
-          color: black;
+          align-self: stretch;
+          line-height: 1.09;
+          letter-spacing: normal;
+          flex-grow: 0;
+
+          //color: black;
+          color: #121212;
           text-align: left;
         }
 
@@ -148,7 +157,7 @@ $mobile-breakpoint: 767px;
         z-index: 2;
 
         @media (max-width: $mobile-breakpoint) {
-          align-self: center;
+          align-self: flex-start;
           position: relative;
           bottom: 0;
           left: 0;

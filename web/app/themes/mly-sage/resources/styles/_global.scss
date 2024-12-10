@@ -1,4 +1,7 @@
+$desktop-breakpoint: 1024px;
+$mobile-breakpoint: 767px;
 
+//global style
 body {
   position: relative;
   background-color: #000;
@@ -6,16 +9,16 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Space Grotesk', sans-serif;
-
-  //
   height: 100%;
-  margin: 0;
 }
-
 * {
   box-sizing: border-box;
 }
 
+
+
+
+//Mixin for centering the flex styled block
 @mixin flex-block-center($flex-direction: column, $justify-content: center, $align-items: center) {
   display: flex;
   flex-direction: $flex-direction;
@@ -40,12 +43,23 @@ body {
   }
 }
 
+//mixin for subtitle
+@mixin subtitle-style(){
+  color: var(--neutral-colors-100);
+  font-size: 16px;
+  font-weight: normal;
+  font-stretch: normal;
+  letter-spacing: normal;
+  line-height: 1.4;
+  font-family: 'Poppins', sans-serif;
+}
+
 
 //Mixin for Zoom effect
 
 @mixin zoom-effect($scale: 1.1, $transition-time: 0.3s) {
-  display: block; /* Ensure the image behaves properly */
-  transition: transform $transition-time ease; /* Smooth zoom effect */
+  display: block;
+  transition: transform $transition-time ease;
   transform-origin: center center;
 
   &:hover {
@@ -53,7 +67,7 @@ body {
   }
 }
 
-//for background page
+//for background page in the Front-Page Template
 .background-page {
   position: absolute ;
   object-fit: contain;
@@ -63,6 +77,16 @@ body {
   width: 100vw;
   height: 1200px;
   z-index: -5;
+
+  @media (max-width: $mobile-breakpoint) {
+    background-size: contain;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
 }
 
 
