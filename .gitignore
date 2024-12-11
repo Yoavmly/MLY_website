@@ -5,6 +5,8 @@ web/app/plugins/*
 !web/app/plugins/.gitkeep
 /!web/app/plugins/.gitkeep
 
+!/web/app/plugins/formidable-bootstrap
+
 web/app/mu-plugins/*/
 /web/app/mu-plugins/*/
 

@@ -11,6 +11,7 @@
     document.querySelector('.message-box').classList.toggle('show-menu');
     document.querySelector('.socials').classList.toggle('show-socials');
   }
+
 </script>
 <header class="banner">
   <nav class="navbar">

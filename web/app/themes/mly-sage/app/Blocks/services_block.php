@@ -214,15 +214,9 @@ class services_block extends Block
     public function getServices()
     {
         $acfServices = get_field('services') ?: [];
-        $defaultImages = [
-            \Roots\asset("images/services/1.png")->uri(),
-            \Roots\asset("images/services/2.png")->uri(),
-            \Roots\asset("images/services/3.png")->uri(),
-            \Roots\asset("images/services/4.png")->uri(),
-        ];
 
-        return array_map(function ($service, $index) use ($defaultImages) {
-            $icon = $service['icon'] ?? $defaultImages[$index % count($defaultImages)];
+        return array_map(function ($service) {
+            $icon = $service['image'] ?? '';
             $url = $service['url'] ?? '#';
 
             return [

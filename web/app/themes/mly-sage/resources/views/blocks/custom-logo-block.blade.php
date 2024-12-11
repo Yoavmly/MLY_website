@@ -49,6 +49,6 @@
 
       // Move the start index for the next iteration
       currentStartIndex = (currentStartIndex + visibleLogosCount) % logos.length;
-    }, 1000); // Update every second
+    }, 4000); // Update every second
   });
 </script>
