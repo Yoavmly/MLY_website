@@ -12,7 +12,7 @@
         const totalHeight = item.offsetHeight; // Total height of the service-item
 
         // Calculate gradient stop based on content height
-        const gradientStop = Math.min((contentHeight / totalHeight) * 100, 50); // Max at 50% for safety
+        const gradientStop = Math.min((contentHeight / totalHeight) * 100, 33); // Max at 50% for safety
         item.style.setProperty('--gradient-stop', `${gradientStop}%`);
 
         // Calculate icon offset dynamically

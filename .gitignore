@@ -3,7 +3,7 @@ web/app/plugins/*
 /web/app/plugins/*
 
 !web/app/plugins/.gitkeep
-/!web/app/plugins/.gitkeep
+!/web/app/plugins/.gitkeep
 
 !/web/app/plugins/formidable-bootstrap
 
@@ -20,7 +20,7 @@ web/app/uploads/*
 /web/app/uploads/*
 
 !web/app/uploads/.gitkeep
-/!web/app/uploads/.gtikeep
+!/web/app/uploads/.gitkeep
 
 web/app/cache/*
 /web/app/cache/*

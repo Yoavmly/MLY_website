@@ -2,6 +2,8 @@ $desktop-breakpoint: 1024px;
 $mobile-breakpoint: 767px;
 
 .services-block {
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,9 +12,9 @@ $mobile-breakpoint: 767px;
   max-width: 1920px;
   height: 600px;
   margin: 0;
-  padding: 0;
-  overflow-x: auto;
-  overflow-y: hidden;
+  padding:  0;
+  overflow-x: visible;
+  overflow-y: visible;
 
   @media (max-width: $mobile-breakpoint) {
     flex-direction: column;
@@ -24,8 +26,11 @@ $mobile-breakpoint: 767px;
 
 
   .services-container {
+    position: relative;
     display: flex;
     flex-wrap: nowrap;
+    justify-content: flex-end;
+    align-items: flex-end;
     gap: 0;
     width: 100%;
     max-width: inherit;
@@ -36,14 +41,18 @@ $mobile-breakpoint: 767px;
 
     .service-item {
       width: 25%;
+      z-index: 5;
       max-width: 30rem;
-      height: 37.5rem;
+      height: inherit;//37.5rem
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: flex-end;
       background: none;
       margin: 0;
-      //padding: 0;
+      padding: 0;
+      bottom: 0;
+      transform-origin: bottom;
       position: relative;
       text-align: center;
       overflow: hidden;
@@ -64,6 +73,7 @@ $mobile-breakpoint: 767px;
       }
 
       &:hover {
+
         &:nth-child(4n+1) {
           background-image: linear-gradient(to bottom, rgba(87, 193, 250, 0) 13%, #57c1fa 65%);
         }
@@ -89,64 +99,97 @@ $mobile-breakpoint: 767px;
           box-shadow: none;
           mask-image: none;
         }
-        .service-content{
+        .service-content,
+        .services-container{
           height: auto;
           overflow: visible;
-          mask-image: none; // Remove gradient masking on hover
-
+        }
+        .services-block{
+          overflow: visible;
         }
         //end hover
       }
 
+      &:not(:hover){
+            //!hover start
+        &:nth-child(4n+1) {
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 33%), #57c1fa 65%);
+        }
+        &:nth-child(4n+2) {
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 33%), #4dfbf1 65%);
+        }
+        &:nth-child(4n+3) {
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 33%), #8ffb4d 65%);
+        }
+        &:nth-child(4n+4) {
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 33%), #4dfbb2 65%);
+        }
+
+        .service-icon,
+        .service-content{
+          transform: translateY(0); // Reset to the initial position
+          transition: transform 1s ease-in-out, box-shadow 1s ease-in-out; // Smooth return
+        }
+        //!hover end
+      }
+
 
       .service-icon {
+        position: relative;
         width: 10rem;
         height: 10rem !important;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 50% 0;
-        z-index: 2;
+        //justify-content: center;
+        //align-items: center;
+        margin: 10% 0;
+        padding: 0;
+        z-index: 5;
         filter: drop-shadow(0 0.625rem 1.25rem rgba(0, 0, 0, 0.5));
 
         img {
           max-width: 100%;
           max-height: 100%;
           object-fit: contain;
+          opacity: 0.85;
+          mix-blend-mode: soft-light;
         }
       }
 
       .service-content {
         display: flex;
         flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
+        align-items: flex-end;
+        justify-content: flex-end;
         z-index: 2;
         text-align: left;
-        padding: 0.625rem 1.25rem 1.25rem;
-        margin-top: -20% !important;
+        padding: 0 1.25rem;
+        margin-top: 2px;
         width: 100%;
         background:transparent;
         background-size: cover;
         bottom: 0;
         left: 0;
-        height: 6.25rem;
+        height: auto;
         max-height: 100%;
-        overflow: hidden;
+        //overflow: hidden;
 
         //Masking
-        mask-image: linear-gradient(to bottom, black 50%, transparent); // Apply fade-out gradient
-        mask-size: 100% 100%;
-        -webkit-mask-size: 100% 100%;
-        mask-repeat: no-repeat;
-        -webkit-mask-repeat: no-repeat;
-        mask-position: top;
-        -webkit-mask-position: top;
-        transition: mask-image 0.4s ease, -webkit-mask-image 0.4s ease;
+        //mask-image: linear-gradient(to bottom, black 50%, transparent); // Apply fade-out gradient
+        //mask-size: 100% 100%;
+        //-webkit-mask-size: 100% 100%;
+        //mask-repeat: no-repeat;
+        //-webkit-mask-repeat: no-repeat;
+        //mask-position: top;
+        //-webkit-mask-position: top;
+        //transition: mask-image 0.4s ease, -webkit-mask-image 0.4s ease;
 
         .service-title {
-          font-size: 1.25rem;
-          font-weight: 600;
+          font-family: "Space Grotesk";
+          align-self:stretch;
+          font-size: 30px;
+          font-weight: normal;
+          line-height: 1.09;
+          letter-spacing: normal;
           margin-bottom: 10%;
           color: #121212;
         }
@@ -154,18 +197,21 @@ $mobile-breakpoint: 767px;
         .service-description {
           font-size: 1rem;
           line-height: 1.6;
-          padding-bottom: 15%;
-          color: black;
-          margin-bottom: 0;
+          padding-bottom: 0;
+          color: #121212;
+          margin:0 auto;
           display: -webkit-box;
           //-webkit-line-clamp: 3; // Limit lines initially
-          -webkit-box-orient: vertical;
-          text-overflow-ellipsis: auto;
+          //-webkit-box-orient: vertical;
           overflow: hidden;
+          font-family: Poppins;
+          height:auto;
+
         }
       }
 
       .arrow {
+        z-index: 5;
         position: absolute;
         max-height: 10px;
         max-width: 10px;
