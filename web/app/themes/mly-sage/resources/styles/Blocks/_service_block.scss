@@ -12,7 +12,7 @@ $mobile-breakpoint: 767px;
   max-width: 1920px;
   height: 600px;
   margin: 0;
-  padding:  0;
+  padding: 0;
   overflow-x: visible;
   overflow-y: visible;
 
@@ -20,10 +20,9 @@ $mobile-breakpoint: 767px;
     flex-direction: column;
     align-items: center;
     overflow-x: hidden;
-    padding: 0 0.938rem; // 15px
     height: auto;
+    padding: 0 0.938rem; // 15px
   }
-
 
   .services-container {
     position: relative;
@@ -37,13 +36,19 @@ $mobile-breakpoint: 767px;
     margin: 0;
     padding: 0;
     height: inherit;
-    //justify-content: space-between;
+
+    @media (max-width: $mobile-breakpoint) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: auto;
+    }
 
     .service-item {
       width: 25%;
       z-index: 5;
       max-width: 30rem;
-      height: inherit;//37.5rem
+      height: inherit;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -57,8 +62,18 @@ $mobile-breakpoint: 767px;
       text-align: center;
       overflow: hidden;
       box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
-      transition: box-shadow 1s ease, transform 1s ease,background 1s ease;
+      transition: box-shadow 1s ease, transform 1s ease, background 1s ease;
 
+      @media (max-width: $mobile-breakpoint) {
+        width: 100%;
+        max-width: none;
+        height: auto;
+        margin-bottom: 1rem;
+        box-shadow: none;
+        overflow: visible;
+      }
+
+      // Background gradients for each nth-child
       &:nth-child(4n+1) {
         background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 33%), #57c1fa 65%);
       }
@@ -73,78 +88,61 @@ $mobile-breakpoint: 767px;
       }
 
       &:hover {
-
         &:nth-child(4n+1) {
-          background-image: linear-gradient(to bottom, rgba(87, 193, 250, 0) 13%, #57c1fa 65%);
+          background-image: linear-gradient(to bottom, rgba(87, 193, 250, 0) 23%, #57c1fa 65%);
         }
         &:nth-child(4n+2) {
-          background-image: linear-gradient(to bottom, rgba(77, 251, 241, 0) 13%, #4dfbf1 65%);
+          background-image: linear-gradient(to bottom, rgba(77, 251, 241, 0) 23%, #4dfbf1 65%);
         }
         &:nth-child(4n+3) {
-          background-image: linear-gradient(to bottom, rgba(143, 251, 77, 0) 13%, #8ffb4d 65%);
+          background-image: linear-gradient(to bottom, rgba(143, 251, 77, 0) 23%, #8ffb4d 65%);
         }
         &:nth-child(4n+4) {
-          background-image: linear-gradient(to bottom, rgba(77, 251, 178, 0) 13%, #4dfbb2 65%);
+          background-image: linear-gradient(to bottom, rgba(77, 251, 178, 0) 23%, #4dfbb2 65%);
         }
 
         .service-icon,
-        .service-content{
+        .service-content {
           transform: translateY(var(--icon-offset, 0));
           transition: transform 1s ease-in-out;
         }
 
-        .service-description{
-          //-webkit-line-clamp: 0; // Remove line clamp
+        .service-description {
           display: block;
           box-shadow: none;
           mask-image: none;
         }
+
         .service-content,
-        .services-container{
+        .services-container {
           height: auto;
           overflow: visible;
         }
-        .services-block{
-          overflow: visible;
-        }
-        //end hover
       }
 
-      &:not(:hover){
-            //!hover start
-        &:nth-child(4n+1) {
-          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 33%), #57c1fa 65%);
-        }
-        &:nth-child(4n+2) {
-          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 33%), #4dfbf1 65%);
-        }
-        &:nth-child(4n+3) {
-          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 33%), #8ffb4d 65%);
-        }
-        &:nth-child(4n+4) {
-          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 33%), #4dfbb2 65%);
-        }
-
+      &:not(:hover) {
         .service-icon,
-        .service-content{
-          transform: translateY(0); // Reset to the initial position
-          transition: transform 1s ease-in-out, box-shadow 1s ease-in-out; // Smooth return
+        .service-content {
+          transform: translateY(0);
+          transition: transform 1s ease-in-out, box-shadow 1s ease-in-out;
         }
-        //!hover end
       }
-
 
       .service-icon {
         position: relative;
         width: 10rem;
         height: 10rem !important;
         display: flex;
-        //justify-content: center;
-        //align-items: center;
         margin: 10% 0;
         padding: 0;
         z-index: 5;
         filter: drop-shadow(0 0.625rem 1.25rem rgba(0, 0, 0, 0.5));
+
+        @media (max-width: $mobile-breakpoint) {
+          margin: 1rem 0;
+          width: 8rem;
+          height: 8rem !important;
+        }
 
         img {
           max-width: 100%;
@@ -165,48 +163,44 @@ $mobile-breakpoint: 767px;
         padding: 0 1.25rem;
         margin-top: 2px;
         width: 100%;
-        background:transparent;
-        background-size: cover;
-        bottom: 0;
-        left: 0;
+        background: transparent;
         height: auto;
         max-height: 100%;
-        //overflow: hidden;
 
-        //Masking
-        //mask-image: linear-gradient(to bottom, black 50%, transparent); // Apply fade-out gradient
-        //mask-size: 100% 100%;
-        //-webkit-mask-size: 100% 100%;
-        //mask-repeat: no-repeat;
-        //-webkit-mask-repeat: no-repeat;
-        //mask-position: top;
-        //-webkit-mask-position: top;
-        //transition: mask-image 0.4s ease, -webkit-mask-image 0.4s ease;
+        @media (max-width: $mobile-breakpoint) {
+          align-items: center;
+          text-align: center;
+          padding: 0;
+        }
 
         .service-title {
           font-family: "Space Grotesk";
-          align-self:stretch;
+          align-self: stretch;
           font-size: 30px;
           font-weight: normal;
           line-height: 1.09;
-          letter-spacing: normal;
           margin-bottom: 10%;
           color: #121212;
+
+          @media (max-width: $mobile-breakpoint) {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+          }
         }
 
         .service-description {
           font-size: 1rem;
           line-height: 1.6;
-          padding-bottom: 0;
           color: #121212;
-          margin:0 auto;
+          margin: 0 auto;
           display: -webkit-box;
-          //-webkit-line-clamp: 3; // Limit lines initially
-          //-webkit-box-orient: vertical;
           overflow: hidden;
           font-family: Poppins;
-          height:auto;
+          height: auto;
 
+          @media (max-width: $mobile-breakpoint) {
+            font-size: 0.9rem;
+          }
         }
       }
 
@@ -217,6 +211,10 @@ $mobile-breakpoint: 767px;
         max-width: 10px;
         bottom: 20px;
         left: 10px;
+
+        @media (max-width: $mobile-breakpoint) {
+          display: none;
+        }
       }
     }
   }

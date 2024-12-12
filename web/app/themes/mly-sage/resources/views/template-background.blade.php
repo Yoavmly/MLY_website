@@ -5,7 +5,9 @@
 @extends('layouts.app')
 
 @section('background')
-  <div class="background-page" style="background-image: url('{{ asset('images/flame1.png') }}');"></div>
+  <div class="first-flame" style="background-image: url('{{ asset('images/flame1.png') }}');"></div>
+  <div class="globe-image-content" style="background-image: url('{{ asset('images/world2.png') }}');"></div>
+  <div class="last-flame" style="background-image: url('{{ asset('images/flame-last.png') }}');"></div>
 @endsection
 
 @section('content')

@@ -3,7 +3,7 @@ $text-color: #ffffff;
 $primary-color: #4bb4e6;
 $border-color: #ffffff;
 $block-gap: 38px;
-$background-color: black;
+$background-color: transparent;
 
 .parent-wrapper{
   margin: 59.7px 104px 72px;
@@ -141,7 +141,7 @@ $background-color: black;
   }
 
   @media (max-width: 768px) {
-    padding: 1.5rem 2rem;
+    padding: 1.5rem 1rem;
 
     .title-button-wrapper {
       .title {
@@ -157,7 +157,7 @@ $background-color: black;
     }
 
     .inner-block {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, 1fr);// 2 column layout
       gap: 2rem;
 
       .small-block {

@@ -18,6 +18,10 @@ $background-color: black;
   color: #ffffff;
   padding: 2rem 8rem 0 8rem;
 
+  @media(max-width: $mobile-breakpoint){
+    padding: 2rem 4rem;
+  }
+
   .block-title {
     font-size: $title-font-size;
     font-weight: 300;

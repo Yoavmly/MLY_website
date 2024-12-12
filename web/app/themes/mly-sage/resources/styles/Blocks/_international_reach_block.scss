@@ -1,4 +1,4 @@
-$background-gradient: black;
+$background-gradient: transparent;
 $primary-color: #4bb4e6;
 $text-color: #ffffff;
 $subtitle-color: #d0d0d0;
@@ -8,43 +8,51 @@ $font-secondary: 'Poppins', sans-serif;
 .global-impact-section {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   min-height: 50vh;
   background: $background-gradient;
   position: relative;
   color: $text-color;
   text-align: center;
   padding: 2rem;
+  flex-direction: column;
+
+  //cursor
+  cursor: none;
+  overflow: hidden;
+
+  //custom cursor
+  .cursor-glow {
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    border-radius: 10%;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    background: #0dcaf0;
+    filter: blur(80px);
+  }
+
+
+
 
   .content-block {
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    //align-items: flex-end;
+    align-self: flex-end;
+    justify-content: flex-end;
     gap: 2rem;
-    max-width: 1200px;
+    max-width: 60%;
     width: 100%;
     position: relative;
+    text-align: left;
+
 
     @media (max-width: 768px) {
       flex-direction: column;
       gap: 1.5rem;
-    }
-
-    .image-content {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      max-width: 70%;
-      height: auto;
-
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: cover;
-      }
     }
 
     .text-content {
@@ -53,6 +61,7 @@ $font-secondary: 'Poppins', sans-serif;
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
+      z-index: 2;
 
       .title {
         font-size: 3rem;
