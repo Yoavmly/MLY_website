@@ -28,6 +28,10 @@
         line-height: $title-line-height;
         font-weight: 400;
         margin: 0;
+
+        .hide-this{
+          display: none;
+        }
       }
 
       .partner-description {
@@ -35,6 +39,13 @@
         line-height: $subtitle-line-height;
         font-weight: 300;
         margin: 1rem 0 0 0;
+
+        .after-click-sub{
+          font-size: $title-font-size;
+          line-height: $title-line-height;
+          font-weight: 400;
+          margin: 0;
+        }
       }
     }
   }
@@ -48,5 +59,74 @@
     height: 520px;
     max-width: 100%;
     z-index: 1;
+
+    .after-click{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform:translate(-50%, -50%);
+      width: 200px;
+      height: 200px;
+      max-width: 100%;
+      z-index: 1;
+    }
+  }
+
+  /* Media Queries for Small Screens */
+  @media (max-width: 768px) {
+    .zoho-partner-block {
+      height: auto;
+      padding: 20px;
+
+      .content-wrapper {
+        width: 100%;
+        max-width: 100%;
+
+        .overlay-content {
+          .partner-title {
+            font-size: 1.5rem; /* Adjust font size for smaller screens */
+            line-height: 1.8rem; /* Adjust line height for smaller screens */
+          }
+
+          .partner-description {
+            font-size: 1rem; /* Adjust font size for smaller screens */
+            line-height: 1.4rem; /* Adjust line height for smaller screens */
+
+          }
+        }
+      }
+
+      .background-image {
+        width: 300px;
+        height: 300px;
+      }
+    }
+  }
+
+  @media (max-width: 480px) {
+    .zoho-partner-block {
+      padding: 10px;
+
+      .content-wrapper {
+        .overlay-content {
+          .partner-title {
+            font-size: 1.2rem; /* Adjust font size for very small screens */
+            line-height: 1.5rem; /* Adjust line height for very small screens */
+          }
+
+          .partner-description {
+            font-size: 0.9rem; /* Adjust font size for very small screens */
+            line-height: 1.2rem; /* Adjust line height for very small screens */
+          }
+        }
+      }
+
+      .background-image {
+        width: 200px;
+        height: 200px;
+      }
+    }
   }
 }
+
+
