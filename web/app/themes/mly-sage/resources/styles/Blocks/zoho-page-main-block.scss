@@ -1,5 +1,6 @@
 .zoho-partner-block {
   display: flex;
+  color: white;
   justify-content: center;
   align-items: center;
   position: relative;
@@ -16,20 +17,26 @@
     position: relative;
     width: 90%;
     max-width: 1180px;
+    transition: all 0.5s ease;
 
     .overlay-content {
       z-index: 2;
       text-align: center;
       font-family: $font-primary;
       color: $navbar-link-color;
+      transition: all 0.5s ease;
 
       .partner-title {
         font-size: $title-font-size;
         line-height: $title-line-height;
         font-weight: 400;
         margin: 0;
+        transition: all 0.5s ease;
 
-        .hide-this{
+        &.first-click {
+          display: none;
+        }
+        &.second-click {
           display: none;
         }
       }
@@ -39,12 +46,19 @@
         line-height: $subtitle-line-height;
         font-weight: 300;
         margin: 1rem 0 0 0;
+        visibility: hidden;
+        transition: all 0.5s ease;
 
-        .after-click-sub{
-          font-size: $title-font-size;
-          line-height: $title-line-height;
+        &.first-click {
+          visibility: visible;
+          font-size: $subtitle-font-size * 1.26;
           font-weight: 400;
-          margin: 0;
+          line-height: $title-line-height * 0.35;
+          margin: 0 10%;
+        }
+
+        &.second-click {
+          display: none;
         }
       }
     }
@@ -52,6 +66,7 @@
 
   .background-image {
     position: absolute;
+    opacity: 0.8;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -59,74 +74,98 @@
     height: 520px;
     max-width: 100%;
     z-index: 1;
+    transition: all 0.5s ease;
 
-    .after-click{
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform:translate(-50%, -50%);
+    &.first-click {
+      opacity: 0.5;
+      top: 40%;
       width: 200px;
       height: 200px;
-      max-width: 100%;
-      z-index: 1;
+    }
+
+    &.second-click {
+      opacity: 0.3;
+      top: auto;
+      bottom: 10%;
+      width: 150px;
+      height: 150px;
     }
   }
 
-  /* Media Queries for Small Screens */
-  @media (max-width: 768px) {
-    .zoho-partner-block {
-      height: auto;
-      padding: 20px;
+  .third-div {
+    display: none;
+    text-align: center;
+    transition: all 0.5s ease;
 
-      .content-wrapper {
-        width: 100%;
-        max-width: 100%;
+    &.third-click {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
 
-        .overlay-content {
-          .partner-title {
-            font-size: 1.5rem; /* Adjust font size for smaller screens */
-            line-height: 1.8rem; /* Adjust line height for smaller screens */
-          }
-
-          .partner-description {
-            font-size: 1rem; /* Adjust font size for smaller screens */
-            line-height: 1.4rem; /* Adjust line height for smaller screens */
-
-          }
-        }
+      .third-div-image {
+        width: 80px;
+        height: 80px;
       }
 
-      .background-image {
-        width: 300px;
-        height: 300px;
-      }
-    }
-  }
-
-  @media (max-width: 480px) {
-    .zoho-partner-block {
-      padding: 10px;
-
-      .content-wrapper {
-        .overlay-content {
-          .partner-title {
-            font-size: 1.2rem; /* Adjust font size for very small screens */
-            line-height: 1.5rem; /* Adjust line height for very small screens */
-          }
-
-          .partner-description {
-            font-size: 0.9rem; /* Adjust font size for very small screens */
-            line-height: 1.2rem; /* Adjust line height for very small screens */
-          }
-        }
+      .third-div-title {
+        font-size: 1.5rem;
+        color: white;
+        font-weight: 600;
       }
 
-      .background-image {
-        width: 200px;
-        height: 200px;
+      a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: $navbar-link-color;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 1rem;
       }
     }
   }
 }
 
+/* Media Queries for Small Screens */
+@media (max-width: 768px) {
+  .zoho-partner-block {
+    height: auto;
+    padding: 20px;
 
+    .content-wrapper {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .background-image {
+      width: 300px;
+      height: 300px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .zoho-partner-block {
+    padding: 10px;
+
+    .content-wrapper {
+      .overlay-content {
+        .partner-title {
+          font-size: 1.2rem;
+          line-height: 1.5rem;
+        }
+
+        .partner-description {
+          font-size: 0.9rem;
+          line-height: 1.2rem;
+        }
+      }
+    }
+
+    .background-image {
+      width: 200px;
+      height: 200px;
+    }
+  }
+}

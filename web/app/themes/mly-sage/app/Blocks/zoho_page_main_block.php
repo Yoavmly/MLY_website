@@ -169,6 +169,10 @@ class zoho_page_main_block extends Block
             'title' => $title_text,
             'image' => $image_url,
             'description' => $description_text,
+            'logo_title' => get_field('logo_title'),
+            'logo_image' => get_field('image_2'),
+            'logo_button_link' => get_field('logo_button_link'),
+            'logo_button_text' => get_field('logo_button_text'),
         ];
     }
 
@@ -195,7 +199,28 @@ class zoho_page_main_block extends Block
             'label' => 'Description',
             'instructions' => 'Enter the description for the partnership.',
             'required' => false,
-        ]);
+        ])
+            ->addImage('image2', [
+                'label' => 'Image 2',
+                'instructions' => 'Upload the logo image of the partner.',
+                'required' => false,
+            ])
+            ->addText('logo_title',[
+                'label' => 'Logo Title',
+                'instructions' => 'Enter the title for the partnership.',
+                'required' => false,
+            ])
+            ->addLink('logo_button_link', [
+                'label' => 'Logo Button Link',
+                'instructions' => 'Enter the link for the partnership.',
+                'required' => false,
+                'return_format' => 'url',
+            ])
+            ->addText('logo_button_text', [
+                'label' => 'Logo Button Text',
+                'instructions' => 'Enter the text for the partnership.',
+                'required' => false,
+            ]);
 
         return $fields->build();
     }
