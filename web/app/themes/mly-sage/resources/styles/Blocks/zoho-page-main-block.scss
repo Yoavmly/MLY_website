@@ -8,6 +8,7 @@
   height: 100vh;
   background: transparent;
   overflow: hidden;
+  font-family: "Space Grotesk";
 
   .content-wrapper {
     display: flex;
@@ -23,7 +24,7 @@
       z-index: 2;
       text-align: center;
       font-family: $font-primary;
-      color: $navbar-link-color;
+      //color: $navbar-link-color;
       transition: all 0.5s ease;
 
       .partner-title {
@@ -37,6 +38,9 @@
           display: none;
         }
         &.second-click {
+          display: none;
+        }
+        &.third-click {
           display: none;
         }
       }
@@ -53,8 +57,8 @@
           visibility: visible;
           font-size: $subtitle-font-size * 1.26;
           font-weight: 400;
-          line-height: $title-line-height * 0.35;
-          margin: 0 10%;
+          line-height: $title-line-height * 0.33;
+          margin: 0 15%;
         }
 
         &.second-click {
@@ -74,7 +78,7 @@
     height: 520px;
     max-width: 100%;
     z-index: 1;
-    transition: all 0.5s ease;
+    transition: all 0.7s ease;
 
     &.first-click {
       opacity: 0.5;
@@ -90,6 +94,13 @@
       width: 150px;
       height: 150px;
     }
+    &.third-click{
+      opacity: 0.7;
+      top: 160%;
+      bottom: 0;
+      width: 100px;
+      height: 100px;
+    }
   }
 
   .third-div {
@@ -104,21 +115,21 @@
       gap: 10px;
 
       .third-div-image {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 50px;
       }
 
       .third-div-title {
         font-size: 1.5rem;
-        color: white;
+        //color: white;
         font-weight: 600;
       }
 
       a {
         display: inline-block;
-        padding: 10px 20px;
-        background-color: $navbar-link-color;
-        color: white;
+        //padding: 10px 20px;
+        //background-color: $navbar-link-color;
+        //color: white;
         text-decoration: none;
         border-radius: 5px;
         font-size: 1rem;

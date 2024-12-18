@@ -6,13 +6,14 @@
     const subtitle = document.querySelector('.partner-description');
     const title = document.querySelector('.partner-title');
     const thirdDiv = document.querySelector('.third-div');
+    // const parentBlock=document.querySelector('.zoho-partner-block');
 
     clickCount = (clickCount + 1) % 4; // goes like  0, 1, 2, 3
 
 
-    image.classList.remove('first-click', 'second-click');
-    title.classList.remove('first-click', 'second-click');
-    subtitle.classList.remove('first-click', 'second-click');
+    image.classList.remove('first-click', 'second-click','third-click');
+    title.classList.remove('first-click', 'second-click','third-click');
+    subtitle.classList.remove('first-click', 'second-click','third-click');
     thirdDiv.classList.remove('third-click');
 
     switch (clickCount) {
@@ -22,12 +23,14 @@
         subtitle.classList.add('first-click');
         break;
       case 2:
-        image.classList.add('second-click');
+        image.classList.add('second-click','third-click');
         subtitle.classList.add('second-click');
-        break;
-      case 3:
+        title.classList.add('second-click','third-click');
         thirdDiv.classList.add('third-click');
         break;
+      // case 3:
+      //   // image.classList.add('third-click');
+      //   break;
       default:
         break;//nothing for default behaviour
     }
@@ -49,7 +52,7 @@
     <div class="third-div">
       <img src="{{ $logo_image }}" alt="Logo Image" class="third-div-image">
       <div class="third-div-title">{{ $logo_title }}</div>
-      <a href="{{ $logo_button_link }}">{{ $logo_button_text }}</a>
+      <a href="{{ $logo_button_link }}" class="custom-btn-secondary">{{ $logo_button_text }}<span class="arrow">→</span></a>
     </div>
   </div>
 </div>
