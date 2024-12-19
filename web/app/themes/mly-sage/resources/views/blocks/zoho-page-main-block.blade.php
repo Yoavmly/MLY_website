@@ -2,6 +2,10 @@
   let clickCount = 0;
 
   function handleClick() {
+
+    if (window.innerWidth <= 768) return;
+
+
     const image = document.querySelector('.background-image');
     const subtitle = document.querySelector('.partner-description');
     const title = document.querySelector('.partner-title');

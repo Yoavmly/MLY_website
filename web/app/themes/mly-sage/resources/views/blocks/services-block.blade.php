@@ -1,32 +1,38 @@
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const serviceItems = document.querySelectorAll('.service-item');
+  function handleHover() {
+    if (window.innerWidth <= 768) return;
+    document.addEventListener('DOMContentLoaded', () => {
+      const serviceItems = document.querySelectorAll('.service-item');
 
-    serviceItems.forEach(item => {
-      const content = item.querySelector('.service-content');
-      const icon = item.querySelector('.service-icon');
+      serviceItems.forEach(item => {
+        const content = item.querySelector('.service-content');
+        const icon = item.querySelector('.service-icon');
 
-      item.addEventListener('mouseenter', () => {
-        // Get the current height of .service-content
-        const contentHeight = content.scrollHeight; // Full height of the expanded content
-        const totalHeight = item.offsetHeight; // Total height of the service-item
+        item.addEventListener('mouseenter', () => {
+          // Get the current height of .service-content
+          const contentHeight = content.scrollHeight; // Full height of the expanded content
+          const totalHeight = item.offsetHeight; // Total height of the service-item
 
-        // Calculate gradient stop based on content height
-        const gradientStop = Math.min((contentHeight / totalHeight) * 100, 33); // Max at 50% for safety
-        item.style.setProperty('--gradient-stop', `${gradientStop}%`);
+          // Calculate gradient stop based on content height
+          const gradientStop = Math.min((contentHeight / totalHeight) * 100, 33); // Max at 50% for safety
+          item.style.setProperty('--gradient-stop', `${gradientStop}%`);
 
-        // Calculate icon offset dynamically
-        const iconOffset = -contentHeight / 2; // Adjust to move the icon upwards as the content expands
-        item.style.setProperty('--icon-offset', `${iconOffset}px`);
-      });
+          // Calculate icon offset dynamically
+          const iconOffset = -contentHeight / 2; // Adjust to move the icon upwards as the content expands
+          item.style.setProperty('--icon-offset', `${iconOffset}px`);
+        });
 
-      item.addEventListener('mouseleave', () => {
-        // Reset gradient and icon position on mouse leave
-        item.style.removeProperty('--gradient-stop');
-        item.style.removeProperty('--icon-offset');
+        item.addEventListener('mouseleave', () => {
+          // Reset gradient and icon position on mouse leave
+          item.style.removeProperty('--gradient-stop');
+          item.style.removeProperty('--icon-offset');
+        });
       });
     });
-  });
+  }
+
+  // call
+  handleHover();
 
 </script>
 <div class="{{ $block->classes }} services-block" style="{{ $block->inlineStyle }}">
