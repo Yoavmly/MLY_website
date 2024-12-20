@@ -4,9 +4,13 @@ $primary-color: #4bb4e6;
 $border-color: #ffffff;
 $block-gap: 38px;
 $background-color: transparent;
+$mobile-breakpoint: 768px;
 
 .parent-wrapper{
   margin: 59.7px 104px 72px;
+  @media (max-width: $mobile-breakpoint) {
+    margin:0;
+  }
   //padding: 0 137px 135px 135px;
 }
 
@@ -158,7 +162,8 @@ $background-color: transparent;
 
     .inner-block {
       grid-template-columns: repeat(2, 1fr);// 2 column layout
-      gap: 2rem;
+      gap: 5rem;
+      padding: 1rem 3rem;
 
       .small-block {
         max-width: 100%;

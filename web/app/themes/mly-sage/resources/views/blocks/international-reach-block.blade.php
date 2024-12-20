@@ -105,6 +105,9 @@
 </script>
 <div class="{{ $block->classes }}" style="{{ $block->inlineStyle }}">
   <div class="global-impact-section">
+    <div class="small-globe-div">
+      <img class="small-globe-image" src="{{ $image }}" alt="small globe image">
+    </div>
     <div class="content-block">
       <div class="text-content">
         <div class="title">

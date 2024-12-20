@@ -21,7 +21,7 @@ $mobile-breakpoint: 767px;
     align-items: center;
     overflow-x: hidden;
     height: auto;
-    padding: 0 0.938rem; // 15px
+    padding: 0; // 15px
   }
 
   .services-container {
@@ -41,7 +41,7 @@ $mobile-breakpoint: 767px;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      height: auto;
+      height: 2000px; // Set a fixed height for the services container on mobile view
     }
 
     .service-item {
@@ -67,10 +67,48 @@ $mobile-breakpoint: 767px;
       @media (max-width: $mobile-breakpoint) {
         width: 100%;
         max-width: none;
-        height: auto;
+        height: 500px; // Set a fixed height for each service item on mobile view
         margin-bottom: 1rem;
         box-shadow: none;
         overflow: visible;
+        justify-content: center;
+
+        // Remove hover and animation effects for mobile view
+        transition: none;
+        &:hover {
+          background-image: none;
+          .service-icon,
+          .service-content {
+            transform: none;
+            transition: none;
+          }
+          .service-description {
+            display: block;
+            box-shadow: none;
+            mask-image: none;
+          }
+          .service-content,
+          .services-container {
+            height: auto;
+            overflow: visible;
+          }
+        }
+
+        // Adjust the height of the service content to be fully visible
+        .service-content {
+          height: auto; // Ensure the content takes up the necessary space
+          padding:0 1rem !important; // Add padding to ensure content is visible
+          text-align: left !important;
+        }
+
+        .service-title {
+          margin-bottom: 1rem; // Add margin to ensure title is visible
+        }
+
+        .service-description {
+          display: block; // Ensure the description is visible
+          margin-bottom: 1rem; // Add margin to ensure description is visible
+        }
       }
 
       // Background gradients for each nth-child
@@ -174,7 +212,7 @@ $mobile-breakpoint: 767px;
         }
 
         .service-title {
-          font-family: "Space Grotesk";
+          font-family: "Space Grotesk", sans-serif;
           align-self: stretch;
           font-size: 30px;
           font-weight: normal;
@@ -189,13 +227,14 @@ $mobile-breakpoint: 767px;
         }
 
         .service-description {
+          display: inline-block;//
           font-size: 1rem;
           line-height: 1.6;
           color: #121212;
           margin: 0 auto;
           display: -webkit-box;
           overflow: hidden;
-          font-family: Poppins;
+          font-family: "Poppins",sans-serif !important;
           height: auto;
 
           @media (max-width: $mobile-breakpoint) {

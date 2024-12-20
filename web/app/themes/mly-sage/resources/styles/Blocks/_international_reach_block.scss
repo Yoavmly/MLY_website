@@ -17,6 +17,28 @@ $font-secondary: 'Poppins', sans-serif;
   padding: 2rem;
   flex-direction: column;
 
+  @media (max-width: 768px) {
+    justify-content: flex-end;
+  }
+  .small-globe-div{
+    display: none;
+
+    @media (max-width: 768px) {
+        display: block;
+      }
+    }
+
+  .small-globe-image {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: block;
+      width: 100%; // Ensure the image takes the full width of its container
+      height: auto; // Maintain the aspect ratio
+    }
+  }
+
+
   //cursor !div
   cursor: none;
   overflow: hidden;
@@ -52,12 +74,6 @@ $font-secondary: 'Poppins', sans-serif;
     position: relative;
     text-align: left;
 
-
-    @media (max-width: 768px) {
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-
     .text-content {
       flex: 22;
       display: flex;
@@ -90,35 +106,27 @@ $font-secondary: 'Poppins', sans-serif;
     }
   }
 
+  // Hide the custom cursor and effects on mobile
   @media (max-width: 768px) {
-    .text-content {
-      align-items: center;
-      text-align: center;
+    .square {
+      display: none; // Hide the square on mobile
+    }
 
-      .title {
-        font-size: 2.5rem;
-      }
-
-      .subtitle {
-        font-size: 1rem;
-      }
+    .content-block {
+      max-width: 100%;
+      align-self: flex-start; // Center the content block horizontally
     }
   }
 
   @media (max-width: 480px) {
     .text-content {
       .title {
-        font-size: 2rem;
+        font-size: 2rem; // Further adjust title size for very small screens
       }
 
       .subtitle {
-        font-size: 0.9rem;
-        text-align: left;
+        font-size: 0.9rem; // Further adjust subtitle size for very small screens
       }
-    }
-
-    .image-content {
-      max-width: 100%;
     }
   }
 }
