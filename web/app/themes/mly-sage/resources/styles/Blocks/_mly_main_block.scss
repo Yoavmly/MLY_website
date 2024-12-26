@@ -9,7 +9,6 @@ $title-line-height: 1.09;
   align-items: center;
   justify-content: flex-start;
   min-height: 70vh;
-  //background: linear-gradient(135deg, #000000 40%, #003366 100%);
   background: transparent;
   color: $text-color;
   padding: 2rem;
@@ -43,8 +42,8 @@ $title-line-height: 1.09;
     }
 
     .highlight {
-      font-weight: 500;
-      color: $primary-color;
+      font-weight: 500 !important;
+      color: $primary-color !important;
     }
   }
 
@@ -116,4 +115,14 @@ $title-line-height: 1.09;
       font-size: 0.8rem;
     }
   }
+}
+
+//for the mly copyright logo
+.mly-copyright-logo {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 0;
 }

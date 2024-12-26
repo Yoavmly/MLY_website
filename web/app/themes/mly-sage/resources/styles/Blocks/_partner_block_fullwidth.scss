@@ -30,9 +30,9 @@ $mobile-breakpoint: 767px;
   }
 
   .inner-block {
-    background: rgba(255, 255, 255, 0.05);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    //border-radius: 12px;
+    background-image: linear-gradient(to bottom, #2c2c2c -19%, rgba(0, 0, 0, 0) 117%);
+    border: solid 1px #fcfcfc;
+    height: 635.1px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -44,7 +44,6 @@ $mobile-breakpoint: 767px;
 
     @media (max-width: $desktop-breakpoint) {
       flex-direction: column;
-      //text-align: center;
       padding: 20px;
     }
 

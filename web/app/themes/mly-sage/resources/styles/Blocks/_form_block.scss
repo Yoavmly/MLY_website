@@ -27,7 +27,7 @@ $mobile-breakpoint: 767px;
 
 
   .content {
-    position: relative;//
+    position: relative;
     z-index: 2;
     display: flex;
     flex-direction: row;
@@ -36,9 +36,6 @@ $mobile-breakpoint: 767px;
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
-    //
-    //-webkit-filter: blur(16.6px);
-    //filter: blur(16.6px);
 
     .text-section,.form-section{
       z-index: 2;
@@ -66,7 +63,6 @@ $mobile-breakpoint: 767px;
       flex: 1;
       background: $form-background;
       padding: 2rem;
-      box-shadow: $box-shadow;
 
       form {
         display: flex;
@@ -77,6 +73,7 @@ $mobile-breakpoint: 767px;
           display: flex;
           align-items: center;
           gap: 1rem;
+          padding-top: 10px;
 
           label {
             font-family: $font-primary;
@@ -84,7 +81,6 @@ $mobile-breakpoint: 767px;
             color: $text-color;
             white-space: nowrap;
             text-align: right;
-            //width: 150px;
           }
 
           input,
@@ -98,6 +94,7 @@ $mobile-breakpoint: 767px;
             color: $text-color;
             background: transparent;
             border: none;
+            border-radius: 0;
             border-bottom: 1px solid grey;
             outline: none;
 
@@ -119,13 +116,13 @@ $mobile-breakpoint: 767px;
     }
   }
 
-  .footer {
-    margin-top: 3rem;
-    text-align: center;
-    font-family: $font-primary;
-    font-size: 14px;
-    color: $text-color;
-  }
+  //.footer {
+  //  margin-top: 3rem;
+  //  text-align: center;
+  //  font-family: $font-primary;
+  //  font-size: 14px;
+  //  color: $text-color;
+  //}
 
   @media (max-width: 768px) {
     .content {

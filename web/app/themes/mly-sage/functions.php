@@ -73,8 +73,14 @@ function register_mly_navigation() {
 add_action('after_setup_theme', 'register_mly_navigation');
 
 
+//for taxonomies
+//function add_categories_to_pages() {
+//    register_taxonomy_for_object_type('category', 'page');
+//}
+//add_action('init', 'add_categories_to_pages');
 
-/*for trouble shooting uploads*/
+
+/*for troubleshooting uploads*/
 @ini_set( 'upload_max_size' , '64M' );
 @ini_set( 'post_max_size', '64M');
 @ini_set( 'max_execution_time', '300' );

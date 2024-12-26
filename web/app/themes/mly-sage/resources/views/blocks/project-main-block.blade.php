@@ -16,12 +16,19 @@
                 </div>
               @endif
               <div class="project-info">
-                <h3 class="project-title">{{ $project['title_project'] }}</h3>
-                <p class="project-description">{{ $project['description_project'] }}</p>
-              </div>
-{{--            <span>&nbsp;→</span>--}}
-              <div class="arrow-image">
-                <img src="{{ \Roots\asset("images/partner/Rightarrow.png") }}" alt="arrow">
+
+
+{{--                testing--}}
+                  <div class="blurred-background"></div>
+{{--                testing--}}
+
+
+                  <h3 class="project-title">{{ $project['title_project'] }}</h3>
+                  <p class="project-description">{{ $project['description_project'] }}</p>
+  {{--            <span>&nbsp;→</span>--}}
+                <div class="arrow-image">
+                  <img src="{{ \Roots\asset("images/partner/Rightarrow.png") }}" alt="arrow">
+                </div>
               </div>
             </div>
           </a>

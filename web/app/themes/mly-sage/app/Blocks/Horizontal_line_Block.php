@@ -150,8 +150,13 @@ class Horizontal_line_Block extends Block
         return [
 //            'items' => $this->items(),
                 'checkbox' => get_field('checkbox'),
-                'text_input' => get_field('text_input'),
+                'text_input' => $this->getText(get_field('text_input'), get_field('highlightedText')),
         ];
+    }
+
+    public function getText($text,$highlightedText)
+    {
+        return str_replace($highlightedText, '<span class="highlight">'.$highlightedText.'</span>', $text);
     }
 
     /**
@@ -178,6 +183,11 @@ class Horizontal_line_Block extends Block
                         ],
                     ],
                 ],
+            ])
+            ->addText('highlightedText', [
+                'label' => 'highlightedText',
+                'instruction' => 'Enter text to be highlighted above the Horizontal Line',
+                'required' => true,
             ]);
 
         return $fields->build();

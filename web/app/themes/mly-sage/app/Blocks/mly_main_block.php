@@ -55,8 +55,7 @@ class mly_main_block extends Block
     public function with(): array
     {
         return [
-            'title' => get_field('title') ?: '',
-            'highlighted_text' => get_field('highlighted_text') ?: '',
+            'title' => $this->get_title(),
             'subtitle' => get_field('subtitle') ?: '',
             'button_text' => get_field('talk')['title'] ?? '',
             'button_link' => get_field('talk')['url'] ?? '',
@@ -69,7 +68,7 @@ class mly_main_block extends Block
      */
     public function fields(): array
     {
-       $mly_main_block= Builder::make('Mly Main Block');
+        $mly_main_block= Builder::make('Mly Main Block');
 
         $mly_main_block
             ->addText('title', ['label' => 'Title'])
@@ -89,6 +88,18 @@ class mly_main_block extends Block
     public function assets(array $block): void
     {
         wp_enqueue_style('mly-main-block-editor-style', get_template_directory_uri() . 'web/app/themes/mly-sage/resources/styles/Blocks/_mly_main_block.scss', [], null, 'all');
+    }
+
+    function get_title()
+    {
+     $title= get_field('title') ?: '';
+     $highlightedText = get_field('highlighted_text') ?: '';
+
+        return str_replace(
+            $highlightedText,
+            '<span class="highlight">' . esc_html($highlightedText) . '</span>',
+            $title
+        );
     }
 
 }

@@ -1,0 +1,10 @@
+.footer{
+  background: transparent;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  .content-footer{
+    align-self: flex-start;
+  }
+}

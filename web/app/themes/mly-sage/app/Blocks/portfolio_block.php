@@ -147,45 +147,59 @@ class portfolio_block extends Block
      */
     public function with(): array
     {
-        $tags = get_field('tags') ?: [];
-        $portfolios = get_field('portfolios') ?: [];
-
-        // Validate and sanitize tags
-        $validatedTags = array_map(function ($tag) {
-            return isset($tag['tag']) ? sanitize_text_field($tag['tag']) : null;
-        }, $tags);
-        $validatedTags = array_filter($validatedTags); // Remove null/invalid entries
-
-        // Group portfolios by tags
-        $groupedPortfolios = [];
-        foreach ($portfolios as $portfolio) {
-            // Validate portfolio fields
-            $title = isset($portfolio['title_portfolio']) ? sanitize_text_field($portfolio['title_portfolio']) : 'Untitled Project';
-            $description = isset($portfolio['description_portfolio']) ? sanitize_text_field($portfolio['description_portfolio']) : '';
-            $image = isset($portfolio['image']) ? $portfolio['image'] : null;
-            $url = isset($portfolio['url']) ? esc_url($portfolio['url']) : '#';
-            $tags = isset($portfolio['tag_selector']) ? $portfolio['tag_selector'] : [];
-
-            foreach ($tags as $tag) {
-                if (!isset($groupedPortfolios[$tag])) {
-                    $groupedPortfolios[$tag] = [];
-                }
-                $groupedPortfolios[$tag][] = [
-                    'title' => $title,
-                    'description' => $description,
-                    'image' => $image,
-                    'url' => $url,
-                ];
-            }
-        }
-
         return [
             'title' => get_field('title') ?: 'Our Portfolio',
             'highlighted_text' => get_field('highlighted_text') ?: 'Portfolio',
-            'tags' => $validatedTags,
-            'groupedPortfolios' => $groupedPortfolios,
+            'groupedPortfolios' => $this->get_grouped_portfolios(),
+            'tags'=>$this->get_tags(),
         ];
     }
+
+    public function get_tags():array // Retrieves all tags  for the taxonomy defined with Portfolio
+    {
+        $tags= get_terms([
+            'taxonomy' => 'tags',
+            'hide_empty'=>true,
+
+        ]);
+
+        if(!is_wp_error($tags) && !empty($tags))
+        {
+            return $tags;
+        }
+        return [];
+    }
+
+    public function get_grouped_portfolios(): array // get portfolios for each tag adn groups them by tag name
+    {
+        $groupedPortfolios=[];
+        $tags= $this->get_tags();
+
+        foreach ($tags as $tag)
+        {
+            $query=new \WP_Query([
+                'post_type'=>'portfolio',
+                'post_per_page'=>-1,
+                'tax_query'=>[
+                    [
+                        'taxonomy'=>$tag->taxonomy,
+                        'field'=>'term_id',
+                        'terms'=>$tag->term_id,
+                    ]
+                ]
+            ]);
+
+            if (!empty($query->posts))
+            {
+                $groupedPortfolios[$tag->name]=$query->posts;
+            }
+
+            wp_reset_postdata();
+        }
+
+        return $groupedPortfolios;
+    }
+
 
     /**
      * The block field group.
@@ -198,67 +212,9 @@ class portfolio_block extends Block
             ->addText('title', [
                 'label' => 'Title',
                 'type' => 'text',
-                'required' => true,
-                'instructions' => 'Enter the text for the headline ',
-            ])
-            ->addText('highlighted_text', [
-                'label' => 'Highlighted text',
-                'type' => 'text',
-                'required' => true,
-                'instructions' => 'Enter the highlighted text',
-            ])
-            ->addRepeater('tags', [
-                'repeater' => true,
-                'instructions' => '',
-                'button_label' => 'Add tags',
-                'return_format' => 'array',
-            ])
-                ->addText('tag', [
-                    'label' => 'Tag',
-                    'type' => 'text',
-                    'required' => true,
-                    'instructions' => 'Enter the tag name',
-                ])
-            ->endRepeater()
-            ->addRepeater('portfolios', [
-                'repeater' => true,
-                'layout' => 'block',
-                'instructions' => '',
-                'button_label' => 'Add Portfolios',
-                'return_format' => 'array',
-            ])
-                ->addImage('image', [
-                    'label' => 'project_image',
-                    'required' => false,
-                    'instructions' => '',
-                ])
-                ->addText('title_portfolio', [
-                    'label' => 'portfolio_title',
-                    'required' => true,
-                    'instructions' => 'Enter the title for the portfolio',
-                ])
-                ->addText('description_portfolio', [
-                    'label' => 'portfolio_description',
-                    'required' => true,
-                    'instructions' => 'Describe this portfolio',
-                ])
-                ->addUrl('url', [
-                    'label' => 'Portfolio URL',
-                    'required' => false,
-                    'instructions' => 'Provide the URL for the portfolio page.',
-                ])
-                ->addSelect('tag_selector', [
-                    'label' => 'Portfolio tags',
-                    'instructions' => 'Select the portfolio tags',
-                    'required' => true,
-                    'multiple' => true,
-                    'choices' => function () {
-                    //fetch existing tags to add to the repeater
-                        $tags = get_field('tags');
-                        return array_column($tags, 'tag');//extract only tag names
-                    }
-                ])
-            ->endRepeater();
+                'required' => false,
+                'instructions' => '(Use Mly_main_block for this type of styling )',
+            ]);
 
         return $fields->build();
     }

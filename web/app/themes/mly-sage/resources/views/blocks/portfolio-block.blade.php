@@ -1,60 +1,69 @@
 <script>
+
   document.addEventListener('DOMContentLoaded', () => {
-    const tags = document.querySelectorAll('.portfolio-tag-button');
-    const groups = document.querySelectorAll('.portfolio-group');
+    const tagItems = document.querySelectorAll('.tag-item');
+    const portfolioGroups = document.querySelectorAll('.portfolio-group');
 
-    tags.forEach(tag => {
+    tagItems.forEach(tag => {
       tag.addEventListener('click', () => {
-        const filter = tag.getAttribute('data-filter');
+        const tagSlug = tag.dataset.tag;
 
-        groups.forEach(group => {
-          if (group.getAttribute('data-category') === filter || filter === 'all') {
-            group.style.display = 'block';
-          } else {
-            group.style.display = 'none';
-          }
+        // Highlight selected tag
+        tagItems.forEach(item => item.classList.remove('active'));
+        tag.classList.add('active');
+
+        // Show/Hide portfolio groups
+        portfolioGroups.forEach(group => {
+          group.style.display = group.dataset.tagGroup === tagSlug ? 'block' : 'none';
         });
       });
     });
   });
+
+
 </script>
+
+
 <div class="portfolio-block-wrapper" style="{{ $block->inlineStyle }}">
-  {{-- Title Section --}}
-  <h2 class="portfolio-title">
-    {{ $title }}
-    <span class="portfolio-highlighted-text">{{ $highlighted_text }}</span>
-  </h2>
-
-  {{-- Tags Filter --}}
-  @if ($tags)
-    <div class="portfolio-tags-wrapper">
-      @foreach ($tags as $tag)
-        <button class="portfolio-tag-button" data-filter="{{ Str::slug($tag) }}">
-          {{ $tag }}
-        </button>
-      @endforeach
-    </div>
-  @endif
-
-  {{-- Portfolio Grid --}}
-  <div class="portfolio-grid">
-    @foreach ($groupedPortfolios as $tag => $projects)
-      <div class="portfolio-group" data-category="{{ Str::slug($tag) }}">
-        @foreach ($projects as $project)
-          <div class="portfolio-item">
-            @if ($project['image'])
-              <img src="{{ $project['image']['url'] }}" alt="{{ $project['title'] }}" class="portfolio-item-image">
-            @endif
-            <div class="portfolio-item-content">
-              <h3 class="portfolio-item-title">{{ $project['title'] }}</h3>
-              <p class="portfolio-item-description">{{ $project['description'] }}</p>
-              <a href="{{ $project['url'] }}" target="_blank" class="portfolio-item-link">
-                View Project →
-              </a>
-            </div>
-          </div>
+{{--  portfolio-grid--}}
+  <div class="portfolio-tags">
+{{--    list-tags--}}
+    @if(!empty($tags))
+      <ul class="tags-list">
+        @foreach($tags as $tag)
+          <li class="tag-item" data-tag="{{ $tag->slug }}">
+            {{ $tag->name }}
+          </li>
         @endforeach
-      </div>
-    @endforeach
+      </ul>
+    @endif
   </div>
+
+
+  <div class="project-container">
+    {{-- List Grouped Projects --}}
+    @if (!empty($groupedPortfolios))
+      @foreach ($groupedPortfolios as $tagName => $portfolios)
+        <div class="portfolio-group" data-tag-group="{{ $tagName }}">
+          <h3>{{ $tagName }}</h3>
+          @foreach ($portfolios as $portfolio)
+            <a href="{{ get_permalink($portfolio->ID) }}" class="project-link" target="_blank" rel="noopener noreferrer">
+              <div class="project-item">
+                @if (has_post_thumbnail($portfolio->ID))
+                  <div class="project-image">
+                    {!! get_the_post_thumbnail($portfolio->ID, 'thumbnail') !!}
+                  </div>
+                @endif
+                <div class="project-info">
+                  <h4 class="project-title">{{ get_the_title($portfolio->ID) }}</h4>
+                  <p class="project-description">{{ get_the_excerpt($portfolio->ID) }}</p>
+                </div>
+              </div>
+            </a>
+          @endforeach
+        </div>
+      @endforeach
+    @endif
+  </div>
+
 </div>
