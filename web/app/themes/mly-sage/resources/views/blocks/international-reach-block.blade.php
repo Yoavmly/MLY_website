@@ -29,6 +29,10 @@
           return start + (end - start) * factor;
         }
 
+        function clamp(value,min,max){
+          return Math.max(min,Math.min(value,max));
+        }
+
         const coords = {//initial coords of the section
           x: sectionRect.width / 2,
           y: sectionRect.height / 2
@@ -40,6 +44,7 @@
 
           squares.forEach(function (square, index) {
             if (isMouseInWindow) {//interpolating towards the mouse coords
+              //Mouse is inside the section : move squares towards the mouse
               if (index === 0) {
                 positions[0].x = lerp(positions[0].x, coords.x, 0.3);
                 positions[0].y = lerp(positions[0].y, coords.y, 0.3);
@@ -56,24 +61,37 @@
                 );
               }
 
+
+              positions[index].x = clamp(positions[index].x, 0, sectionRect.width);
+              positions[index].y = clamp(positions[index].y, 0, sectionRect.height);
+
+
               // Make sure positions are relative to the section
               square.style.left = (positions[index].x - 40) + "px";
               square.style.top = (positions[index].y - 40) + "px";
               square.classList.add("active");
+
+              //resetting the opacity to fully visible
+              square.style.opacity = 1;
+              square.style.display = "block";
+
             } else {
-              // Return to center of section when mouse leaves
-              positions[index].x = lerp(
-                positions[index].x,
-                sectionRect.width / 2,
-                0.1
-              );
-              positions[index].y = lerp(
-                positions[index].y,
-                sectionRect.height / 2,
-                0.1
-              );
-              square.style.left = (positions[index].x - 40) + "px";
-              square.style.top = (positions[index].y - 40) + "px";
+              //mouse is outside
+
+              //reducing opacity
+              let currentOpacity = square.style.opacity;
+              currentOpacity = parseFloat(currentOpacity || 1);
+              if (currentOpacity > 0) {
+                square.style.opacity=lerp(currentOpacity, 0, 0.1);
+              }
+
+
+              //stop showing the squares when it's invisible
+              if(currentOpacity <= 0.1){
+                square.style.display = "none";
+                square.style.opacity = 0;
+              }
+
               square.classList.remove("active");
             }
           });
@@ -90,6 +108,9 @@
         });
 
         section.addEventListener("mouseleave", function () {
+          // Reset coords to the center of the section
+          coords.x = sectionRect.width / 2;
+          coords.y = sectionRect.height / 2;
           isMouseInWindow = false;
         });
 

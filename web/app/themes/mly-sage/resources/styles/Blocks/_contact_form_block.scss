@@ -11,26 +11,12 @@ $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   max-width: 1920px;
   padding: 40px;
   margin: 0 auto;
-  //background-color: $background-color;
   background: transparent;
   position: relative;
   overflow: hidden;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    pointer-events: none;
-  }
-
   .inner-block {
-    //background: $form-background;
-    border: 1px solid $form-border;
-    border-radius: $form-border-radius;
+    @include inner-block();
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -38,104 +24,16 @@ $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     padding: 30px;
     max-width: 1200px;
     width: 100%;
+    position: relative;
     z-index: 2;
-    //box-shadow: $form-shadow;
 
     .content-section {
-      position: relative;//
+      position: relative;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
       width: 100%;
-
-      .text-section {
-        z-index: 1;//
-        flex: 1;
-        color: $text-color;
-        font-family: $font-primary;
-
-        h1 {
-          font-size: 60px;
-          font-weight: 700;
-          line-height: 65px;
-          margin-bottom: 2rem;
-
-          span {
-            color: $primary-color;
-          }
-        }
-      }
-
-      .form-section {
-        z-index: 1;//
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-
-        form {
-          display: flex;
-          flex-direction: column;
-          gap: 1.5rem;
-
-          .form-group {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-
-            label {
-              font-family: $font-primary;
-              font-size: 16px;
-              color: $text-color;
-              white-space: nowrap;
-              text-align: right;
-              width: 150px;
-            }
-
-            input,
-            select {
-              flex: 1;
-              width: 100%;
-              padding: 0.75rem 1rem;
-              font-size: 16px;
-              color: $text-color;
-              background: transparent;
-              border: none;
-              border-bottom: 1px solid $border-color;
-              outline: none;
-
-              &:focus {
-                border-bottom: 2px solid $primary-color;
-              }
-            }
-
-            select {
-              border: 1px solid $primary-color;
-              border-radius: 5px;
-
-              &:focus {
-                border-color: lighten($primary-color, 10%);
-              }
-            }
-          }
-        }
-
-        button[type="submit"] {
-          background: $primary-color;
-          color: $text-color;
-          padding: 0.75rem 1.5rem;
-          border: none;
-          border-radius: 5px;
-          font-size: 16px;
-          cursor: pointer;
-          transition: background 0.3s ease;
-
-          &:hover {
-            background: lighten($primary-color, 10%);
-          }
-        }
-      }
     }
   }
 

@@ -148,9 +148,17 @@ class formiddable_form_block extends Block
     public function with(): array
     {
         return [
-//            'items' => $this->items(),
+                'title' => $this->getTitle(get_field('title'), get_field('highlightedText')),
                 'form_id'=>get_field('form_id'),
         ];
+    }
+
+    public function getTitle($title,$highlightedText)
+    {
+        return str_replace($highlightedText,
+            '<span class="highlight">' . $highlightedText . '</span>',
+            $title
+        );
     }
 
     /**
@@ -161,6 +169,15 @@ class formiddable_form_block extends Block
         $fields = Builder::make('formiddable__form__block');
 
         $fields
+            ->addText('title', [
+                'label' => 'Title',
+                'instructions' => 'Enter the title of the form ',
+                'required' => true,
+            ])
+            ->addText('highlightedText', [
+                'label' => 'Highlighted Text',
+                'instructions' => 'Enter the highlighted text of the form in the title (Case Sensitive)',
+            ])
             ->addNumber('form_id', [
                 'label' => 'Form ID',
                 'instructions' => 'Enter the ID of the form ',

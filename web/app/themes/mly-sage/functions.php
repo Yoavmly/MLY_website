@@ -65,16 +65,84 @@ collect(['setup', 'filters'])
     });
 
 // Register navigation menu
-function register_mly_navigation() {
+function register_mly_navigation()
+{
     register_nav_menus(array(
         'primary_navigation' => __('Primary Navigation', 'your-theme-text-domain')
     ));
 }
 add_action('after_setup_theme', 'register_mly_navigation');
 
+add_action('wp_ajax_filter_portfolios', 'filter_portfolios_by_tag');
+add_action('wp_ajax_nopriv_filter_portfolios', 'filter_portfolios_by_tag');
 
+function filter_portfolios_by_tag()
+{
+    if (empty($_POST['tag_slug'])) {
+        wp_send_json_error(['message' => 'Tag slug is required.']);
+    }
 
-/*for trouble shooting uploads*/
-@ini_set( 'upload_max_size' , '64M' );
-@ini_set( 'post_max_size', '64M');
-@ini_set( 'max_execution_time', '300' );
+    $tag_slug = sanitize_text_field($_POST['tag_slug']);
+
+    $args = [
+        'post_type' => 'portfolio',
+        'posts_per_page' => -1,
+        'tax_query' => [
+            [
+                'taxonomy' => 'tags',
+                'field' => 'slug',
+                'terms' => $tag_slug,
+            ],
+        ],
+    ];
+
+    $query = new WP_Query($args);
+
+    if (!$query->have_posts()) {
+        wp_send_json_error(['message' => 'No portfolios found.']);
+    }
+
+    ob_start();
+
+    while ($query->have_posts()) {
+        $query->the_post();
+        ?>
+        <a href="<?php the_permalink(); ?>" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+            <div class="portfolio-item">
+                <?php if (has_post_thumbnail()) : ?>
+                    <div class="portfolio-image">
+                        <?php the_post_thumbnail('thumbnail'); ?>
+                    </div>
+                <?php endif; ?>
+                <div class="portfolio-info">
+                    <h3 class="portfolio-title"><?php the_title(); ?></h3>
+                    <p class="portfolio-description"><?php the_excerpt(); ?></p>
+                    <div class="portfolio-arrow-image">
+                        <img src="<?php echo Roots\asset('images/partner/Rightarrow.png')->uri(); ?>" alt="arrow">
+                    </div>
+                </div>
+            </div>
+        </a>
+        <?php
+    }
+
+    wp_reset_postdata();
+
+    $html = ob_get_clean();
+    wp_send_json_success(['html' => $html]);
+}
+
+add_action('wp_enqueue_scripts', 'enqueue_ajax_scripts');
+function enqueue_ajax_scripts()
+{
+    wp_enqueue_script('ajax-filter', get_template_directory_uri() . '/scripts/ajax-filter.js', ['jquery'], null, true);
+
+    wp_localize_script('ajax-filter', 'wpAjax', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ]);
+}
+
+/*for troubleshooting uploads*/
+@ini_set('upload_max_size', '64M');
+@ini_set('post_max_size', '64M');
+@ini_set('max_execution_time', '300');

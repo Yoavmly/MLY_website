@@ -1,60 +1,61 @@
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const tags = document.querySelectorAll('.portfolio-tag-button');
-    const groups = document.querySelectorAll('.portfolio-group');
 
-    tags.forEach(tag => {
-      tag.addEventListener('click', () => {
-        const filter = tag.getAttribute('data-filter');
-
-        groups.forEach(group => {
-          if (group.getAttribute('data-category') === filter || filter === 'all') {
-            group.style.display = 'block';
-          } else {
-            group.style.display = 'none';
-          }
-        });
-      });
-    });
-  });
-</script>
-<div class="portfolio-block-wrapper" style="{{ $block->inlineStyle }}">
-  {{-- Title Section --}}
-  <h2 class="portfolio-title">
-    {{ $title }}
-    <span class="portfolio-highlighted-text">{{ $highlighted_text }}</span>
-  </h2>
-
-  {{-- Tags Filter --}}
-  @if ($tags)
-    <div class="portfolio-tags-wrapper">
-      @foreach ($tags as $tag)
-        <button class="portfolio-tag-button" data-filter="{{ Str::slug($tag) }}">
-          {{ $tag }}
-        </button>
-      @endforeach
-    </div>
-  @endif
-
-  {{-- Portfolio Grid --}}
-  <div class="portfolio-grid">
-    @foreach ($groupedPortfolios as $tag => $projects)
-      <div class="portfolio-group" data-category="{{ Str::slug($tag) }}">
-        @foreach ($projects as $project)
-          <div class="portfolio-item">
-            @if ($project['image'])
-              <img src="{{ $project['image']['url'] }}" alt="{{ $project['title'] }}" class="portfolio-item-image">
-            @endif
-            <div class="portfolio-item-content">
-              <h3 class="portfolio-item-title">{{ $project['title'] }}</h3>
-              <p class="portfolio-item-description">{{ $project['description'] }}</p>
-              <a href="{{ $project['url'] }}" target="_blank" class="portfolio-item-link">
-                View Project →
-              </a>
-            </div>
+<div class="portfolio-block-wrapper container" style="{{ $block->inlineStyle }}">
+  <div class="portfolio-section">
+    <div class="portfolio-tags">
+        @foreach ($tags as $tag)
+          <div class="tag-item" data-slug="{{ $tag->slug }}">
+            {{ $tag->name }}
           </div>
         @endforeach
+    </div>
+    <div class="portfolio-content">
+      <div class="portfolio-container" id="portfolio-list">
+        @php
+          $portfolios = new WP_Query([
+              'post_type' => 'portfolio',
+              'posts_per_page' => -1,
+          ]);
+
+          $displayed_portfolios = []; // Array to track displayed portfolio IDs
+        @endphp
+
+        @if ($portfolios->have_posts())
+          @while ($portfolios->have_posts())
+            @php
+              $portfolios->the_post();
+              $current_id = get_the_ID();
+
+              // Skip if the portfolio has already been displayed
+              if (in_array($current_id, $displayed_portfolios)) {
+                  continue;
+              }
+
+              // Add the current portfolio ID to the displayed list
+              $displayed_portfolios[] = $current_id;
+            @endphp
+            <a href="{{ get_permalink() }}" class="portfolio-link" target="_blank" rel="noopener noreferrer">
+              <div class="portfolio-item">
+                @if (has_post_thumbnail())
+                  <div class="portfolio-image">
+                    {!! get_the_post_thumbnail(null, 'thumbnail') !!}
+                  </div>
+                @endif
+                <div class="portfolio-info">
+                  <h3 class="portfolio-title">{{ get_the_title() }}</h3>
+                  <p class="portfolio-description">{{ get_the_excerpt() }}</p>
+                  <div class="portfolio-arrow-image">
+                    <img src="{{ Roots\asset('images/partner/Rightarrow.png')->uri() }}" alt="arrow">
+                  </div>
+                </div>
+              </div>
+            </a>
+          @endwhile
+        @else
+          <p>No portfolios found.</p>
+        @endif
+
+        @php wp_reset_postdata(); @endphp
       </div>
-    @endforeach
+    </div>
   </div>
 </div>

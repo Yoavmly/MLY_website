@@ -149,9 +149,28 @@ class why_choose_mly extends Block
     {
         return [
             'features' => $this->features(),
+            'small_text' => $this->getSmallText(get_field('small_text'), get_field('boldedText1')),
+            'title' => $this->getTitle(get_field('title'), get_field('boldedText2')),
             'button_text' => get_field('button_text'),
             'button_link' => get_field('button_link'),
         ];
+    }
+
+    public function getSmallText($smallText,$boldedText1)
+    {
+        return str_replace($boldedText1,
+            '<span class="highlight">' . $boldedText1 . '</span>',
+            $smallText
+        );
+
+    }
+
+    public function getTitle($title,$boldedText2)
+    {
+        return str_replace($boldedText2,
+            '<span class="highlight">' . $boldedText2 . '</span>',
+            $title
+        );
     }
 
     /**
@@ -162,6 +181,24 @@ class why_choose_mly extends Block
         $fields = Builder::make('why__choose__mly');
 
         $fields
+            ->addText('small_text', [
+                'label' => 'Small Text',
+                'instructions' => 'Small text to be displayed over the horizontal line.',
+                'required' => false,
+            ])
+            ->addText('boldedText1', [
+                'label' => 'Bolded Text 1',
+                'instructions' => 'Bolded text in Text displayed over the horizontal line.',
+            ])
+            ->addText('title', [
+                'label' => 'Title',
+                'instructions' => 'Title to be displayed below the horizontal line.',
+            ])
+            ->addText('boldedText2', [
+                'label' => 'Bolded Text 2',
+                'instructions' => 'Bolded text in Title displayed below the horizontal line.',
+                'required' => true,
+            ])
             ->addRepeater('features', [
                 'label' => 'Features',
                 'layout' => 'block',

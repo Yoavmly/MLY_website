@@ -1,11 +1,11 @@
 {{--
-  Template Name:Zoho-page Template
+  Template Name:services-page Template
 --}}
 
 @extends('layouts.app')
 
-@section('zoho-page-background')
-  <div class="only-flame" style="background-image: url('{{ asset('images/flame-last.png') }}');">
+@section('services-page-background')
+  <div class="arrow-flame" style="background-image: url('{{ asset('images/flame-arrow.png') }}');"></div>
 @endsection
 
 @section('content')

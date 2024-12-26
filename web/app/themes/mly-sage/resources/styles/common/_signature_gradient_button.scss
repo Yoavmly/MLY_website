@@ -23,6 +23,7 @@ $custom-white-button-font-family: $font-primary;
   text-align: center;
   display: inline-block;
   font-family: $custom-white-button-font-family;
+  margin: 0 auto;
 }
 .signature-gradient-button {
   @include signature-gradient-button;

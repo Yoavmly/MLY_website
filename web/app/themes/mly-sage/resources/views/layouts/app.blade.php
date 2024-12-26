@@ -10,7 +10,10 @@
   <body @php(body_class())>
     @php(wp_body_open())
 
-    @yield('background')
+    @yield('background-homepage')
+    @yield('portfolio-page-background')
+    @yield('zoho-page-background')
+    @yield('services-page-background')
 
     <div id="app">
       <a class="sr-only focus:not-sr-only" href="#main">

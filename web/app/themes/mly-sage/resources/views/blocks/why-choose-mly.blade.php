@@ -1,12 +1,12 @@
 <div class="outer-block {{ $block->classes }}" style="{{ $block->inlineStyle }}">
   <div class="align-self-center parent-wrapper">
         <div class="mission-text">
-          mission:&nbsp;<span>flex;</span>
+          {!! $small_text !!}
         </div><br>
         <div class="horizontal-line"></div><br>
         <div class="title-button-wrapper">
           <div class="title">
-            <span>Why</span>&nbsp;Choose MLY
+            {!! $title !!}
           </div>
           <div class="button-wrapper">
             <a href="{{ get_field('button_link') }}" class="custom-btn-secondary">

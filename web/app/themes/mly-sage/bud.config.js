@@ -15,6 +15,7 @@ export default async (app) => {
    */
   app
     .entry('app', ['@scripts/app', '@styles/app'])
+    .entry('portfolio', ['@scripts/portfolio','@styles/portfolio'])
     .entry('editor', ['@scripts/editor', '@styles/editor'])
     .assets(['images']);
 

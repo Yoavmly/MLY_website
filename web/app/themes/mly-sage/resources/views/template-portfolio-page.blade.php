@@ -3,8 +3,9 @@
 --}}
 
 
-@section('background')
-  <div class="only-flame" style="background-image: url('{{ asset('images/flame-last.png') }}');"
+@section('portfolio-page-background')
+  <div class="ray-flame" style="background-image: url('{{ asset('images/flame-ray.png') }}');">
+  </div>
 @endsection
 
 @section('content')

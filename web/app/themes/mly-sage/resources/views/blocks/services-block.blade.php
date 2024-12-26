@@ -4,21 +4,29 @@
     document.addEventListener('DOMContentLoaded', () => {
       const serviceItems = document.querySelectorAll('.service-item');
 
+      document.querySelectorAll('.service-item').forEach((item, index) => {
+        // Example logic to assign colors dynamically
+        const colors = ['#57c1fa', '#4dfbf1', '#8ffb4d', '#4dfbb2'];
+        const color = colors[index % colors.length];
+
+        // Set the CSS variable
+        item.style.setProperty('--arrow-color', color);
+      });
+
       serviceItems.forEach(item => {
         const content = item.querySelector('.service-content');
-        const icon = item.querySelector('.service-icon');
 
         item.addEventListener('mouseenter', () => {
           // Get the current height of .service-content
-          const contentHeight = content.scrollHeight; // Full height of the expanded content
-          const totalHeight = item.offsetHeight; // Total height of the service-item
+          const contentHeight = content.scrollHeight;
+          const totalHeight = item.offsetHeight;
 
           // Calculate gradient stop based on content height
-          const gradientStop = Math.min((contentHeight / totalHeight) * 100, 33); // Max at 50% for safety
+          const gradientStop = Math.min((contentHeight / totalHeight) * 100, 33);
           item.style.setProperty('--gradient-stop', `${gradientStop}%`);
 
           // Calculate icon offset dynamically
-          const iconOffset = -contentHeight / 2; // Adjust to move the icon upwards as the content expands
+          const iconOffset = -contentHeight / 5;
           item.style.setProperty('--icon-offset', `${iconOffset}px`);
         });
 
@@ -42,14 +50,15 @@
 {{--      <a href="{{ $service['url'] }}" class="service-link" target="_blank" rel="noopener noreferer">--}}
           <div class="service-item">
             <div class="service-icon">
-              <img src="{{ $service['icon'] }}" alt="{{ $service['title'] }} Symbol">
+              {!! $service['icon'] !!}
+{{--              <img src="{{ $service['icon'] }}" alt="{{ $service['title'] }} Symbol">--}}
             </div>
             <div class="service-content">
-              <h3 class="service-title">{{ $service['title'] }}</h3>
+              <h3 class="service-title">{!! $service['title'] !!} </h3>
               <p class="service-description">{{ $service['description'] }}</p>
             </div>
-            <div class=" arrow">
-              <img src="{{ \Roots\asset("images/Rightarrow.png") }}" alt="arrow">
+            <div class=" arrow-block">
+              <img src="{{ \Roots\asset("images/Rightarrow.png") }}" alt="arrow" class="arrow">
             </div>
           </div>
 {{--      </a>--}}

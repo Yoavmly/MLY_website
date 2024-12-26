@@ -7,7 +7,7 @@ $subtitle-line-height: 28px;
 $button-width: 213px;
 $button-height: 54px;
 $primary-color: #4bb4e6;
-$background-color: black;
+$background-color: transparentize( #000000, 1 );
 
 .project-main-block {
   display: flex;
@@ -88,6 +88,7 @@ $background-color: black;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          background:transparent;
 
           .project-title {
             font-family: $font-primary;
@@ -116,7 +117,7 @@ $background-color: black;
         //}
 
         .arrow-image{
-          padding: 1rem;
+          padding: 0;
         }
       }
     }
