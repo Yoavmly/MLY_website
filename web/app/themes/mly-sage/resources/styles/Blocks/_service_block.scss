@@ -1,5 +1,5 @@
-$desktop-breakpoint: 1024px;
-$mobile-breakpoint: 767px;
+$desktop-breakpoint: 64rem;
+$mobile-breakpoint: 47.938rem;
 
 .services-block {
   z-index: 1;
@@ -8,8 +8,7 @@ $mobile-breakpoint: 767px;
   align-items: center;
   flex-wrap: nowrap;
   width: 100%;
-  max-width: 1920px;
-  height: 600px;
+  min-height: 37.5rem;
   margin: 0;
   padding: 0;
   overflow-x: visible;
@@ -20,7 +19,7 @@ $mobile-breakpoint: 767px;
     align-items: center;
     overflow-x: hidden;
     height: auto;
-    padding: 0; // 15px
+    padding: 0;
   }
 
   .services-container {
@@ -31,24 +30,23 @@ $mobile-breakpoint: 767px;
     align-items: flex-end;
     gap: 0;
     width: 100%;
-    max-width: inherit;
     margin: 0;
     padding: 0;
-    height: inherit;
+    min-height: inherit;//height:
 
     @media (max-width: $mobile-breakpoint) {
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      height: 2000px; // Set a fixed height for the services container on mobile view
+      height: 125rem; // Set a fixed height for the services container on mobile view
     }
 
     .service-item {
       position: relative;
       width: 25%;
       z-index: 5;
-      max-width: 30rem;
-      height: inherit;
+      //max-width: 30rem;
+      min-height: inherit;//height:
       display: inline-flex;
       flex-direction: column;
       align-items: center;
@@ -60,56 +58,33 @@ $mobile-breakpoint: 767px;
       transform-origin: bottom;
       text-align: center;
       overflow: hidden;
-      box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
-      transition: box-shadow 1s ease, transform 1s ease, background 1s ease;
+      //box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.2);
+      //transition: box-shadow 1s ease, transform 1s ease, background 1s ease;
 
       @media (max-width: $mobile-breakpoint) {
         width: 100%;
         max-width: none;
-        height: 500px; // Set a fixed height for each service item on mobile view
+        height: 31.25rem; // Set a fixed height for each service item on mobile view
         margin-bottom: 1rem;
         box-shadow: none;
         overflow: visible;
-        justify-content: center;
+        //justify-content: center;
 
         // Remove hover and animation effects for mobile view
         transition: none;
-        &:hover {
-          background-image: none;
-          .service-icon,
-          .service-content {
-            transform: none;
-            transition: none;
-          }
-          .service-description {
-            display: block;
-            box-shadow: none;
-            mask-image: none;
-          }
-          .service-content,
-          .services-container {
-            height: auto;
-            overflow: visible;
-          }
-        }
-
-        // Adjust the height of the service content to be fully visible
-        .service-content {
-          height: auto; // Ensure the content takes up the necessary space
-          padding:0 1rem !important; // Add padding to ensure content is visible
-          text-align: left !important;
-        }
-
-        .service-title {
-          margin-bottom: 1rem; // Add margin to ensure title is visible
-        }
-
-        .service-description {
-          display: block; // Ensure the description is visible
-          margin-bottom: 1rem; // Add margin to ensure description is visible
-        }
+      //.service-content{
+      //    display: block;
+      //    padding: 2.5rem;
+      //
+      //  .service-title{
+      //    text-align: left;
+      //  }
+      //
+      //  .service-description{
+      //    text-align: left;
+      //  }
+      //}
       }
-
       // Background gradients for each nth-child
       &:nth-child(4n+1) {
         background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 33%), #57c1fa 65%);
@@ -170,13 +145,13 @@ $mobile-breakpoint: 767px;
         width: 10rem;
         height: 10rem !important;
         display: flex;
-        margin: 10% 0;
+        margin: 5rem 0;
         padding: 0;
         z-index: 5;
         filter: drop-shadow(0 0.625rem 1.25rem rgba(0, 0, 0, 0.5));
 
         @media (max-width: $mobile-breakpoint) {
-          margin: 1rem 0;
+          margin: 5rem 0;
           width: 8rem;
           height: 8rem !important;
         }
@@ -197,8 +172,7 @@ $mobile-breakpoint: 767px;
         justify-content: flex-end;
         z-index: 2;
         text-align: left;
-        padding: 0 1.25rem;
-        //margin-top: 2px;
+        padding: 0 2.5rem;
         gap:2px;
         width: 100%;
         background: transparent;
@@ -208,16 +182,16 @@ $mobile-breakpoint: 767px;
         @media (max-width: $mobile-breakpoint) {
           align-items: center;
           text-align: center;
-          padding: 0;
+          padding: 2rem;
         }
 
         .service-title {
           font-family: "Space Grotesk", sans-serif;
           align-self: stretch;
-          font-size: 30px;
+          font-size: 1.875rem;
           font-weight: 200;
           line-height: 1.09;
-          margin-bottom: 10%;
+          //margin-bottom: 10%;
           color: #121212;
 
           @media (max-width: $mobile-breakpoint) {
@@ -238,7 +212,7 @@ $mobile-breakpoint: 767px;
           margin: 0 auto;
           display: -webkit-box;
           overflow: hidden;
-          font-family: "Poppins",sans-serif !important;
+          font-family: "Poppins",sans-serif !important;//overwriting the font-family for the parent.
           height: auto;
 
           @media (max-width: $mobile-breakpoint) {
@@ -251,7 +225,8 @@ $mobile-breakpoint: 767px;
         position: absolute;
         bottom: 0;
         left: 0;
-        padding-left: 20px;
+        //padding-left: 1.25rem;
+        padding: 2.5rem;
         width: 100%;
         height: 7.5%;
         z-index: 10;
@@ -271,7 +246,7 @@ $mobile-breakpoint: 767px;
 
         @media (max-width: $mobile-breakpoint) {
           position: static;
-          padding-left: 10px;
+          padding-left: 0.625rem;
           height: 8%;
           background: none;
           box-shadow: none;
@@ -281,8 +256,8 @@ $mobile-breakpoint: 767px;
           align-items: center;
 
           .arrow {
-            width: 24px;
-            height: 24px;
+            width: 1.5rem;
+            height: 1.5rem;
           }
         }
       }

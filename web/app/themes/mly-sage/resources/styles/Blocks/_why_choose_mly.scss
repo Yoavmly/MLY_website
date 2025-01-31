@@ -94,8 +94,8 @@ $mobile-breakpoint: 768px;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     gap: $block-gap;
-    width: 100%;
-    max-width: 1438px;
+    //width: 74.375rem;
+    width: 90.313rem;
     margin: 0 auto;
 
     .small-block {

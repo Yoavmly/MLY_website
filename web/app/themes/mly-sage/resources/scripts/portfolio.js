@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', () => {
       })
         .then(response => response.json())
         .then(data => {
-          console.log('Response data:', data.data);
           if (data.success) {
             portfolioContainer.innerHTML = data.data.html;
           } else {

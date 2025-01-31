@@ -1,7 +1,7 @@
 $font-primary: 'Space Grotesk', sans-serif;
 $text-color: var(--neutral-colors-100);
 $primary-color: #4bb4e6;
-$title-font-size: 80px;
+$title-font-size: 5rem;
 $title-line-height: 1.09;
 
 .mly-main-block {
@@ -11,18 +11,17 @@ $title-line-height: 1.09;
   min-height: 70vh;
   background: transparent;
   color: $text-color;
-  padding: 2rem;
+  //padding: 2rem;
   text-align: left;
 
   &__content {
-    max-width: 1190px;
+    width: 90.313rem;
     margin: 0 auto;
-    width: 100%;
   }
 
   h1 {
     display: inline-block;
-    max-width: 500px;
+    max-width: 31.25rem;
     font-size: $title-font-size;
     font-weight: 400;
     letter-spacing: normal;
@@ -51,16 +50,16 @@ $title-line-height: 1.09;
     @include subtitle-style();
     //color: #d0d0d0;
     margin-top: 1rem;
-    max-width: 992px;
-    max-height: 95px;
+    max-width: 62rem;
+    max-height: 5.938rem;
   }
 
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 213px;
-    height: 54px;
+    width: 13.313rem;
+    height: 3.375rem;
     margin-top: 1.5rem;
     font-size: 1rem;
     font-weight: bold;

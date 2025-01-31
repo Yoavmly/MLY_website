@@ -13,6 +13,8 @@
          {!! FrmFormsController::get_form_shortcode(['id' => $form_id]) !!}
        </div>
      </div>
+     <div class="clipping-container-round"></div>
+     <div class="clipping-container" style=""></div>
    </div>
  </div>
 </div>

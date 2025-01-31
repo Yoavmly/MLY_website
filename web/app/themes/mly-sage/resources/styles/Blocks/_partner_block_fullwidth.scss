@@ -1,5 +1,6 @@
 $desktop-breakpoint: 1024px;
 $mobile-breakpoint: 767px;
+@import "../global";
 
 .block-container {
   background: black;
@@ -30,27 +31,7 @@ $mobile-breakpoint: 767px;
   }
 
   .inner-block {
-    background-image: linear-gradient(to bottom, #2c2c2c -19%, rgba(0, 0, 0, 0) 117%);
-    border: solid 1px #fcfcfc;
-    height: 65vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px;
-    max-width: 1200px;
-    width: 100%;
-    z-index: 2;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-
-    @media (max-width: $desktop-breakpoint) {
-      flex-direction: column;
-      padding: 20px;
-    }
-
-    @media (max-width: $mobile-breakpoint) {
-      flex-direction: column;
-      padding: 15px;
-    }
+   @include inner-block();
 
     .content-section {
       flex: 2;

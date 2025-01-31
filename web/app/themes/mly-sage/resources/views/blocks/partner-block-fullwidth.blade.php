@@ -24,6 +24,8 @@
           <div class="image-section">
             <img src="{{ \Roots\asset("images/partner/5.png")->uri() }}" alt="Image">
           </div>
+        <div class="clipping-container-round"></div>
+        <div class="clipping-container" style=""></div>
       </div>
     </a>
   @endif

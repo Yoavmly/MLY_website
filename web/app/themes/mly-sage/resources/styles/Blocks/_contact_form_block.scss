@@ -2,6 +2,7 @@ $form-background: inherit;
 $form-border: rgba(255, 255, 255, 0.2);
 $form-border-radius: 12px;
 $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+@import "../global";
 
 .form-block {
   display: flex;
@@ -17,15 +18,16 @@ $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 
   .inner-block {
     @include inner-block();
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    padding: 30px;
-    max-width: 1200px;
-    width: 100%;
-    position: relative;
-    z-index: 2;
+    //display: flex;
+    //flex-direction: column;
+    //justify-content: space-between;
+    //align-items: center;
+    //padding: 6rem;
+    //max-width: 1450px;
+    //min-height: 650px;
+    //width: 100%;
+    //position: relative;
+    //z-index: 2;
 
     .content-section {
       position: relative;
@@ -34,6 +36,39 @@ $form-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
       justify-content: space-between;
       align-items: center;
       width: 100%;
+    }
+
+
+    .custom-dropdown{
+      display: block;
+      position: relative;
+
+      &:before{
+        z-index:2;
+        position: absolute;
+        right:2%;
+        top:25%;
+        content:'';
+        width: 40px;
+        height: 40px;
+        background-image: url("../../images/arrow-down-white.png");
+        background-repeat: no-repeat;
+        object-fit: contain;
+      }
+
+      &:after{
+        z-index: 2;
+        position: absolute;
+        right:2%;
+        top:25%;
+        content:'';
+        width: 40px;
+        height: 40px;
+        background-image: url("../../images/arrow-down-white.png");
+        background-repeat: no-repeat;
+        object-fit: contain;
+        transform: rotate(180deg);
+      }
     }
   }
 

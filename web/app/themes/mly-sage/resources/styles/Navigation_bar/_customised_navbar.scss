@@ -6,7 +6,7 @@ $navbar-link-hover-color: #bff0f7;
 $primary-button-bg: linear-gradient(25deg, #0d99ff, #aefdf3);
 $primary-button-border: 0.5px solid darkcyan;
 $primary-button-color: black;
-$navbar-padding-left: 2rem;
+
 
 .banner {
   .navbar {
@@ -14,13 +14,13 @@ $navbar-padding-left: 2rem;
     display: flex;
     align-items: center;
     font-family: $font-primary;
-    padding-left: $navbar-padding-left;
+    height: 3.25rem;
 
     .container-fluid {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      max-width: 1190px;
+      width: 90.313rem;
       margin: 0 auto;
     }
 
@@ -30,15 +30,15 @@ $navbar-padding-left: 2rem;
       align-items: center;
 
       img {
-        max-width: 100%;
+        min-width: 8.625rem ;
       }
     }
 
     .hamburger-icon {
       display: none;
       font-size: 2rem;
-      min-height: 24px;
-      min-width: 24px;
+      min-height: 1.5rem;
+      min-width: 1.5rem;
       cursor: pointer;
       color: #0dcaf0;
 
@@ -52,8 +52,8 @@ $navbar-padding-left: 2rem;
     .message-box {
       display: none;
       font-size: 1.5rem;
-      min-height: 24px;
-      min-width: 24px;
+      min-height: 1.5rem;
+      min-width: 1.5rem;
       cursor: pointer;
       color: #0dcaf0;
 
@@ -118,7 +118,6 @@ $navbar-padding-left: 2rem;
       padding: 0.5em 1em;
       color: $navbar-link-color;
       transition: all 0.3s ease;
-      //text-decoration: none;
 
 
       @media screen and (max-width: 768px) {

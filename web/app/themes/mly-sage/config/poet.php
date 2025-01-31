@@ -16,7 +16,7 @@ return [
         'portfolio' => [
             'enter_title_here' => 'Enter Portfolio title',
             'menu_icon' => 'dashicons-portfolio',
-            'supports' => ['title', 'author', 'revisions', 'thumbnail', 'block', 'excerpt', 'custom-fields'],
+            'supports' => ['title','editor', 'author', 'revisions', 'thumbnail', 'block', 'excerpt', 'custom-fields'],
             'show_in_rest' => true,
             'has_archive' => true,
             'rewrite' => ['slug' => 'portfolios'],
