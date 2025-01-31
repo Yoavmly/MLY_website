@@ -24,6 +24,13 @@ $custom-white-button-font-family: $font-primary;
   display: inline-block;
   font-family: $custom-white-button-font-family;
   margin: 0 auto;
+
+  @media (max-width: 768px){
+    min-width:auto;
+  }
+  @media (max-width: 480px){
+    min-width:auto;
+  }
 }
 .signature-gradient-button {
   @include signature-gradient-button;

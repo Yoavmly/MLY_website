@@ -61,11 +61,11 @@ body {
 //mixin for subtitle
 @mixin subtitle-style(){
   color: var(--neutral-colors-100);
-  font-size: 16px;
+  font-size: 1.25rem;
   font-weight: normal;
   font-stretch: normal;
   letter-spacing: normal;
-  line-height: 1.4;
+  line-height: 1.75rem;
   font-family: 'Poppins', sans-serif;
 }
 
@@ -99,11 +99,11 @@ body {
 
   @media (max-width: $mobile-breakpoint) {
     background-size: contain;
-    width: 100vw;
-    height: auto;
+    width: 170vw;
+    height: 70rem;
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
   }
 
 }
@@ -245,6 +245,7 @@ body {
   @media (max-width: $mobile-breakpoint) {
     flex-direction: column;
     padding: 15px;
+    width:100%;
   }
 
 

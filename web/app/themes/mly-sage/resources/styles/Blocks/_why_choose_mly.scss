@@ -97,6 +97,9 @@ $mobile-breakpoint: 768px;
     //width: 74.375rem;
     width: 90.313rem;
     margin: 0 auto;
+    @media (max-width: 768px){
+      width:100%;
+    }
 
     .small-block {
       width: 100%;
@@ -163,7 +166,7 @@ $mobile-breakpoint: 768px;
     .inner-block {
       grid-template-columns: repeat(2, 1fr);// 2 column layout
       gap: 5rem;
-      padding: 1rem 3rem;
+      //padding: 1rem 3rem;
 
       .small-block {
         max-width: 100%;
@@ -172,7 +175,7 @@ $mobile-breakpoint: 768px;
   }
 
   @media (max-width: 480px) {
-    padding: 1rem 1.5rem;
+    //padding: 1rem 1.5rem;
 
     .title-button-wrapper {
       .title {
@@ -189,7 +192,7 @@ $mobile-breakpoint: 768px;
     }
 
     .inner-block {
-      grid-template-columns: 1fr;
+      //grid-template-columns: 1fr;
       gap: 1.5rem;
 
       .small-block {

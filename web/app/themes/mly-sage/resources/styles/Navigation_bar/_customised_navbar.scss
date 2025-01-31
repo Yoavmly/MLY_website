@@ -14,14 +14,16 @@ $primary-button-color: black;
     display: flex;
     align-items: center;
     font-family: $font-primary;
-    height: 3.25rem;
+    --bs-navbar-padding-y:2.5rem;
 
     .container-fluid {
       display: flex;
       align-items: center;
       justify-content: space-between;
       width: 90.313rem;
+      height: 3.25rem;
       margin: 0 auto;
+      --bs-gutter-x:unset;
     }
 
     .navbar-brand {

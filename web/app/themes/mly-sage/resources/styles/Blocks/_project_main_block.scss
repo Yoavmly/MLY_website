@@ -16,11 +16,6 @@ $background-color: transparentize( #000000, 1 );
   justify-content: flex-start;
   background: transparent;
   color: #ffffff;
-  //padding: 2rem 8rem 0 8rem;
-
-  @media(max-width: $mobile-breakpoint){
-    //padding: 2rem 4rem;
-  }
 
   .block-title {
     font-size: $title-font-size;
@@ -43,7 +38,11 @@ $background-color: transparentize( #000000, 1 );
     justify-content: center;
     gap: 42.41px;
     width: 90.313rem;
-    padding-bottom: 1rem;
+    padding: 1rem;
+
+    @media (max-width: 768px) {
+      width:100%;
+    }
 
     .project-link {
       text-decoration: none;
@@ -167,7 +166,7 @@ $background-color: transparentize( #000000, 1 );
 
   @media (max-width: 480px) {
     .block-title {
-      font-size: 2rem;
+      //font-size: 2rem;
       line-height: 1.1;
     }
 

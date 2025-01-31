@@ -1,14 +1,14 @@
 $font-primary: 'Space Grotesk', sans-serif;
 $text-color: var(--neutral-colors-100);
 $primary-color: #4bb4e6;
-$title-font-size: 5rem;
-$title-line-height: 1.09;
+$title-font-size: 5.75rem;
+$title-line-height: 6.244rem;
 
 .mly-main-block {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-height: 70vh;
+  min-height: 85vh;//70vh
   background: transparent;
   color: $text-color;
   //padding: 2rem;
@@ -17,6 +17,11 @@ $title-line-height: 1.09;
   &__content {
     width: 90.313rem;
     margin: 0 auto;
+
+    @media (max-width: 768px) {
+      width:100%;
+      padding:2rem 0;
+    }
   }
 
   h1 {
@@ -62,13 +67,12 @@ $title-line-height: 1.09;
     height: 3.375rem;
     margin-top: 1.5rem;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: normal;
     color: #000;
     background-color: #fff;
     border-radius: 5px;
     text-decoration: none;
     transition: background-color 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 
     &:hover {
       background-color: lighten(#fff, 10%);
