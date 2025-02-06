@@ -7,16 +7,12 @@ $background-color: transparent;
 $mobile-breakpoint: 768px;
 
 .parent-wrapper{
-  margin: 59.7px 104px 72px;
-  @media (max-width: $mobile-breakpoint) {
-    margin:0;
-  }
-  //padding: 0 137px 135px 135px;
+  margin:0;
 }
 
 .outer-block {
   width: 100%;
-  padding: 2rem 3rem;
+  padding: 2rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -42,14 +38,6 @@ $mobile-breakpoint: 768px;
     border: 1px solid $border-color;
     margin: 1rem 0;
   }
-
-  .title-button-wrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
-    width: 100%;
-    margin-bottom: 3rem;
 
     .title {
       font-family: $font-primary;
@@ -87,16 +75,17 @@ $mobile-breakpoint: 768px;
         }
       }
     }
-  }
+
 
   .inner-block {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: auto;
     gap: $block-gap;
-    //width: 74.375rem;
-    width: 90.313rem;
+    width: 100%;
+    max-width: 90.313rem;
     margin: 0 auto;
+    padding:1.5rem 0;
     @media (max-width: 768px){
       width:100%;
     }
@@ -150,7 +139,6 @@ $mobile-breakpoint: 768px;
   @media (max-width: 768px) {
     padding: 1.5rem 1rem;
 
-    .title-button-wrapper {
       .title {
         font-size: 48px;
         line-height: 55px;
@@ -161,6 +149,10 @@ $mobile-breakpoint: 768px;
         padding: 0.5rem 1rem;
         height: auto;
       }
+    .button-wrapper{
+      //for aligning to the last
+      order:1;
+      align-self: center;
     }
 
     .inner-block {
@@ -177,7 +169,7 @@ $mobile-breakpoint: 768px;
   @media (max-width: 480px) {
     //padding: 1rem 1.5rem;
 
-    .title-button-wrapper {
+
       .title {
         font-size: 36px;
         line-height: 42px;
@@ -189,6 +181,10 @@ $mobile-breakpoint: 768px;
         height: auto;
         text-align: center;
       }
+    .button-wrapper{
+      //for aligning to the last
+      order:1;
+      align-self: center;
     }
 
     .inner-block {

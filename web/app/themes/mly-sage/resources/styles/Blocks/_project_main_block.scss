@@ -11,6 +11,7 @@ $background-color: transparentize( #000000, 1 );
 
 .project-main-block {
   display: flex;
+  margin : 2rem 0;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -37,7 +38,8 @@ $background-color: transparentize( #000000, 1 );
     flex-wrap: nowrap;
     justify-content: center;
     gap: 42.41px;
-    width: 90.313rem;
+    max-width: 90.313rem;
+    width:100%;
     padding: 1rem;
 
     @media (max-width: 768px) {

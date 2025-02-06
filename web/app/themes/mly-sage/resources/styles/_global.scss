@@ -2,6 +2,11 @@ $desktop-breakpoint: 1024px;
 $mobile-breakpoint: 767px;
 
 //global style
+
+html{
+  scroll-behavior: smooth;
+  margin-top:unset!important;// to override the default margin-top property from style.css and style_ltr.css
+}
 body {
   position: relative;
   background:black;
@@ -13,6 +18,7 @@ body {
 }
 * {
   box-sizing: border-box;
+  transition: width 0.3s ease-in-out , height 0.3s ease-in-out,scroll-behaviour 2s ease,all 1s ease-in-out;
 }
 .page-header{
   display: none;
@@ -92,14 +98,13 @@ body {
   background-repeat: no-repeat;
   margin: auto;
   right:0;
-  //padding: 25px 239px 1000.8px 79px;
   width: 1700px;
-  height: 1200px;
+  height: 1400px;
   z-index: -5;
 
   @media (max-width: $mobile-breakpoint) {
     background-size: contain;
-    width: 170vw;
+    width: 140vw;
     height: 70rem;
     position: absolute;
     top: 0;
@@ -136,22 +141,22 @@ body {
 
 //only-flame
 .only-flame {
-  top:180%;
+  bottom:0;
   left:0;
   width:100%;
-  height:500px;
+  height:30%;
   z-index: -11;
   position: absolute;
   background-repeat: no-repeat;
 
   @media (max-width: $mobile-breakpoint) {
     width: 100%;
-    height: auto;
+    height: 19%;
     bottom: 0;
     left: 0;
     padding: 0;
     margin: 0;
-    object-fit: cover;
+    object-fit: contain;
   }
 }
 
@@ -173,9 +178,9 @@ body {
 
   @media (max-width: $mobile-breakpoint) {
     width: 100%;
-    height: auto;
     bottom: 0;
-    left: 0;
+    height: 9%;
+    left: 0.9%;
     padding: 0;
     margin: 0;
     object-fit: cover;
@@ -196,31 +201,6 @@ body {
 
 }
 
-
-//mixin for white bordered block
-//@mixin inner-block() {
-//  background-image: linear-gradient(to bottom, #2c2c2c -19%, rgba(0, 0, 0, 0) 117%);
-//  border: solid 1px #fcfcfc;
-//  display: flex;
-//  justify-content: space-between;
-//  align-items: center;
-//  padding: 30px;
-//  max-width: 1200px;
-//  width: 100%;
-//  z-index: 2;
-//  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-//
-//  @media (max-width: $desktop-breakpoint) {
-//    flex-direction: column;
-//    padding: 20px;
-//  }
-//
-//  @media (max-width: $mobile-breakpoint) {
-//    flex-direction: column;
-//    padding: 15px;
-//  }
-//}
-
 //NEW ** updated mixin for the white_bordered shared Box
 @mixin inner-block() {
   background-image: linear-gradient(to bottom, #2c2c2c -19%, rgba(0, 0, 0, 0) 117%);
@@ -231,7 +211,8 @@ body {
   align-items: center;
   //padding: 6rem;//old padding
   padding: 9rem 8.063rem 9rem 8.313rem;
-  width: 90.313rem;
+  max-width: 90.313rem;
+  width:100%;
   min-height: 42.188rem;
   z-index: 2;
   //box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
@@ -246,6 +227,7 @@ body {
     flex-direction: column;
     padding: 15px;
     width:100%;
+    min-height:auto;
   }
 
 
@@ -258,6 +240,18 @@ body {
     height: 10rem;
     background-color: black;
     clip-path: polygon(100% 0%,0% 100%,100% 100%);
+    @media (max-width: 768px){
+      width:5rem;
+      height: 5rem;
+    }
+    @media (max-width: 468px){
+      width:2rem;
+      height: 2rem;
+    }
+    @media(max-width: 1000px){
+      width: 7rem;
+      height: 7rem;
+    }
 
   }
 
@@ -272,6 +266,19 @@ body {
       background: linear-gradient(135deg,transparent 48.4%,white 50%,transparent 52.5%);
       clip-path: polygon(0% 0%,100% 0%,0% 100%);
       border-radius: 20px;
+      @media (max-width: 768px){
+        width:5rem;
+        height: 5rem;
+      }
+      @media (max-width: 468px){
+        width:2rem;
+        height: 2rem;
+      }
+      @media(max-width: 1000px){
+        width: 7rem;
+        height: 7rem;
+      }
+
     }
 
     display: block;//block
@@ -282,6 +289,20 @@ body {
     height:10.1rem;
     background-color: transparent;
     clip-path: polygon(0% 0%,100% 0%,0% 100%);
+    @media (max-width: 768px){
+      width:5rem;
+      height: 5rem;
+    }
+    @media (max-width: 468px){
+      width:2rem;
+      height: 2rem;
+    }
+    @media(max-width: 1000px){
+      width: 7rem;
+      height: 7rem;
+    }
+
+
   }
 
 

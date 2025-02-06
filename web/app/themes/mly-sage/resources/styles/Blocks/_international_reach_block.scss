@@ -10,6 +10,8 @@ $font-secondary: 'Poppins', sans-serif;
   align-items: center;
   justify-content: center;
   min-height: 80vh;
+  //max-width: 90.313rem;
+  width:100%;
   background: $background-gradient;
   position: relative;
   color: $text-color;
@@ -35,6 +37,7 @@ $font-secondary: 'Poppins', sans-serif;
       display: block;
       width: 100%; // Ensure the image takes the full width of its container
       height: auto; // Maintain the aspect ratio
+      opacity: 0.4;
     }
   }
 
@@ -66,10 +69,10 @@ $font-secondary: 'Poppins', sans-serif;
     display: flex;
     flex-direction: column;
     //align-items: flex-end;
-    align-self: flex-end;
+    align-self: center;
     justify-content: flex-end;
     gap: 2rem;
-    max-width: 60%;
+    max-width: 50%;
     width: 74.375rem;
     position: relative;
     text-align: left;
@@ -103,6 +106,12 @@ $font-secondary: 'Poppins', sans-serif;
 
       .button-placement {
       }
+    }
+  }
+
+  @media (max-width: 1700px) {
+    .content-block{
+      align-self: flex-end !important;//overriding for this screen size
     }
   }
 

@@ -124,7 +124,7 @@
   handleTrail();
 
 </script>
-<div class="{{ $block->classes }}" style="{{ $block->inlineStyle }}">
+<div class="{{ $block->classes }} d-flex justify-content-center" style="{{ $block->inlineStyle }}">
   <div class="global-impact-section">
     <div class="small-globe-div">
       <img class="small-globe-image" src="{{ $image }}" alt="small globe image">
@@ -138,7 +138,7 @@
           {{ $description }}
         </div>
         <div class="button-placement">
-          <a href="{{ get_field('button_link') }}" class="btn signature-gradient-button">
+          <a href="#form-block-1" class="btn signature-gradient-button">
             {{ $button_title }}&nbsp;→
           </a>
         </div>

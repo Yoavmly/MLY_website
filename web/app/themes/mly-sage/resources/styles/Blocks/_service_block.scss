@@ -13,7 +13,7 @@ $mobile-breakpoint: 47.938rem;
   padding: 0;
 
   @media (max-width: $mobile-breakpoint) {
-    min-height: 37.5rem;
+    //min-height: 37.5rem;
     flex-direction: column;
     align-items: center;
     height: auto;
@@ -36,7 +36,7 @@ $mobile-breakpoint: 47.938rem;
       flex-direction: column;
       align-items: center;
       justify-content: flex-start;
-      height: 125rem; // Set a fixed height for the services container on mobile view
+      height: auto; // 125rem
     }
 
     .service-item {
@@ -78,6 +78,21 @@ $mobile-breakpoint: 47.938rem;
       //    text-align: left;
       //  }
       //}
+
+        &:nth-child(4n+1) {
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 15%), #57c1fa 55%) !important;
+        }
+        &:nth-child(4n+2) {
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 15%), #4dfbf1 55%) !important;
+        }
+        &:nth-child(4n+3) {
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 15%), #8ffb4d 55%) !important;
+        }
+        &:nth-child(4n+4) {
+          background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0) var(--gradient-stop, 15%), #4dfbb2 55%) !important;
+        }
+
+
       }
       // Background gradients for each nth-child
       &:nth-child(4n+1) {
@@ -106,6 +121,8 @@ $mobile-breakpoint: 47.938rem;
         &:nth-child(4n+4) {
           background-image: linear-gradient(to bottom, rgba(77, 251, 178, 0) 23%, #4dfbb2 65%);
         }
+
+
 
         .service-icon,
         .service-content {
@@ -173,7 +190,7 @@ $mobile-breakpoint: 47.938rem;
 
         @media (max-width: $mobile-breakpoint) {
           align-items: center;
-          text-align: center;
+          //text-align: center;
           padding: 2rem;
         }
 
@@ -237,7 +254,7 @@ $mobile-breakpoint: 47.938rem;
 
         @media (max-width: $mobile-breakpoint) {
           position: static;
-          padding-left: 0.625rem;
+          padding-left: 2rem;
           height: 8%;
           background: none;
           box-shadow: none;
@@ -253,7 +270,12 @@ $mobile-breakpoint: 47.938rem;
         }
       }
 
-
+      .service-link{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+      }
 
 
     }

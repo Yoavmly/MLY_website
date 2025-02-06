@@ -4,11 +4,9 @@
 
       @php
             $url = $image['image']['url'];
-//            $width = $image['image']['width'];
-//            $height= $image['image']['height'];
         @endphp
       <div class="collage-item" style="">
-        <img src="{{ $url }}"alt="collage Image">
+        <img src="{{ $url }}" alt="collage Image">
       </div>
     @endforeach
   </div>

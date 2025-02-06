@@ -1,10 +1,10 @@
 <script>
   function handleHover() {
-    // Only run this script if screen width is greater than 768px
-    if (window.innerWidth <= 768) return;
-
     // Run when the page loads
     document.addEventListener('DOMContentLoaded', () => {
+      // Only run this script if screen width is greater than 768px
+      if (window.innerWidth <= 768) return;
+
       // Select all elements with class 'service-item'
       const serviceItems = document.querySelectorAll('.service-item');
 
@@ -49,21 +49,21 @@
   <div class="services-container">
   @if($services)
     @foreach($services as $service)
-{{--      <a href="{{ $service['url'] }}" class="service-link" target="_blank" rel="noopener noreferer">--}}
           <div class="service-item">
-            <div class="service-icon">
-              {!! $service['icon'] !!}
-{{--              <img src="{{ $service['icon'] }}" alt="{{ $service['title'] }} Symbol">--}}
-            </div>
-            <div class="service-content">
-              <h3 class="service-title">{!! $service['title'] !!} </h3>
-              <p class="service-description">{{ $service['description'] }}</p>
-            </div>
-            <div class=" arrow-block">
-              <img src="{{ \Roots\asset("images/Rightarrow.png") }}" alt="arrow" class="arrow">
-            </div>
+            <a href="{{ $service['url'] }}" class="service-link" target="_blank" rel="noopener noreferer">
+              <div class="service-icon">
+                {!! $service['icon'] !!}
+  {{--              <img src="{{ $service['icon'] }}" alt="{{ $service['title'] }} Symbol">--}}
+              </div>
+              <div class="service-content">
+                <h3 class="service-title">{!! $service['title'] !!} </h3>
+                <p class="service-description">{{ $service['description'] }}</p>
+              </div>
+              <div class=" arrow-block">
+                <img src="{{ \Roots\asset("images/Rightarrow.png") }}" alt="arrow" class="arrow">
+              </div>
+            </a>
           </div>
-{{--      </a>--}}
     @endforeach
     @else
       <p>No Service available. Please add some services from the editor.</p>

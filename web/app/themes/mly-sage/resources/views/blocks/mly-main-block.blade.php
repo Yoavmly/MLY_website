@@ -5,8 +5,8 @@
         {!! $title !!}
       </h1>
       <p class="subtitle">{{ $subtitle }}</p>
-      @if($button_text && $button_link)
-        <a href="{{ $button_link }}" class="btn btn-primary custom-btn-secondary">
+      @if($button_text)
+        <a href= "#form-block-1" class="btn btn-primary custom-btn-secondary">
           {{ $button_text }} <span class="arrow">→</span>
         </a>
       @endif

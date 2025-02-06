@@ -58,7 +58,6 @@ class mly_main_block extends Block
             'title' => $this->get_title(),
             'subtitle' => get_field('subtitle') ?: '',
             'button_text' => get_field('talk')['title'] ?? '',
-            'button_link' => get_field('talk')['url'] ?? '',
         ];
     }
 
@@ -73,8 +72,7 @@ class mly_main_block extends Block
         $mly_main_block
             ->addText('title', ['label' => 'Title'])
             ->addText('highlighted_text', ['label' => 'Highlighted Text'])
-            ->addText('subtitle', ['label' => 'Subtitle'])
-            ->addLink('talk', ['label' => 'Talk']);
+            ->addText('subtitle', ['label' => 'Subtitle']);
 
             return $mly_main_block->build();
     }

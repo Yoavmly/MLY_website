@@ -152,7 +152,6 @@ class why_choose_mly extends Block
             'small_text' => $this->getSmallText(get_field('small_text'), get_field('boldedText1')),
             'title' => $this->getTitle(get_field('title'), get_field('boldedText2')),
             'button_text' => get_field('button_text'),
-            'button_link' => get_field('button_link'),
         ];
     }
 
@@ -217,9 +216,6 @@ class why_choose_mly extends Block
             ->endRepeater()
             ->addText('button_text', [
                 'label' => 'Button Text',
-            ])
-            ->addText('button_link', [
-                'label' => 'Button Link',
             ]);
 
         return $fields->build();

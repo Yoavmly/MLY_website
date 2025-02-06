@@ -1,18 +1,30 @@
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
-    const navItems = document.querySelectorAll('.nav-menu .nav-item');
-    if (navItems.length > 0) {
-      navItems[navItems.length - 1].classList.add('last-nav-item');
-    }
-  });
-
   function toggleMenu() {
-    document.querySelector('.nav-menu').classList.toggle('show-menu');
-    document.querySelector('.message-box').classList.toggle('show-menu');
-    document.querySelector('.socials').classList.toggle('show-socials');
+    document.querySelector('.mobile-navbar-collapse').classList.toggle('show-menu');
+  }
+</script>
+@php
+  class Custom_Nav_Walker extends Walker_Nav_Menu {
+      public function start_el(&$output, $item, $depth = 0, $args = null, $id = 0) {
+          $output .= '<li class="nav-item">';
+          $output .= '<a class="nav-link" href="' . esc_url($item->url) . '">' . esc_html($item->title) . '</a>';
+      }
+
+      public function end_el(&$output, $item, $depth = 0, $args = null) {
+          $output .= '</li>';
+      }
   }
 
-</script>
+  $menu_args = [
+      'theme_location' => 'primary_navigation',
+      'container'      => false,
+      'menu_class'     => 'nav-menu',
+      'depth'          => 0,
+      'walker'         => new Custom_Nav_Walker(),
+      'echo'           => false,
+  ];
+  $main_menu = wp_nav_menu($menu_args);
+@endphp
 <header class="banner">
   <nav class="navbar">
     <div class="container-fluid">
@@ -26,24 +38,33 @@
       </a>
 
       <div class="message-box">
-        <img src="@asset('images/message_button.png')" alt="Message_Box" srcset="">
+        <img src="@asset('images/message_button.png')" alt="Message_Box">
       </div>
-      @php
-        wp_nav_menu([
-            'theme_location' => 'primary_navigation',
-            'container' => false,
-            'menu_class' => 'nav-menu',
-            'depth' => 1,
-            'before' => '<span class="nav-item custom_navbar">',
-            'after' => '</span>',
-            'item_spacing' => 'preserve',
-        ]);
-      @endphp
-      <div class="socials nav-item custom_navbar">
-        <img src="@asset('images/linkedin.png')" alt="LinkedIn" href="#">&nbsp;&nbsp;&nbsp;&nbsp;<img src="@asset('images/facebook.png')" alt="Facebook" href="#">
+
+      <!-- Desktop Menu -->
+      <div class="desktop-nav">
+        {!! $main_menu !!}
+      </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-navbar-collapse">
+        <img src="@asset('images/grain-navbar.png')" alt="mobile-navbar-background-flame-img"  class="mobile-navbar-background-flame-img" id="mobile-navbar-background-flame-img"/>
+        <a class="close-button" onclick="toggleMenu()">
+          <span class="close-button-wrapper">
+            <img src="@asset('images/close.png')" class="close-button-icon"/>
+          </span>
+        </a>
+        {!! $main_menu !!}
+        <div class="socials custom_navbar">
+          <a href="#">
+          <img src="@asset('images/linkedin.png')" alt="LinkedIn">
+          </a>
+          &nbsp;&nbsp;&nbsp;&nbsp;
+          <a href="#">
+          <img src="@asset('images/facebook.png')" alt="Facebook">
+          </a>
+        </div>
       </div>
     </div>
   </nav>
 </header>
-
-
