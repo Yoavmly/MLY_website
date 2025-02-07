@@ -57,7 +57,7 @@ class mly_main_block extends Block
         return [
             'title' => $this->get_title(),
             'subtitle' => get_field('subtitle') ?: '',
-            'button_text' => get_field('talk')['title'] ?? '',
+            'button_text' => get_field('button_text') ?? '',
         ];
     }
 
@@ -72,7 +72,8 @@ class mly_main_block extends Block
         $mly_main_block
             ->addText('title', ['label' => 'Title'])
             ->addText('highlighted_text', ['label' => 'Highlighted Text'])
-            ->addText('subtitle', ['label' => 'Subtitle']);
+            ->addText('subtitle', ['label' => 'Subtitle'])
+            ->addText('button_text', ['label' => 'Button Text (Button Redirected to Contact Form)']);
 
             return $mly_main_block->build();
     }

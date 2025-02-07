@@ -9,6 +9,10 @@ $button-height: 54px;
 $primary-color: #4bb4e6;
 $background-color: transparentize( #000000, 1 );
 
+.project-page-heading-block{
+  min-height: 5rem !important;
+  max-width: 90.313rem;
+}
 .project-main-block {
   display: flex;
   margin : 2rem 0;

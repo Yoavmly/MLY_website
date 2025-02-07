@@ -5,7 +5,7 @@
 @extends('layouts.app')
 
 @section('services-page-background')
-  <div class="arrow-flame" style="background-image: url('{{ asset('images/flame-arrow.png') }}');"></div>
+  <div class="arrow-flame" style="background-image: url('{{ asset('images/flame-arrow.png') }}');background-repeat: no-repeat;background-size: contain;"></div>
 @endsection
 
 @section('content')

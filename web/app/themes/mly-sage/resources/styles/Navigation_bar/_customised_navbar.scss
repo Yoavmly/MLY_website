@@ -1,3 +1,5 @@
+@import "../common/signature_gradient_button";
+
 // Variables for colors and dimensions
 $color-primary: #0dcaf0;
 $color-secondary: #99FAF4;
@@ -168,6 +170,15 @@ header {
     .nav-item {
       text-decoration: none;
       padding: 1rem;
+      height:auto;
+      font-size: 20px;
+      font-weight: normal;
+      font-stretch: normal;
+      font-style: normal;
+      line-height: 1.09;
+      letter-spacing: normal;
+      text-align: left;
+      color: #99faf4;
 
       .nav-link {
         color: $color-secondary;
@@ -177,15 +188,36 @@ header {
         }
       }
 
-      &:last-child .nav-link {
-        border-radius: 5px;
-        background-color: $color-primary;
-        font-weight: normal;
-        color: black;
-        padding: 1rem;
+      //&:last-child .nav-link {
+      //  border-radius: 5px;
+      //  background-color: $color-primary;
+      //  font-weight: normal;
+      //  color: black;
+      //  padding: 1rem;
+      //
+      //  &:hover {
+      //    font-weight: bold;
+      //  }
+      //}
 
-        &:hover {
-          font-weight: bold;
+      &:last-child {
+        & a{
+          text-decoration: none;
+          color:#121212;
+          &:hover{
+            color: black;
+            //font-size: 19.7px;
+            font-weight: 550;
+          }
+        }
+        @include signature-gradient-button();
+
+        &:hover{
+          cursor: pointer;
+          a{
+            //font-size: 19.7px;
+            font-weight: 550;
+          }
         }
       }
     }

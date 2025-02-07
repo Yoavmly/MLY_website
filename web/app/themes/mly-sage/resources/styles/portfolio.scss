@@ -4,14 +4,13 @@
 @import "blocks/project_main_block";
 
 .portfolio-block-wrapper{
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
 }
 
 .fixed-parent-height{
   min-height: 35vh !important;//it is getting conflicted with the mly_main_block design which also has this (incl. subtitle and desc and a button)
   overflow: hidden;
-  padding-left: 5rem !important;// to override the default behaviour of the block and to reuse the block here.
 
   @media(max-width: $mobile-breakpoint){
     padding: 0 !important;
@@ -25,37 +24,52 @@
 .portfolio-section{
   display: flex;
   flex-direction: column;
-  //align-items: center;
+  max-width: 90.313rem;
+  gap:2rem;
   height:auto;
-  width:65%;
+  width:100%;
 }
 
 .portfolio-tags{
   display: flex;
+  width:70%;
   flex-wrap: nowrap;
   flex-direction: row;
   align-items: center;
-  //justify-content: flex-start;
+  gap:0.3rem;
+  //justify-content: space-evenly;
   margin: 0;
   padding: 0;
-  gap: 10px;
   list-style: none;
-  overflow-x: auto;
-  --webkit-overflow-scrolling: touch;//for ios
 
   &::-webkit-scrollbar {
     display: none;
   }
 
+
   @media(max-width: $mobile-breakpoint){
-    gap:6px;
+    width:100% !important;//overriding for mobile viewto take full width of the container
+    flex-wrap: wrap !important;//overriding for mobile view to wrap from nowrap
+    height:auto;
+    //gap:0.1rem;
   }
 }
 .tag-item {
-  display: inline-block;
+  //display: inline-block;
+  //justify-content: center;
+  //align-items: center;
+  //cursor: pointer;
+  display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
+  width:auto;
+  height:50px;
+  margin:0;
+  padding:15px 30px;
+  border-style: solid;
+  border-radius: 3px;
+  border-image-source: linear-gradient(102deg, #0d99ff -32%, #aefdf3 117%);
+  border-image-slice: 1;
 
   @media(max-width: $mobile-breakpoint) {
     white-space: nowrap;
@@ -77,37 +91,23 @@
 }
 
 .portfolio-content{
-  //z-index:2;
   text-decoration: none;
   background: transparent;
   color: #ffffff;
   display: flex;
-  //margin-top: 2rem;
-  padding: 2rem 0;
   flex-direction: column;
   align-items: center;
-  //justify-content: flex-start;
 
-  @media(max-width: $mobile-breakpoint){
-    height:20vh;
-  }
+
   .portfolio-container {
     display: flex;
     flex-wrap: wrap;
     gap: 1.9rem;
     width: 100%;
-    //max-width: 1441px;
-    //padding-bottom: 1rem;
 
     .portfolio-link {
       text-decoration: none;
-      //flex: 0 0 calc(50% - 2.65rem);
-      //flex: 0 0 50%;
-      //max-width: calc(50% - 2.65rem);
-      display: flex;
-      flex-direction: column;
-      background: transparent;
-      color: whitesmoke;
+      height: 31.25rem;
 
       @media (max-width: 768px) {
         flex: 0 0 100%;
@@ -117,8 +117,8 @@
       .portfolio-item {
         display: flex;
         justify-content: flex-start;
-        height: 500px;
-        width: 30vw;
+        width: 100%;
+        //flex: 1 1 calc(30vw - 1rem);
         border: white 1px solid;
         border-radius: 0;
         flex-direction: column;
@@ -169,5 +169,22 @@
         }
       }
     }
+
+    /* Desktop view: Two items per row */
+    @media (min-width: 768px) {
+      .portfolio-link {
+        flex: 1 1 calc(50% - 1rem); /* Two items per row with gap */
+      }
+    }
+
+    /* Mobile view: One item per row */
+    @media (max-width: 767px) {
+      .portfolio-link {
+        flex: 1 1 calc(100% - 1rem); /* One item per row with gap */
+      }
+    }
+
   }
 }
+
+

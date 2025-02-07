@@ -55,7 +55,7 @@
           </span>
         </a>
         {!! $main_menu !!}
-        <div class="socials custom_navbar">
+        <div class="socials">
           <a href="#">
           <img src="@asset('images/linkedin.png')" alt="LinkedIn">
           </a>
