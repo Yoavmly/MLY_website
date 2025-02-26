@@ -1,0 +1,78 @@
+// resources/styles/blocks/nextPortfolio.scss
+
+// Variables for easy customization
+$dark-background: #121212; // Dark background color
+$white-text: #ffffff;        // White text color
+$primary-font: sans-serif;    // Default font
+$arrow-color: $white-text;    // Color of the arrow  (Unused now, you can remove it)
+$arrow-size: 1.5em;         // Size of the arrow  (Unused now, you can remove it)
+$block-padding: 1.5rem;       // Padding around the content
+$image-height: 200px;        // Adjust as needed
+$category-color: #999;       // Light gray for category text
+
+.nextPortfolio {
+  color: $white-text;
+  font-family: $primary-font;
+  padding: $block-padding;
+
+  .next-portfolio-link {
+    position: relative; // For positioning the arrow
+    text-decoration: none; //Remove underline to the whole <a> tag.
+    display: block;
+
+    .next-portfolio-item {
+      display: flex;
+      flex-direction: column;  // Stack title, category, image
+      align-items: flex-start; // Align content to the start (left)
+
+      h3 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+        a {
+          color: $white-text;
+          text-decoration: none;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+
+      p.category {
+        font-size: 0.9rem;
+        color: $category-color;
+        margin-bottom: 1rem;
+      }
+
+      img {
+        width: 100%;
+        height: $image-height; // Fixed height for consistent look
+        object-fit: cover;    // Ensure image fills the space without distortion
+        margin-bottom: $block-padding / 2;
+      }
+    }
+
+    &:after { // Arrow using pseudo-element
+      content: ""; // Required for pseudo-element to render
+      background-image: var(--arrow-right);
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      top: $block-padding;
+      right: $block-padding;
+      width: 1.5em;
+      height: 1.5em;
+      pointer-events: none;   // Make sure it doesn't interfere with clicks if needed
+    }
+  }
+
+  p {
+    margin-bottom: 0.75rem;
+  }
+
+  //If there are no next_portfolio_items.
+  &.no-next-item { // Target the block with the "no-next-item" class
+    color: white; // Adjust the styling for the "no next item" state
+    // Add any other styles you want to apply when there's no next item
+  }
+}

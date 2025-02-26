@@ -70,7 +70,7 @@ class mly_main_block extends Block
         $mly_main_block= Builder::make('Mly Main Block');
 
         $mly_main_block
-            ->addText('title', ['label' => 'Title'])
+            ->addText('title', ['label' => 'Title','instructions'=> 'Use "\br" (backslash br) to insert a line break in the title.',])
             ->addText('highlighted_text', ['label' => 'Highlighted Text'])
             ->addText('subtitle', ['label' => 'Subtitle'])
             ->addText('button_text', ['label' => 'Button Text (Button Redirected to Contact Form)']);
@@ -93,6 +93,9 @@ class mly_main_block extends Block
     {
      $title= get_field('title') ?: '';
      $highlightedText = get_field('highlighted_text') ?: '';
+
+        // Replace the delimiter with <br> tags
+        $title = str_replace('\br', '<br>', $title);
 
         return str_replace(
             $highlightedText,

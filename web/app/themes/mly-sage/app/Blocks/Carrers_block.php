@@ -5,21 +5,21 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
 
-class contact_us_media_block extends Block
+class Carrers_block extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Contact_Us_Media_Block';
+    public $name = 'Carrers_Block';
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'this this';
+    public $description = 'This block has list of Job Roles in a list format';
 
     /**
      * The block category.
@@ -139,7 +139,7 @@ class contact_us_media_block extends Block
      */
     public $template = [
         'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Contact_Us_Media_Block block.'],
+        'core/paragraph' => ['placeholder' => 'Welcome to the Carrers_Block block.'],
     ];
 
     /**
@@ -148,7 +148,7 @@ class contact_us_media_block extends Block
     public function with(): array
     {
         return [
-            'items' => $this->items(),
+            'items' => $this->getJobRoles(),
         ];
     }
 
@@ -157,7 +157,7 @@ class contact_us_media_block extends Block
      */
     public function fields(): array
     {
-        $fields = Builder::make('contact__us__media__block');
+        $fields = Builder::make('carrers__block');
 
         $fields
             ->addRepeater('items')
@@ -183,5 +183,21 @@ class contact_us_media_block extends Block
     public function assets(array $block): void
     {
         //
+    }
+
+    public function getJobRoles(): array
+    {
+        $args = new \WP_Query([
+            'post_type' => 'role',
+            'posts_per_page' => -1,
+            'post_status' => 'publish',
+            'orderby' => 'date',
+            'order' => 'DESC',
+        ]);
+        $roles = $args->get_posts();
+
+        wp_reset_postdata();
+
+        return $roles;
     }
 }

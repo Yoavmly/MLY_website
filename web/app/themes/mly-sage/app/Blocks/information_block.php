@@ -5,21 +5,21 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
 
-class job_listing_block extends Block
+class information_block extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Job Listing Block';
+    public $name = 'Information_Block';
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'Job List Block';
+    public $description = 'a block constituting basic title and description';
 
     /**
      * The block category.
@@ -33,14 +33,14 @@ class job_listing_block extends Block
      *
      * @var string|array
      */
-    public $icon = 'list-view';
+    public $icon = 'editor-ul';
 
     /**
      * The block keywords.
      *
      * @var array
      */
-    public $keywords = ['job','listing','link'];
+    public $keywords = [];
 
     /**
      * The block post type allow list.
@@ -97,8 +97,19 @@ class job_listing_block extends Block
      * @var array
      */
     public $supports = [
-        'align' => ['wide','full'],
+        'align' => true,
+        'align_text' => false,
+        'align_content' => false,
+        'full_height' => false,
+        'anchor' => false,
+        'mode' => true,
+        'multiple' => true,
         'jsx' => true,
+        'color' => [
+            'background' => false,
+            'text' => false,
+            'gradient' => false,
+        ],
     ];
 
     /**
@@ -128,7 +139,7 @@ class job_listing_block extends Block
      */
     public $template = [
         'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Job Listing Block block.'],
+        'core/paragraph' => ['placeholder' => 'Welcome to the Information_Block block.'],
     ];
 
     /**
@@ -138,8 +149,7 @@ class job_listing_block extends Block
     {
         return [
             'title' => get_field('title'),
-            'work_type' => get_field('work_type'),
-            'link' => get_field('link'),
+            'content' => get_field('content'),
         ];
     }
 
@@ -148,25 +158,22 @@ class job_listing_block extends Block
      */
     public function fields(): array
     {
-        $fields = Builder::make('job_listing_block');
+        $fields = Builder::make('information__block');
 
         $fields
             ->addText('title',[
                 'label' => 'Title',
-                'instructions' => 'add the job title',
+                'type' => 'text',
                 'required' => true,
+                'instructions' => 'Enter Title',
             ])
-            ->addText('work_type',[
-                'label' => 'Work Type',
-                'instructions' => 'add the job type(eg., Remote)',
+            ->addText('content',[
+                'label' => 'Content',
+                'type' => 'wysiwyg',
                 'required' => true,
+                'instructions' => 'Enter Description',
             ])
-            ->addLink('link',[
-                'label' => 'Link',
-                'instructions' => 'add the job link',
-                'return_format' => 'url',
-                'required' => true,
-            ]);
+        ;
 
         return $fields->build();
     }
@@ -176,11 +183,6 @@ class job_listing_block extends Block
      *
      * @return array
      */
-    public function items()
-    {
-        return get_field('items') ?: $this->example['items'];
-    }
-
     /**
      * Assets enqueued when rendering the block.
      */

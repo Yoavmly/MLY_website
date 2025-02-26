@@ -118,6 +118,8 @@
         display: flex;
         justify-content: flex-start;
         width: 100%;
+        max-width: 44rem;
+        height: inherit;
         //flex: 1 1 calc(30vw - 1rem);
         border: white 1px solid;
         border-radius: 0;
@@ -174,6 +176,7 @@
     @media (min-width: 768px) {
       .portfolio-link {
         flex: 1 1 calc(50% - 1rem); /* Two items per row with gap */
+        text-decoration: none;
       }
     }
 
@@ -181,6 +184,7 @@
     @media (max-width: 767px) {
       .portfolio-link {
         flex: 1 1 calc(100% - 1rem); /* One item per row with gap */
+        text-decoration: none;
       }
     }
 

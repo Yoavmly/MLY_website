@@ -147,25 +147,15 @@ class zoho_page_main_block extends Block
      */
     public function with(): array
     {
-        $image = get_field('image');
         $title = get_field('title');
         $description = get_field('description');
         $logo_image = get_field('image2');
 
-        //validation $image
-        $image_url = '';
-        if (is_array($image)) {
-            $image_url = isset($image['url']) ? $image['url'] : '';
-        } elseif (is_string($image)) {
-            $image_url = $image;
-        } else {
-            $image_url = asset('images/partner/5.png')->uri();
-        }
 
         //validating $image2
         $image2='';
         if (is_array($logo_image)) {
-            $image2 = isset($logo_image['url']) ? $logo_image['url'] : '';
+            $image2 = $logo_image['url'] ?? '';
         } elseif (is_string($logo_image)) {
             $image2 = $logo_image;
         } else {
@@ -178,7 +168,6 @@ class zoho_page_main_block extends Block
 
         return [
             'title' => $title_text,
-            'image' => $image_url,
             'description' => $description_text,
             'logo_title' => get_field('logo_title'),
             'logo_image' => $image2,
@@ -200,22 +189,11 @@ class zoho_page_main_block extends Block
                 'instructions' => 'Enter the title for the partnership.',
                 'required' => true,
             ])
-            ->addImage('image', [
-                'label' => 'Image',
-                'instructions' => 'Upload the image for the partnership.',
-                'required' => false,
-                'return_format' => 'url',
-            ])
         ->addTextarea('description', [
             'label' => 'Description',
             'instructions' => 'Enter the description for the partnership.',
             'required' => false,
         ])
-            ->addImage('image2', [
-                'label' => 'Image 2',
-                'instructions' => 'Upload the logo image of the partner.',
-                'required' => false,
-            ])
             ->addText('logo_title', [
                 'label' => 'Logo Title',
                 'instructions' => 'Enter the title for the partnership.',

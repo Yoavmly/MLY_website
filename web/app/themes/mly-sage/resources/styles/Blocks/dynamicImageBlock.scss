@@ -1,44 +1,19 @@
-.dynamic-image-collage{
-  ////display: grid;
-  //display: flex;
-  //height: 100vh;
-  //width:100vw;
-  //flex-wrap: wrap;
-  ////grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
-  //gap:5px;
-  //justify-content: space-between;
-  ////align-items: center;
-  //align-content: flex-start;
+.dynamic-image-layout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Creates 2 equal columns */
+  max-width: 90.313rem; /* Maximum width of the layout */
+  column-gap: 1rem; /* Gap between columns */
+  row-gap: 1rem;    /* Gap between rows (vertically) */
+  margin-left: auto;  /* Center the block if it's narrower than its container */
+  margin-right: auto; /* Center the block if it's narrower than its container */
 
+  &__item {
+    /* You can add styles for individual items if needed */
+  }
 
-
-  column-count: 2;
-  column-gap: 10px;
-  width:1190px;
-  height: 1900px;
-  overflow: hidden;
-  padding: 10px;
-  overflow-x: scroll;
-}
-
-.collage-item{
-  //flex-grow: 1;
-  //overflow: hidden;
-  //display: flex;
-  //justify-content: center;
-  //align-items: center;
-
-  display: inline-block;
-  width: 100%;
-  margin-botton:10px;
-  break-inside: avoid;
-}
-
-.collage-item img{
-  width: 100%;
-  height:auto;
-  //height: 100%;
-  //max-height: 250px;
-  object-fit: cover;
-  //border-radius: 5px;
+  &__image {
+    width: 100%; /* Make image fill its grid item */
+    height: auto; /* Maintain aspect ratio */
+    display: block; /* Remove any potential inline spacing */
+  }
 }

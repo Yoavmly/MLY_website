@@ -44,7 +44,7 @@
 <div class="zoho-partner-block" onclick="handleClick()">
   <div class="content-wrapper">
     <!-- Background Image -->
-    <img src="{{ $image }}" alt="Zoho Partner" class="background-image">
+    <img src="{{ \Roots\asset("images/partner/zoho_ball.png")->uri() }}" alt="Zoho Partner" class="background-image">
 
     <!-- Overlay Content -->
     <div class="overlay-content">

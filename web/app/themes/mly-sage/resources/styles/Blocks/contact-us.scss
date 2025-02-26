@@ -1,0 +1,145 @@
+@import "../common/variables";
+@import "../global";
+
+.get-in-touch-wrapper {
+  position: relative;
+  max-width: 90.313rem;
+  width:100%;
+  min-height: 80vh;
+
+  .section-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    min-height: inherit;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+    }
+
+    .visual-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: inherit;
+      background-size: cover;
+      background-position: center;
+      filter: blur(10px);
+      z-index: 1;
+    }
+
+    .form-area {
+      max-width: 50%;
+      flex: 1 0 50%;
+      position: relative;
+      z-index: 2;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+
+      .heading-area {
+        h1 {
+          font-size: 5rem;
+          margin-bottom: 20px;
+          color: white;
+        }
+      }
+
+      .form-itself {
+        min-width: 80%;
+        height: 100%;
+          @include form-section-styles();
+      }
+    }
+
+    .video-wrapper{
+      max-width: 50%;
+      flex:1 0 50%;
+
+      display: flex;
+      flex-direction: column; /* Changed to column */
+
+
+      .video-display {
+        @include glowing-border();
+        flex: 1;
+        min-width:50%;
+        height:75%;
+        min-height: 70%;
+        border: 1px solid white;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        video {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 0;
+        }
+      }
+      .video-socials {
+        .contact-info {
+          display: flex;
+          justify-content: space-between; /* Distribute the blocks evenly */
+          align-items: flex-start; /* Align items to the top */
+          color: white;
+          padding: 20px;
+
+          .visit-us,
+          .leave-message,
+          .follow-us {
+            text-align: left; /* Align text to the left within each block */
+            width: 30%;
+
+            strong {
+              display: block;
+              margin-bottom: 5px;
+            }
+
+            p {
+              margin: 0;
+            }
+
+            a {
+              color: white;
+              text-decoration: none;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+
+          .follow-us {
+            .social-icons {
+              display: flex;
+              gap: 10px;
+              a {
+                font-size: 20px; /* Adjust the size as needed */
+              }
+            }
+          }
+        }
+      }
+    }  }
+
+  .legal-footer {
+    text-align: left;
+    padding: 10px;
+  }
+
+}

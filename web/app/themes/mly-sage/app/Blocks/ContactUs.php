@@ -5,21 +5,21 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
 
-class Form_block extends Block
+class ContactUs extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Form_Block';
+    public $name = 'Contact Us';
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'This is Contact Form block which would ease the customers to reach us efficiently.';
+    public $description = 'Get-in-Touch Block';
 
     /**
      * The block category.
@@ -139,7 +139,7 @@ class Form_block extends Block
      */
     public $template = [
         'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Form_Block block.'],
+        'core/paragraph' => ['placeholder' => 'Welcome to the Contact Us block.'],
     ];
 
     /**
@@ -147,81 +147,74 @@ class Form_block extends Block
      */
     public function with(): array
     {
+        $videoSource = get_field('video_source');
+        $videoLink = get_field('video_link');
+        $videoFile = get_field('video_file');
+        $heading = get_field('heading');
+        $formId = get_field('form_id');
+
         return [
-            'form_action' => get_field('form_action') ?? '#',
-            'form_fields' => $this->getFormFields(),
+            'video_source' => $videoSource ?: 'url', // Default to 'url'
+            'video_link' => $videoLink ?: null,
+            'video_file' => $videoFile ?: null,
+            'heading' => $heading ?: '',
+            'form_id' => $formId ?: null,
         ];
     }
-
-
-
-
-
     /**
      * The block field group.
      */
     public function fields(): array
     {
-        $fields = Builder::make('contact_form_block');
+        $fields = Builder::make('contact_us');
 
         $fields
-            ->addUrl('form_action', [
-                'label' => 'Form Action URL',
-                'instructions' => 'The URL where the form should be submitted.',
-            ])
-            ->addRepeater('form_fields', [
-                'label' => 'Form Fields',
-                'instructions' => 'Add form fields dynamically.',
-                'min' => 1,
-                'layout' => 'block',
-            ])
-            ->addSelect('type', [
-                'label' => 'Field Type',
+            ->addSelect('video_source', [
+                'label' => 'Video Source',
+                'instructions' => 'Choose how you want to add the video.',
                 'choices' => [
-                    'text' => 'Text Input',
-                    'textarea' => 'Textarea',
-                    'select' => 'Select Dropdown',
+                    'url' => 'Enter a Video URL',
+                    'file' => 'Upload a Video File',
                 ],
+                'default_value' => 'url', // Default to URL for simplicity
             ])
-            ->addText('label', [
-                'label' => 'Field Label',
-                'instructions' => 'Enter the label for this field.',
-            ])
-            ->addText('placeholder', [
-                'label' => 'Field Placeholder',
-                'instructions' => 'Enter the placeholder for this field.',
-            ])
-            ->addText('name', [
-                'label' => 'Field Name',
-                'instructions' => 'Enter the name for this field (used in form submission).',
-            ])
-            ->addRepeater('options', [
-                'label' => 'Options (for Select Dropdown)',
-                'instructions' => 'Add options for the select dropdown.',
-                'min' => 1,
+            ->addText('video_link', [
+                'label' => 'Video URL',
+                'instructions' => 'Enter the URL of the video (YouTube, Vimeo, etc.):',
+                'type' => 'url',
                 'conditional_logic' => [
                     [
-                        'field' => 'type',
+                        'field' => 'video_source',
                         'operator' => '==',
-                        'value' => 'select',
+                        'value' => 'url',
                     ],
                 ],
             ])
-            ->addText('option', [
-                'label' => 'Option',
-                'instructions' => 'Enter an option value.',
+            ->addFile('video_file', [
+                'label' => 'Video File',
+                'instructions' => 'Upload a video file (MP4, MOV, etc.):',
+                'accepted_files' => 'video/*',
+                'max_size' => '10MB',
+                'conditional_logic' => [
+                    [
+                        'field' => 'video_source',
+                        'operator' => '==',
+                        'value' => 'file',
+                    ],
+                ],
             ])
-            ->endRepeater()
-            ->addTrueFalse('required', [
-                'label' => 'Required Field',
-                'instructions' => 'Mark this field as required.',
-                'default_value' => 0,
+            ->addText('heading', [
+                'label' => 'Heading',
+                'instructions' => 'Enter the heading text.',
             ])
-            ->endRepeater();
+            ->addNumber('form_id',[
+                'label' => 'Form ID',
+                'instructions' => 'Add the Formiddable Form ID to be included here: ',
+            ])
+        ;
 
         return $fields->build();
     }
-
 
     /**
      * Retrieve the items.
@@ -239,21 +232,5 @@ class Form_block extends Block
     public function assets(array $block): void
     {
         //
-    }
-
-    private function getFormFields(): array
-    {
-        $fields = get_field('form_fields') ?? [];
-
-        return array_map(function ($field) {
-            return [
-                'type' => $field['type'] ?? 'text',
-                'label' => $field['label'] ?? '',
-                'name' => $field['name'] ?? '',
-                'placeholder' => $field['placeholder'] ?? '',
-                'options' => $field['options'] ?? [],
-                'required' => $field['required'] ?? false,
-            ];
-        }, $fields);
     }
 }

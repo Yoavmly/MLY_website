@@ -25,6 +25,30 @@ return [
                 'plural' => 'Portfolios',
             ]
         ],
+        'role' =>[
+            'enter_title_here' => 'Enter Role title',
+            'menu_icon' => 'dashicons-admin-users',
+            'supports' => ['title','editor', 'author', 'revisions', 'thumbnail'],
+            'show_in_rest' => true,
+            'has_archive' => true,
+            'rewrite' => ['slug' => 'roles'],
+            'labels' => [
+                'singular' => 'Role',
+                'plural' => 'Roles',
+            ]
+        ],
+        'member' => [
+            'enter_title_here' => 'Enter Employee Name',
+            'menu_icon' => 'dashicons-admin-users',
+            'supports' => ['title', 'author', 'revisions', 'thumbnail', 'editor'],
+            'show_in_rest' => true,
+            'has_archive' => true,
+            'rewrite' => ['slug' => 'employees'],
+            'labels' => [
+                'singular' => 'Employee',
+                'plural' => 'Employees',
+            ],
+        ],
     ],
 
     /*
@@ -45,6 +69,15 @@ return [
             'labels' => [
                 'singular' => 'Portfolio Tag',
                 'plural' => 'Portfolio Tags',
+            ]
+        ],
+        'location-types' => [
+            'links' => ['role','member'],
+            'show_in_rest' => true,
+            'rewrite' => ['slug' => 'Location-Type'],
+            'labels' => [
+                'singular' => 'Location Type',
+                'plural' => 'Location Types',
             ]
         ]
     ],

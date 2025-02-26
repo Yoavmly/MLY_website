@@ -152,7 +152,8 @@ class project_main_block extends Block
 //            'items' => $this->items(),
             'title' => get_field('title'),
             'view_all_projects_link' => get_field('view_all_projects_link'),
-            'project_block' => $this->getProjectBlocks(),
+//            'project_block' => $this->getProjectBlocks(),
+            'project_block' => $this->getTopTwoProjects(),
         ];
     }
 
@@ -172,35 +173,35 @@ class project_main_block extends Block
                 'required' => true,
                 'instructions' => '',
             ])
-            ->addRepeater('project_block', [
-                'repeater' => true,
-                'layout' => 'block',
-                'instructions' => '',
-                'button_label' => 'Add Project',
-                'return_format' => 'array',
-            ])
-            ->addImage('image', [
-                'label' => 'project_image',
-                'required' => false,
-                'instructions' => '',
-            ])
-            ->addText('title_project', [
-                'label' => 'project_title',
-                'required' => true,
-                'instructions' => '',
-            ])
-            ->addText('description_project', [
-                'label' => 'project_description',
-                'required' => true,
-                'instructions' => '',
-            ])
-            ->addUrl('url', [ // Add the URL field here
-                'label' => 'Project URL',
-                'required' => false,
-                'instructions' => 'Provide the URL for the project.',
-            ])
-            ->endRepeater()
-            ->addUrl('view_all_projects_link', [
+//            ->addRepeater('project_block', [
+//                'repeater' => true,
+//                'layout' => 'block',
+//                'instructions' => '',
+//                'button_label' => 'Add Project',
+//                'return_format' => 'array',
+//            ])
+//            ->addImage('image', [
+//                'label' => 'project_image',
+//                'required' => false,
+//                'instructions' => '',
+//            ])
+//            ->addText('title_project', [
+//                'label' => 'project_title',
+//                'required' => true,
+//                'instructions' => '',
+//            ])
+//            ->addText('description_project', [
+//                'label' => 'project_description',
+//                'required' => true,
+//                'instructions' => '',
+//            ])
+//            ->addUrl('url', [ // Add the URL field here
+//                'label' => 'Project URL',
+//                'required' => false,
+//                'instructions' => 'Provide the URL for the project.',
+//            ])
+//            ->endRepeater()
+            ->addLink('view_all_projects_link', [
                 'label' => 'View All Projects',
                 'instructions' => 'Provide the URL for the "View All Projects" button.',
                 'required' => true,
@@ -227,19 +228,36 @@ class project_main_block extends Block
     {
         //
     }
-    private function getProjectBlocks(): array
-    {
-        $projects = get_field('project_block') ?: [];
+//    private function getProjectBlocks(): array
+//    {
+//        $projects = get_field('project_block') ?: [];
+//
+//        return array_map(function ($project) {
+//            return [
+//                'image' => !empty($project['image']['url'])
+//                    ? $project['image']
+//                    : ['url' => asset('images/partner/project1.png')->uri()],
+//                'title_project' => $project['title_project'] ?? '',
+//                'description_project' => $project['description_project'] ?? '',
+//                'url' => $project['url'] ?? '',
+//            ];
+//        }, $projects);
+//    }
 
-        return array_map(function ($project) {
-            return [
-                'image' => !empty($project['image']['url'])
-                    ? $project['image']
-                    : ['url' => asset('images/partner/project1.png')->uri()],
-                'title_project' => $project['title_project'] ?? '',
-                'description_project' => $project['description_project'] ?? '',
-                'url' => $project['url'] ?? '',
-            ];
-        }, $projects);
+    private function getTopTwoProjects(): array
+    {
+        $args = new \WP_Query([
+            'post_type' => 'portfolio',
+            'posts_per_page' => 2,
+            'post_status' => 'publish',
+            'orderby' => 'date',
+            'order' => 'DESC',
+        ]);
+
+        $topProject = $args->get_posts();
+
+        wp_reset_postdata();
+
+        return $topProject;
     }
 }

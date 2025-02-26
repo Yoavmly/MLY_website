@@ -166,13 +166,6 @@ class services_block extends Block
                 'min'=>1,
                 'layout' => 'block',
             ])
-                ->addImage('image', [
-                    'label' => 'Image',
-                    'instructions' => 'Add an image URL.',
-                    'required' => false,
-                    'return_format' => 'url',
-                    'preview_size' => 'medium',
-                ])
                 ->addText('title', [
                     'label' => 'Title',
                     'instructions' => 'Add the title for each service.',

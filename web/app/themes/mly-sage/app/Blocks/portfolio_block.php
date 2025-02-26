@@ -149,9 +149,6 @@ class portfolio_block extends Block
     public function with(): array
     {
         return [
-            'title' => get_field('title') ?: 'Our Portfolio',
-            'highlighted_text' => get_field('highlighted_text') ?: 'Portfolio',
-//            'groupedPortfolios' => $this->get_grouped_portfolios(),
             'tags'=>$this->getTags(),
             'allPortfolios' => $this->getAllPortfolios(),
         ];
@@ -163,6 +160,8 @@ class portfolio_block extends Block
             'post_type' => 'portfolio',
             'posts_per_page' => -1,
             'post_status' => 'publish',
+            'orderby' => 'date',
+            'order' => 'DESC',
         ]);
         $portfolios = $query->posts;
 
@@ -187,12 +186,7 @@ class portfolio_block extends Block
         $fields = Builder::make('portfolio__block');
 
         $fields
-            ->addText('title', [
-                'label' => 'Title',
-                'type' => 'text',
-                'required' => false,
-                'instructions' => '(Use Mly_main_block for this type of styling )',
-            ]);
+            ;
 
         return $fields->build();
     }

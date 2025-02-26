@@ -97,19 +97,13 @@ $mobile-breakpoint: 767px;
             border-radius: 0;
             border-bottom: 1px solid grey;
             outline: none;
-
-            &:focus {
-              border-bottom: 2px solid $primary-color;
-            }
           }
 
           select {
             border: 1px solid $primary-color;
             border-radius: 5px;
+            z-index: 3;//for placing it above the arrow image for default click behaviour
 
-            &:focus {
-              border-color: lighten($primary-color, 10%);
-            }
           }
         }
       }

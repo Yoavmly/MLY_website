@@ -1,9 +1,9 @@
+@import "../global";
 $desktop-breakpoint: 1024px;
 $mobile-breakpoint: 767px;
-@import "../global";
 
 .block-container {
-  background: black;
+  //background: transparent;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -20,9 +20,10 @@ $mobile-breakpoint: 767px;
   }
 
   .inner-block {
-   @include inner-block();
-
+    @include inner-block-base(
+    );
     .content-section {
+      @extend %content-image-section-base;
       flex: 2;
       color: white;
       padding-right: 30px;
@@ -39,6 +40,8 @@ $mobile-breakpoint: 767px;
           max-width: 100%;
           height: auto;
           display: block;
+          position: static; // Important: Reset the image position if needed
+          z-index: auto; //Reset z-index if needed
         }
       }
 
@@ -80,6 +83,8 @@ $mobile-breakpoint: 767px;
           max-width: 100%;
           height: auto;
           display: block;
+          position: static; // Important: Reset the image position if needed
+          z-index: auto; //Reset z-index if needed
         }
 
         @media (max-width: $mobile-breakpoint) {
@@ -110,19 +115,17 @@ $mobile-breakpoint: 767px;
     }
 
     .image-section {
+      @extend %content-image-section-base;
       flex: 1;
       display: flex;
       justify-content: flex-end;
       align-items: center;
 
       img {
-        max-width: 300px;
-        height: auto;
+        max-width: 481px;
         display: block;
-        border-radius: 50%;
-        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2))
-        drop-shadow(0 0 10px rgba(255, 255, 255, 0.4))
-        drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
+        position: static; // Important: Reset the image position
+        z-index: auto; //Reset z-index if needed
 
         @media (max-width: $mobile-breakpoint) {
           display: none;

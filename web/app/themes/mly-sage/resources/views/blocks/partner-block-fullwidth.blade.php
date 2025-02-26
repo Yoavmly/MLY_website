@@ -2,6 +2,8 @@
   @if($link)
     <a href="{{ $link }}" target="_blank" class="link">
       <div class="inner-block">
+          <img src="{{ \Roots\asset("images/specialBlock/1.png") }}"/>
+          <img src="{{ \Roots\asset("images/specialBlock/2.png") }}"/>
           <div class="content-section">
               @if($logo)
                 <div class="logo">
@@ -22,10 +24,8 @@
                 </div>
           </div>
           <div class="image-section">
-            <img src="{{ \Roots\asset("images/partner/5.png")->uri() }}" alt="Image">
+            <img src="{{ \Roots\asset("images/partner/zoho_ball.png")->uri() }}" alt="Image">
           </div>
-        <div class="clipping-container-round"></div>
-        <div class="clipping-container" style=""></div>
       </div>
     </a>
   @endif

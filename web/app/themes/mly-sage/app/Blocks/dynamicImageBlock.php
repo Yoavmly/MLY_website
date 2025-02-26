@@ -148,7 +148,7 @@ class dynamicImageBlock extends Block
     public function with(): array
     {
         return [
-            'collage_images' => get_field('images') ?: [],
+            'images' => get_field('images') ?: [],
         ];
     }
 
@@ -160,13 +160,15 @@ class dynamicImageBlock extends Block
         $fields = Builder::make('dynamic_image_block');
 
         $fields
-            ->addRepeater('images')
-                ->addImage('image',[
-                    'label' => 'Image',
-                    'return_format' => 'array',
-                    'preview_size' => 'medium',
-                ])
-            ->endRepeater();
+            ->addGallery('images', [
+                'label' => 'Images',
+                'instructions' => 'Select images to display in the masonry layout.',
+                'return_format' => 'array', // or 'object' depending on your needs
+                'preview_size' => 'medium',
+                'library' => 'all',
+                'min' => 0,
+                'max' => '',
+            ]);
 
         return $fields->build();
     }

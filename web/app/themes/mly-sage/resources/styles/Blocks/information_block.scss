@@ -1,0 +1,18 @@
+.information-block {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding:2rem;
+  align-self: center;
+  flex-direction: column;
+  max-width:90.313rem;
+  width: 100%;
+
+  &__title {
+    font-size: 1.5em;
+  }
+
+  &__content {
+   font-size: 0.5rem;
+  }
+}
