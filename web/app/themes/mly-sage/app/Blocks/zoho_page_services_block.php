@@ -166,6 +166,7 @@ class zoho_page_services_block extends Block
                 'label' => 'Services',
                 'instructions' => '',
                 'layout' => 'block',
+                'min' => 1,
                 'max' => 6,
             ])
             ->addRepeater('icons', [
@@ -175,13 +176,13 @@ class zoho_page_services_block extends Block
                 'return_format' => 'array',
                 'preview_size' => 'thumbnail',
             ])
-            ->addImage('icon', [
-                'label' => 'Icon',
-                'instructions' => 'Select the icon for the service for animation (minimum 2 images for transition).',
-                'required' => true,
-                'return_format' => 'array',
-                'preview_size' => 'thumbnail',
-            ])
+                ->addImage('icon', [
+                    'label' => 'Icon',
+                    'instructions' => 'Select the icon for the service for animation (minimum 2 images for transition).',
+                    'required' => true,
+                    'return_format' => 'array',
+                    'preview_size' => 'thumbnail',
+                ])
             ->endRepeater()
             ->addText('title', [
                 'label' => 'Service Title',
@@ -200,13 +201,17 @@ class zoho_page_services_block extends Block
     }
 
 
-    private function getServices() :array
+    private function getServices(): array
     {
         $services = get_field('services') ?: [];
 
-        return array_map(function ($service) { // Removed index and $images
+        return array_map(function ($service) {
+            $icons = $service['icons'] ?? []; // Ensure icons is always an array
+            if (!is_array($icons)) {
+                $icons =[]; // In case the icon is not set properly
+            }
             return [
-                'icons' => $service['icons'] ?? [], // Retrieve icons from service or default to empty array.  CRITICAL!
+                'icons' => $icons,
                 'title' => is_string($service['title']) ? $service['title'] : '',
                 'description' => is_string($service['description']) ? $service['description'] : '',
             ];
