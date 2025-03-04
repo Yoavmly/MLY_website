@@ -16,8 +16,11 @@
        </div>
      </div>
    </div>
+   @php /*
    <div class="copyright-footer">
      <span class="footer-text">&copy;2024 MLY All Rights Reserved</span>
    </div>
+   */
+   @endphp
  </div>
 </div>

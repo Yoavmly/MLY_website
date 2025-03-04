@@ -151,6 +151,7 @@ class why_mly_main_block extends Block
             'paragraph_1' => $this->formattedParagraph(get_field('paragraph_1'),get_field('highlighted_1')),
             'paragraph_2' => $this->formattedParagraph(get_field('paragraph_2'),get_field('highlighted_2')),
             'properties' => get_field('properties'),
+            'button_text' => get_field('button_text'),
         ];
     }
 
@@ -192,6 +193,11 @@ class why_mly_main_block extends Block
                 'label'=>'Highlighted Text',
                 'instruction'=>'Enter Text to be highlighted inside the paragraph above',
                 'required'=>true,
+            ])
+            ->addText('button_text',[
+                'label'=>'Button Text',
+                'required'=>true,
+                'return_format'=>'text'
             ])
             ->addRepeater('properties',[
                 'label'=>'Enter the Properties',
