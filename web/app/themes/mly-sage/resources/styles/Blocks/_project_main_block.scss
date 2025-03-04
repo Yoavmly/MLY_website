@@ -11,7 +11,7 @@ $background-color: transparentize( #000000, 1 );
 
 .project-page-heading-block{
   min-height: 5rem !important;
-  max-width: 90.313rem;
+  //max-width: 90.313rem;
 }
 .project-main-block {
   display: flex;
@@ -42,7 +42,7 @@ $background-color: transparentize( #000000, 1 );
     flex-wrap: nowrap;
     justify-content: center;
     gap: 42.41px;
-    max-width: 90.313rem;
+    //max-width: 90.313rem;
     max-height:700px;
     height:auto;
     width:100%;

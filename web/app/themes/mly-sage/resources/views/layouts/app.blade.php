@@ -13,12 +13,12 @@
   @yield('services-page-background')
 
 
-  <body @php(body_class())>
+  <body @php(body_class()) >
     @php(wp_body_open())
 
-
-    <div id="app">
-
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
+    <div class="main col-lg-10 col-md-10 col-xs-10">
+    <div id="app" >
 
       <a class="sr-only focus:not-sr-only" href="#main">
         {{ __('Skip to content') }}
@@ -27,7 +27,7 @@
 
       @include('sections.header')
 
-      <main id="main" class="main">
+      <main id="main" >
 
 
         @yield('content')
@@ -40,9 +40,12 @@
       @endif
 
       @include('sections.footer')
+
     </div>
 
-    @php(do_action('get_footer'))
-    @php(wp_footer())
+      @php(do_action('get_footer'))
+      @php(wp_footer())
+    </div>
+    <div class="col-lg-1 col-md-1 col-xs-1"></div>
   </body>
 </html>
