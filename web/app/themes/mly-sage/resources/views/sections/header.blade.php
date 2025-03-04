@@ -2,6 +2,30 @@
   function toggleMenu() {
     document.querySelector('.mobile-navbar-collapse').classList.toggle('show-menu');
   }
+
+/*
+  document.addEventListener('DOMContentLoaded',function(){
+
+    // Check if the navbar element exists
+    if (!navbar) {
+      console.error("Navbar element with ID 'navbar' not found.");
+      return; // Exit the function if the navbar is not found
+    }
+
+    function handleScroll(){
+    const navbar = document.getElementById('navbar');
+      const scrollPosition = window.scrollY || document.documentElement.scrollTop || window.pageYOffset || window.scrollY;
+
+      if(scrollPosition > navbar.offsetHeight){
+        navbar.classList.add('scrolled');
+      }else{
+        navbar.classList.remove('scrolled');
+      }
+    }
+
+
+  });
+
 </script>
 @php
   class Custom_Nav_Walker extends Walker_Nav_Menu {
@@ -25,8 +49,8 @@
   ];
   $main_menu = wp_nav_menu($menu_args);
 @endphp
-<header class="banner">
-  <nav class="navbar">
+<header class="banner" onscroll="handleScroll()">
+  <nav class="navbar" id="navbar">
     <div class="container-fluid">
 
       <div class="hamburger-icon" onclick="toggleMenu()">

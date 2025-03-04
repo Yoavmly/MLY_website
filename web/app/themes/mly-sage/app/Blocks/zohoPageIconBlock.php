@@ -5,21 +5,21 @@ namespace App\Blocks;
 use Log1x\AcfComposer\Block;
 use Log1x\AcfComposer\Builder;
 
-class why_mly_main_block extends Block
+class zohoPageIconBlock extends Block
 {
     /**
      * The block name.
      *
      * @var string
      */
-    public $name = 'Why_Mly_Main_Block';
+    public $name = 'Zoho Page Icon Block';
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'primary for this glowing text effect onclick';
+    public $description = 'this constitues description ,Highlighted text and set of logos aligned at center.';
 
     /**
      * The block category.
@@ -139,7 +139,7 @@ class why_mly_main_block extends Block
      */
     public $template = [
         'core/heading' => ['placeholder' => 'Hello World'],
-        'core/paragraph' => ['placeholder' => 'Welcome to the Why_Mly_Main_Block block.'],
+        'core/paragraph' => ['placeholder' => 'Welcome to the Zoho Page Icon Block block.'],
     ];
 
     /**
@@ -148,21 +148,11 @@ class why_mly_main_block extends Block
     public function with(): array
     {
         return [
-            'paragraph_1' => $this->formattedParagraph(get_field('paragraph_1'),get_field('highlighted_1')),
-            'paragraph_2' => $this->formattedParagraph(get_field('paragraph_2'),get_field('highlighted_2')),
-            'properties' => get_field('properties'),
+            'paragraph_1' => get_field('paragraph_1', $this->block->id) ?: '',
+            'paragraph_2' => get_field('paragraph_2', $this->block->id) ?: '',
+            'logo_title' => get_field('logo_title', $this->block->id) ?: '',
+            'images' => $this->getImages(),
         ];
-    }
-
-    private function formattedParagraph($paragraph,$highlightedText)
-    {
-        $paragraph = str_replace('\br', '<br>', $paragraph);
-
-        return str_replace(
-            $highlightedText,
-            '<span class="highlight">' . esc_html($highlightedText) . '</span>',
-            $paragraph
-        );
     }
 
     /**
@@ -170,48 +160,68 @@ class why_mly_main_block extends Block
      */
     public function fields(): array
     {
-        $fields = Builder::make('why__mly__main__block');
+        $fields = Builder::make('zoho_page_icon_block');
 
         $fields
-            ->addText('paragraph_1',[
-                'label' => 'Paragraph 1',
-                'instructions' => `Enter Paragraph here (this would appear on 4th click on the heading!) [for linebreaks try using \br instead of <br>]`,
+            ->addTextarea('paragraph_1', [
+                'label' => 'First Paragraph',
+                'instructions' => 'Enter the first paragraph of the description block.',
+                'rows' => 4,
                 'required' => true,
             ])
-            ->addText('highlighted_1',[
-                'label'=>'Highlighted Text',
-                'instruction'=>'Enter Text to be highlighted inside the paragraph above',
-                'required'=>true,
-            ])
-            ->addText('paragraph_2',[
-                'label' => 'Paragraph 2',
-                'instructions' => `Enter paragraph here (this would appear on scroll after the horizontal line) [for linebreaks try using \br instead of <br>]`,
+            ->addTextarea('paragraph_2', [
+                'label' => 'Second Paragraph',
+                'instructions' => 'Enter the second paragraph of the description block.',
+                'rows' => 4,
                 'required' => true,
             ])
-            ->addText('highlighted_2',[
-                'label'=>'Highlighted Text',
-                'instruction'=>'Enter Text to be highlighted inside the paragraph above',
-                'required'=>true,
-            ])
-            ->addRepeater('properties',[
-                'label'=>'Enter the Properties',
-                'required'=>true,
-                'return_format'=>'array'
-            ])
-            ->addText('digits',[
-                'label'=>'Number',
-                'type'=>'number',
-                'required'=>true,
-            ])
-            ->addText('data',[
-                'label'=>'Text',
-                'type'=>'text',
-                'required'=>true,
-            ])
-            ->endRepeater()
-            ;
+            ->addText('logo_title', [
+                'label' => 'Logo Title',
+                'instructions' => 'Enter the title that appears above the various logos of partners.',
+                'required' => true,
 
+            ])
+            ->addGallery('images', [
+                'label' => 'Fancy Logos',
+                'instructions' => 'Add images for the logos.',
+                'min' => 1,
+                'max' => 20,
+                'insert' => 'append',
+                'library' => 'all',
+                'return_format' => 'array',  // Crucial for proper image retrieval
+
+            ])
+            ;
         return $fields->build();
+    }
+    private function getImages(): array
+    {
+        $images = get_field('images', $this->block->id) ?: [];  // get_field from current block ID
+
+        $result = array_map(function ($image) {
+
+            // Check for empty or invalid array, prevent php errors
+            if (empty($image) || !is_array($image)) {
+                return null;
+            }
+
+            // Attempt to get ACF fields values
+            $imageUrl = $image['url'] ?? '';   // URL of the image from wordpress
+            $imageAlt = $image['alt'] ?? '';
+            $titleImage = $image['title'] ?? 'Image';
+            $linkTarget = $image['linkTarget'] ?? '';
+
+            return [
+                'url' => $imageUrl,    // Required Field
+                'alt' => $imageAlt,    // Alt of Image to pass to <img> Tag
+                'title' => $titleImage,     // Optional text
+                'image_url' => $linkTarget, //Target external url to link logo with url from acf
+            ];
+
+        }, $images);
+
+        //Remove NULL results (errors to display and improve loop display).
+        return array_filter($result);
     }
 
     /**

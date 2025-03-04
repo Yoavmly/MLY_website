@@ -150,10 +150,6 @@ class zoho_page_services_block extends Block
     {
         return [
             'services' => $this->getServices(),
-            'paragraph_1' => get_field('paragraph_1') ?: '',
-            'paragraph_2' => get_field('paragraph_2') ?: '',
-            'logo_title' => get_field('logo_title') ?: '',
-            'images' => $this->getImages(),
         ];
     }
 
@@ -166,81 +162,88 @@ class zoho_page_services_block extends Block
         $fields = Builder::make('zoho__page__services__block');
 
         $fields
-            ->addRepeater('services',[
+            ->addRepeater('services', [
                 'label' => 'Services',
                 'instructions' => '',
                 'layout' => 'block',
                 'max' => 6,
             ])
-                ->addImage('logo',[
-                    'label' => 'Logo',
-                    'instructions' => '',
-                    'required' => true,
-                ])
-                ->addText('title',[
-                    'label' => 'Service Title',
-                    'instructions' => '',
-                    'required' => true,
-                ])
-                ->addTextarea('description',[
-                    'label' => 'Description',
-                    'instructions' => '',
-                    'required' => true,
-                    'rows' => 3,
-                ])
+            ->addRepeater('icons', [
+                'label' => 'Icons',
+                'instructions' => 'Select the icon for the service.',
+                'required' => true,
+                'return_format' => 'array',
+                'preview_size' => 'thumbnail',
+            ])
+            ->addImage('icon', [
+                'label' => 'Icon',
+                'instructions' => 'Select the icon for the service for animation (minimum 2 images for transition).',
+                'required' => true,
+                'return_format' => 'array',
+                'preview_size' => 'thumbnail',
+            ])
             ->endRepeater()
-            ->addTextarea('paragraph_1', [
-                'label' => 'First Paragraph',
-                'instructions' => 'Enter the first paragraph of the description block.',
-                'rows' => 4,
+            ->addText('title', [
+                'label' => 'Service Title',
+                'instructions' => '',
                 'required' => true,
             ])
-            ->addTextarea('paragraph_2', [
-                'label' => 'Second Paragraph',
-                'instructions' => 'Enter the second paragraph of the description block.',
-                'rows' => 4,
+            ->addTextarea('description', [
+                'label' => 'Description',
+                'instructions' => '',
                 'required' => true,
+                'rows' => 3,
             ])
-            ->addText('logo_title',[
-                'label' => 'Logo Title',
-                'instructions' => 'Enter the title that appears above the various logos of partners.',
-                'required' => true,
-
-            ])
-            ->addRepeater('images', ['label' => 'Fancy Logos'])
-            ->addImage('image', ['label' => 'Logo Image', 'required' => true,])
-            ->addUrl('image_url', ['label' => 'Image URL', 'required' => true,])
-            ->addText('title', ['label' => 'Logo Title', 'required' => false])
             ->endRepeater();
 
         return $fields->build();
     }
 
+
     private function getServices() :array
     {
         $services = get_field('services') ?: [];
 
-        return array_map(function ($service) {
+        return array_map(function ($service) { // Removed index and $images
             return [
-                'logo' => $service['logo']['url'] ?? '',
+                'icons' => $service['icons'] ?? [], // Retrieve icons from service or default to empty array.  CRITICAL!
                 'title' => is_string($service['title']) ? $service['title'] : '',
                 'description' => is_string($service['description']) ? $service['description'] : '',
             ];
         }, $services);
     }
 
-    private function getImages(): array
+    private function getImages() :array
     {
-        $images = get_field('images') ?: [];
-
-        return array_map(function ($image) {
-            return [
-                'url' => $image['image']['url'] ?? '',
-                'title' => is_string($image['title']) ? $image['title'] : 'Logo',
-                'image_url' => $image['image_url'] ?? '#',
-            ];
-        }, $images);
+        return [
+            [
+                \Roots\asset('images/assests/zoho_services/1/1.png')->uri(),
+                \Roots\asset('images/assests/zoho_services/1/2.png')->uri(),
+            ]
+            ,
+            [
+                \Roots\asset('images/assests/zoho_services/2/1.png')->uri(),
+                \Roots\asset('images/assests/zoho_services/2/2.png')->uri(),
+            ],
+            [
+                \Roots\asset('images/assests/zoho_services/3/1.png')->uri(),
+                \Roots\asset('images/assests/zoho_services/3/2.png')->uri(),
+            ],
+            [
+                \Roots\asset('images/assests/zoho_services/4/1.png')->uri(),
+                \Roots\asset('images/assests/zoho_services/4/2.png')->uri(),
+            ],
+            [
+                \Roots\asset('images/assests/zoho_services/5/1.png')->uri(),
+                \Roots\asset('images/assests/zoho_services/5/2.png')->uri(),
+            ],
+            [
+                \Roots\asset('images/assests/zoho_services/6/1.png')->uri(),
+                \Roots\asset('images/assests/zoho_services/6/2.png')->uri(),
+            ],
+        ];
     }
+
 
 
     /**

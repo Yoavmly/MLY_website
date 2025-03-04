@@ -8,6 +8,8 @@ use function Roots\bundle;
 
 class portfolio_block extends Block
 {
+
+
     /**
      * The block name.
      *
@@ -167,13 +169,14 @@ class portfolio_block extends Block
 
         wp_reset_postdata(); // to reset the query after using WP_Query()
 
+//        global $portfolios;
         return $portfolios;
     }
 
     public function getTags()
     {
         return get_terms([
-            'taxonomy' => 'tags',
+            'taxonomy' => 'portfolio-tag',
             'hide_empty' => true,
         ]);
     }

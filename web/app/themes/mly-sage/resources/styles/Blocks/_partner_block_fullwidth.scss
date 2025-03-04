@@ -65,6 +65,9 @@ $mobile-breakpoint: 767px;
         line-height: 25.2px;
         text-align: left;
         margin-bottom: 20px;
+        align-items: unset;
+        align-self:unset;
+        height:auto;
 
         &:hover {
           text-decoration: none;

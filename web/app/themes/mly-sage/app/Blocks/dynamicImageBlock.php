@@ -160,15 +160,24 @@ class dynamicImageBlock extends Block
         $fields = Builder::make('dynamic_image_block');
 
         $fields
-            ->addGallery('images', [
+            ->addRepeater('images', [
                 'label' => 'Images',
-                'instructions' => 'Select images to display in the masonry layout.',
-                'return_format' => 'array', // or 'object' depending on your needs
+                'instructions' => 'Select images to display in the masonry layout. Check "Full Width" to make the image span the entire row.',
+                'layout' => 'block', // Improved layout for the repeater
+
+            ])
+            ->addImage('image', [
+                'label' => 'Image',
+                'return_format' => 'array',
                 'preview_size' => 'medium',
                 'library' => 'all',
-                'min' => 0,
-                'max' => '',
-            ]);
+            ])
+            ->addTrueFalse('full_width', [
+                'label' => 'Full Width',
+                'instructions' => 'Check this box to make the image span the entire row.',
+                'default_value' => 0, // Not checked by default
+            ])
+            ->endRepeater();
 
         return $fields->build();
     }

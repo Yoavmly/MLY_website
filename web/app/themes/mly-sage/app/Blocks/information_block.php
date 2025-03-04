@@ -12,14 +12,14 @@ class information_block extends Block
      *
      * @var string
      */
-    public $name = 'Information_Block';
+    public $name = 'Information_Block'; // Keep this consistent
 
     /**
      * The block description.
      *
      * @var string
      */
-    public $description = 'a block constituting basic title and description';
+    public $description = 'A block constituting basic title and description with optional social links';
 
     /**
      * The block category.
@@ -40,7 +40,7 @@ class information_block extends Block
      *
      * @var array
      */
-    public $keywords = [];
+    public $keywords = ['information', 'content', 'social'];
 
     /**
      * The block post type allow list.
@@ -125,10 +125,20 @@ class information_block extends Block
      * @var array
      */
     public $example = [
-        'items' => [
-            ['item' => 'Item one'],
-            ['item' => 'Item two'],
-            ['item' => 'Item three'],
+        'title' => 'Example Title',
+        'content' => 'This is some example content for the Information Block.',
+        'is_socials_present' => true,
+        'socials' => [
+            [
+                'name' => 'Facebook',
+                'image' => 'https://via.placeholder.com/32', // Replace with a real image URL
+                'link' => 'https://www.facebook.com/',
+            ],
+            [
+                'name' => 'Twitter',
+                'image' => 'https://via.placeholder.com/32', // Replace with a real image URL
+                'link' => 'https://twitter.com/',
+            ],
         ],
     ];
 
@@ -150,6 +160,8 @@ class information_block extends Block
         return [
             'title' => get_field('title'),
             'content' => get_field('content'),
+            'isSocialsPresent' => get_field('is_socials_present'),
+            'socials' => get_field('socials'),
         ];
     }
 
@@ -158,7 +170,7 @@ class information_block extends Block
      */
     public function fields(): array
     {
-        $fields = Builder::make('information__block');
+        $fields = Builder::make('information__block');  // Make sure this is unique across your blocks
 
         $fields
             ->addText('title',[
@@ -167,13 +179,51 @@ class information_block extends Block
                 'required' => true,
                 'instructions' => 'Enter Title',
             ])
-            ->addText('content',[
+            ->addWysiwyg('content',[
                 'label' => 'Content',
                 'type' => 'wysiwyg',
                 'required' => true,
                 'instructions' => 'Enter Description',
             ])
-        ;
+            ->addTrueFalse('is_socials_present', [
+                'label' => 'Show Social Links?',
+                'instructions' => 'Enable to display social links below the title.',
+                'default_value' => 0, // Default to not showing
+                'ui' => 1, // Use toggle switch
+            ])
+            ->addRepeater('socials', [
+                'label' => 'Social Links',
+                'instructions' => 'Add social media links.',
+                'conditional_logic' => [
+                    [
+                        [
+                            'field' => 'is_socials_present',
+                            'operator' => '==',
+                            'value' => '1',
+                        ],
+                    ],
+                ],
+            ])
+            ->addText('name',[
+                'label' => 'Name',
+                'type' => 'text',
+                'required' => true,
+                'instructions' => 'Enter Social Media Name',
+            ])
+            ->addImage('image',[
+                'label' => 'Image',
+                'type' => 'image',
+                'required' => true,
+                'instructions' => 'Upload Image',
+            ])
+            ->addLink('link',[
+                'label' => 'Link',
+                'type' => 'link',
+                'return_format' => 'url',
+                'required' => true,
+                'instructions' => 'Enter Link',
+            ])
+        ->endRepeater();
 
         return $fields->build();
     }

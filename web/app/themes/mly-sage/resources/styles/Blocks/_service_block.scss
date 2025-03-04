@@ -88,3 +88,36 @@
     }
   }
 }
+
+@media (max-width: 768px) {
+  /* Adjust the overall container to stack services vertically */
+  .services-block {
+    flex-direction: column; /* Stack containers vertically */
+    height: auto;           /* Height adjusts to sum of children */
+    overflow-x: hidden;     /* No horizontal scrolling needed */
+    overflow-y: auto;       /* Allow vertical scrolling if necessary */
+    scroll-snap-type: none;  /* Disable horizontal snap */
+  }
+
+  /* Make each service container full width */
+  .services-block .services-container {
+    width: 100%;            /* Full width for each container */
+    flex: 0 0 auto;         /* Prevent shrinking */
+    margin-bottom: 1rem;    /* Add spacing between items */
+    scroll-snap-align: none;
+    position: relative;
+  }
+
+  /* Adjust the service item styling for vertical layout */
+  .services-block .service-item {
+    height: auto;           /* Let height be defined by content */
+    transform: none;        /* Disable the hover translate effect */
+    transition: none;       /* Remove transition on touch devices */
+  }
+
+  /* Optionally hide the arrow block for a cleaner mobile view */
+  .services-block .arrow-block {
+    display: none;
+  }
+}
+

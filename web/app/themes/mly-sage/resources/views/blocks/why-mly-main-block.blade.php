@@ -1,7 +1,7 @@
 <div class="{{ $block->classes }} d-flex align-items-center justify-content-center" style="{{ $block->inlineStyle }}">
   <div class="main-block-wrapper container-fluid" style="max-width:90.313rem;">
     @php
-      $uniqueId = uniqid('title-'); // Generate a unique ID
+      $uniqueId = uniqid('title-');
     @endphp
     <div onclick="colorizeWords('{{ $uniqueId }}')" id="{{ $uniqueId }}" class="clickable-title">
       <div class="title-heading">
@@ -16,6 +16,21 @@
     <hr>
     <div class="paragraph">
       <span class="paragraphCustom">{{ $paragraph_2 }}</span>
+    </div>
+  </div>
+  <div class="justify-content-start align-items-center last-row-styling">
+    <div class="button-wrapper">
+        <a href="{{ home_url('#form-block-1') }}">
+          <span class="signature-gradient-button">{{ $button_text }}</span>
+        </a>
+    </div>
+    <div class="test-last-row d-flex align-items-center justify-content-start">
+      @foreach($properties as $property)
+        <div class="individual-property d-flex flex-row justify-content-start align-items-start">
+          <span class="factual-data">{{ $property['digits'] }}</span>
+          <span class="textual-data">{{ $property['data'] }}</span>
+        </div>
+      @endforeach
     </div>
   </div>
 </div>
@@ -54,56 +69,3 @@
       };
   }
 </script>
-
-<style>
-  .clickable-title {
-    cursor: pointer;
-    height: auto;
-    min-height:50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position:relative;
-    grid-template-columns: 1fr auto 1fr;
-  }
-
-  .title-heading {
-    width: 100%;
-    text-align: center;
-    margin: 0;
-    transition: display 0.5s ease-in-out;
-    display:grid;
-    grid-template-columns: 1fr auto 1fr;
-  }
-
-  .dynamic-text {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    white-space: nowrap;
-    font-size: calc(1ch * 25);
-  }
-
-  .replacement-paragraph {
-    position:absolute;
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    overflow: hidden;
-    opacity: 0;
-    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
-    transform: translateY(100%);
-  }
-
-  .replacement-paragraph.slide-in {
-    opacity: 1;
-    transform: translateY(0);
-    transition: opacity 1.0s ease-in-out, transform 0.5s ease-in-out;
-  }
-</style>

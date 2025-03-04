@@ -18,7 +18,7 @@ body {
 }
 * {
   box-sizing: border-box;
-  transition:all 0.3s ease-in-out;
+  //transition:height 0.3s ease-in-out,width 0.3s ease-in-out;
 }
 .page-header{
   display: none;
@@ -223,7 +223,7 @@ body {
   $image-top: 0, // General top position
   $image-left: 0, // General left position
   $image-width: 100%, // General width
-  $image-height: auto, // General height
+  $image-height: 100%, // General height
   $mobile-image-width: 100%, // Mobile specific adjustments
   $mobile-image-top: 0 // Mobile specific adjustments
 ) {
@@ -253,7 +253,7 @@ body {
     position: absolute;
     width: $image-width; // Use the general width
     height: $image-height; // Use the general height
-    object-fit: cover;
+    object-fit: fill;
     object-position: center;
     z-index: 1; // Ensure they're behind the content sections
     top: $image-top; // Use the general top
@@ -335,3 +335,4 @@ body {
     }
   }
 }
+

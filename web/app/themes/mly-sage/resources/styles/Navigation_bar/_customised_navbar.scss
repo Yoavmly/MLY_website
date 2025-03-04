@@ -41,10 +41,16 @@ header {
   max-width: 90.313rem;
   align-items: center;
   justify-content: flex-end;
+  transition: background 0.5s linear;
 
   .container-fluid {
     --bs-gutter-x: unset;
   }
+}
+.navbar.scrolled{
+  position: sticky;
+  background: transparent;
+  filter:blur(50px);
 }
 
 .mobile-navbar-collapse {

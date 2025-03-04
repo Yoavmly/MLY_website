@@ -62,7 +62,7 @@ return [
     */
 
     'taxonomy' => [
-        'tags' => [
+        'portfolio-tag' => [
             'links' => ['portfolio'],
             'show_in_rest' => true,
             'rewrite' => ['slug' => 'portfolio-tags'],

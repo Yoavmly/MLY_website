@@ -89,7 +89,7 @@ function filter_portfolios_by_tag()
         'posts_per_page' => -1,
         'tax_query' => [
             [
-                'taxonomy' => 'tags',
+                'taxonomy' => 'portfolio-tag',
                 'field' => 'slug',
                 'terms' => $tag_slug,
             ],
